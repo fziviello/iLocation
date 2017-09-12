@@ -1,0 +1,28 @@
+#site-canvas
+{
+    float:left;
+    transition: 300ms ease all;
+}
+
+.show-nav{
+    transform: translateX(200px);
+    transform: translate3d(200px, 0, 0);
+    transition: 300ms ease all;
+  }
+.areaMenu{
+      
+}
+#site-menu {
+    width: 200px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -200px;
+  }
+
+  #MenuSide .title{
+
+    font-size:15px;
+    padding:5px 0px;
+    text-align:center;
+  }

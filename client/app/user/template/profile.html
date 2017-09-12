@@ -1,0 +1,42 @@
+<div class="container">
+        <div class="col-xs-12 col-md-12 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Profilo</div>
+                <div class="panel-body">
+                    <form id="profile_form" ng-init="vm.LoadProfile();" ng-submit="vm.UpdateProfile();">
+                        <div class="row">
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
+                                <label>Nome</label>
+                                <input ng-model="vm.user.nome" type="text" class="form-control" placeholder="Nome">
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
+                                <label>Cognome</label>
+                                <input ng-model="vm.user.cognome" type="text" class="form-control"  placeholder="Cognome">
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
+                                <label>Email</label>
+                                <input ng-model="vm.user.email" type="email" class="form-control" placeholder="E-mail">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-6">
+                                <label>Room</label>
+                                <input ng-model="vm.user.room" type="text" class="form-control"  placeholder="Room">
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-2 col-sm-2">
+                                 <label>Colore Marker</label>
+                                <input ng-model="vm.user.colorMarker" type="color" class="form-control" placeholder="#color">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-md-12 col-sm-12 text-right">
+                                    <a class="btn btn-warning" href="#/home">Annulla</a>
+                                    <button type="submit" class="btn btn-success">Salva</button>
+                                    
+                            </div>   
+
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>

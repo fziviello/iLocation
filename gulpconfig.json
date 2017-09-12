@@ -1,0 +1,30 @@
+{
+  "jsSrc":[
+              "./client/app.js",
+              "./client/app/**/*.js"
+  ],
+  "cssSrc":[
+             "./client/app/**/*.css"
+  ],
+  "htmlSrc":[
+             "./client/app/**/*.html"
+  ],
+  "mediaSrc":[
+            "./client/app/medias/*.*"
+],
+  "jsonSrc":[
+            "./client/app/**/*.json"
+],
+"buildBundle":[
+           "build/bundle.js"
+],
+"buildLibs": [
+          "build/view",
+          "build/medias"
+],
+"buildDependency": [
+  "build/vendors"
+],
+  "DEST": "build"
+
+}

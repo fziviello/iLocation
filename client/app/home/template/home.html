@@ -1,0 +1,27 @@
+<div id="MenuSide">
+        <div id="site-canvas" off-canvas-menu ng-class="{'show-nav':isMenuOpen}">
+                <div id="site-menu">
+                        <div class="areaMenu">
+                                <div class="list-group" ng-init="vm.StampaListaUtentiConnessi()">
+                                        <div class="title">Utenti Connessi {{vm.ListaUtentiConnessi.result.length}}</div>
+                                        <button ng-click="vm.FocusUtente(utente.id)" class="list-group-item" ng-repeat="utente in vm.ListaUtentiConnessi.result">{{utente.nome}}</button>
+                                </div>
+                        </div>
+                </div>
+                <button class="btn btn-default" ng-click="toggleMenu()"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+        </div>
+</div>
+<div class="container">
+        <div class="col-xs-12 col-md-12 col-sm-12">
+                <div class="input-group">
+                        <input id="autocomplete" class="form-control" placeholder="indirizzo o coordinate" autocomplete="off" type="text">
+                        <span class="input-group-btn"><button id="cerca" class="btn btn-default glyphicon glyphicon-search" type="button"></button></span>
+                </div>
+                <br/>
+                <button ng-click="vm.CreaPoligono();">Crea Poligono</button>
+                <button ng-click="vm.CalcolaPercorso();">Calcola Percorso</button>
+                <button ng-click="vm.deleteObjectMap();">Pulisci</button>
+                <br/>
+                <div ng-init="vm.MyMap();" id="mappa"></div>   
+        </div>
+</div>
