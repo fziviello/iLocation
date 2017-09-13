@@ -26,10 +26,15 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
         $rootScope.URL = 'http://192.168.1.24:';
         $rootScope.PORT = '3000';
         $rootScope.API = '/api/v1';
+        $rootScope.UserLogged='';
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             if(!$localStorage.token) {
                 $location.path('/login');
-    	    }
+            }
+            else
+            {
+                $rootScope.UserLogged=$localStorage.nome;
+            }
         });
         $rootScope.showLogged= function(){
             if(!$localStorage.token) 

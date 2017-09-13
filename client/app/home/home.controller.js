@@ -402,6 +402,43 @@
         
             }
 
-    }
+            vm.myPosition=function()
+            {
+                if (navigator.geolocation) 
+                {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                            vm.geocoder.geocode({'location': pos}, function(results, status) {
+                                if (status === 'OK') 
+                                {
+                                    let titolo="Posizione Corrente";
+                                    vm.map.setCenter(results[0].geometry.location);
+                                    var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
+                                    var posizione = {
+                                        id:$localStorage.id,
+                                        lat: Number(coordinata[0]),
+                                        lng: Number(coordinata[1]),
+                                        title:$localStorage.cognome+" "+$localStorage.nome,
+                                        desc:results[0].formatted_address,
+                                        address:results[0].formatted_address
+                                    };
+                                    vm.sharePosition(posizione);
+                                }
+                            });
+                        });
+                } 
+                else
+                {
+                    toaster.pop({
+                        type: 'error',
+                        title: 'Errore',
+                        body: 'Impossibile Rilevare la Posizione Corrente'
+                        });
+                    }
+                }
+            }
         
 })();
