@@ -6,20 +6,26 @@ Requisiti
 =========
 
 Versione di node: 8.3.0
+
 Versione di bower: 1.8.0
+
 Versione di gulp: 3.9.1
 
 Installazione
 =============
 
 npm install
+
 bower install
+
 gulp start
+
 Importare il dump del DB con lo script "ilocation.sql"
 
 Configurazione
 ==============
 Modificare nel file .env i parametri di connessione al vostro DB
+
 Modificare nel file client/app.js la URL con il vostro indirizzo IP LOCALE
 
 Start
