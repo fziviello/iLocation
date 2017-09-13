@@ -1,6 +1,6 @@
 node_modules
 build/medias
-bulid/vendors
+build/vendors
 build/view
 build/*.js
 build/*.css
