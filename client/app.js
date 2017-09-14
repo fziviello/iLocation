@@ -3,7 +3,7 @@
 'use strict';
 angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','iLocation.Login','iLocation.Home','iLocation.User','btford.socket-io'])
 .factory('socket', function (socketFactory) {
-    var myIoSocket = io.connect("http://192.168.1.24:4200"); // da sistemare
+    var myIoSocket = io.connect("https://192.168.1.24:4200",{secure: true, reconnect: true}); // da sistemare
     var socket = socketFactory({
         ioSocket: myIoSocket
     });
@@ -13,7 +13,6 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
     .config(config)
     .run(run);
     
-
     function config($routeProvider, $locationProvider,$httpProvider){
 
         $httpProvider.interceptors.push('myHttpInterceptor');
@@ -23,7 +22,7 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
 
     function run($rootScope,$location,$localStorage){
 
-        $rootScope.URL = 'http://192.168.1.24:';
+        $rootScope.URL = 'https://192.168.1.24:';
         $rootScope.PORT = '3000';
         $rootScope.API = '/api/v1';
         $rootScope.UserLogged='';

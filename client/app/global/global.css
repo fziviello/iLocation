@@ -50,6 +50,7 @@
   margin-top: 5px;
   border: none;
   border-bottom: 1px solid #ffffff;
+  padding: 5px;
 }
 .list-user:active, .list-user:focus{
   background: #2B2B2B;
@@ -60,11 +61,12 @@
   margin-top: 5px;
   border: none;
   border-bottom: 1px solid #2FBEA7;
+  padding: 5px;
 }
 .title-menu-canvas{
   font-size: large;
-  padding: 3px;
-
+  padding: 5px;
+  text-align:center;
 }
 
 /*FINE MENU CANVAS*/

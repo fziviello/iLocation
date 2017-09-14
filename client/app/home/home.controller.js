@@ -44,7 +44,6 @@
                
                      vm.StampaListaUtentiConnessi();
                 }
-                
 
             });
 
@@ -74,7 +73,8 @@
                     {
                         if(vm.markers[i].id==idClient)
                         {
-                            vm.map.setCenter(vm.markers[i].position); 
+                            vm.map.setCenter(vm.markers[i].position);
+                            $localStorage.segui=idClient;//segui
                         }
                     }
             }
@@ -200,7 +200,10 @@
                 description:description
             });
             
-            //vm.map.setCenter(coodinate); 
+            if($localStorage.segui==id)
+            {
+               vm.map.setCenter(coodinate);
+            }
             
             var infowindow = new google.maps.InfoWindow({
                 content: marker.title+"<br/>"+marker.description
@@ -370,7 +373,6 @@
                     } 
                     else 
                     {
-                      //window.alert('Errore Calcolo Rotta' + status);
                        toaster.pop({
                         type: 'error',
                         title: 'Errore',
@@ -426,6 +428,14 @@
                                         address:results[0].formatted_address
                                     };
                                     vm.sharePosition(posizione);
+                                }
+                                else
+                                {
+                                    toaster.pop({
+                                        type: 'error',
+                                        title: 'Errore',
+                                        body: 'Impossibile Rilevare la Posizione Corrente'
+                                        });
                                 }
                             });
                         });

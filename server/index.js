@@ -1,11 +1,13 @@
 'use strict';
 
 const express=require('express');
+const fs = require('fs');
 const path=require('path');
 const bodyParser=require('body-parser');
 const dotenv = require('dotenv');
 const socketio = require('socket.io');
 const http = require('http');
+const https = require('https');
 const app=express();
 const pathApi="/api/v1/";
 
@@ -23,6 +25,13 @@ const connectDB=require('./db.js')();
 const auth=require('./auth.js');
 
 const PORT=process.env.PORT;
+const PORT_SOCKET=process.env.PORT_SOCKET;
+
+//Certificati
+const certificato = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem' )
+};
 
 //rounting
 app.get('/',function(req,res,next){
@@ -43,16 +52,19 @@ app.get(pathApi+'userConnected', auth.bearer(),connectDB.connect,userController.
 app.post(pathApi+'userUpdate', auth.bearer(),connectDB.connect,userController.change,connectDB.disconnect);//update utente
 app.post(pathApi+'user', auth.bearer(),connectDB.connect,userController.del,connectDB.disconnect);//delete utente
 
-app.listen(PORT,function(){
-  console.log("Server in ascolto su "+PORT);
+//SERVER API
+
+https.createServer(certificato,app)
+  .listen(PORT,function(){
+     console.log("Server HTTPS in ascolto su "+PORT);
 });
 
-//SOCKET IO
-
-const serverSocket=http.createServer(myServer);
+//SERVER SOCKET IO
+const serverSocket=https.createServer(certificato,myServer);
 
 function myServer (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.header("Access-Control-Allow-Origin", "*");
+  res.writeHead(200, {'Content-Type': 'json/plain'});
   //res.write('Hello World!');
   res.end();
 }
@@ -83,11 +95,11 @@ io.on('connection', function (socket) {
       data.idSocketClient=socket.id;
       io.sockets.in(data.room).emit('posizione', data); 
     });  
-  
+
   });
 
-
-serverSocket.listen(4200,function(){
-  console.log("Server Socket in ascolto su 4200");
+//SERVER SOCKET IO
+serverSocket.listen(PORT_SOCKET,function(){
+  console.log("Server Socket in ascolto su "+PORT_SOCKET);
 });
 
