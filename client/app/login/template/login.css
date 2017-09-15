@@ -1,0 +1,10 @@
+.login-page form{
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.login-page img, .login-page label, .login-page input, .login-page button{
+    margin-top: 20px;
+
+}

@@ -29,8 +29,23 @@
               </div>
           <!-- Everything you want hidden at 940px or less -->
           <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#/home">Home<span class="sr-only"></span></a></li>
+            </ul>
+            <div class="navbar-header navbar-option">
+                <ul class="nav navbar-nav">
+                  <!--
+                    <li class="option"><a role="button" ng-click="vm.CreaPoligono();">Crea Poligono</a></li>
+                    <li class="option"><a role="button" ng-click="vm.myPosition();">Dove Sono</a></li>
+                    <li class="option"><a role="button" ng-click="vm.CalcolaPercorso();">Calcola Percorso</a></li>
+                    <li class="option"><a role="button" ng-click="vm.deleteObjectMap();">Pulisci</a></li>
+                  -->
+                </ul>
+            </div>
             <div class="navbar-header navbar-right">
                   <ul class="nav navbar-nav">
+
+
                     <li role="presentation" class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><div class="glyphicon glyphicon-user"></div>&nbsp;{{UserLogged}}<span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
@@ -40,9 +55,6 @@
                     </li>
                   </ul>
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="#/home">Home<span class="sr-only"></span></a></li>
-            </ul>
           </div>
         </div>
       </div>

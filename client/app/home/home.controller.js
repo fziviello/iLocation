@@ -15,6 +15,7 @@
             vm.directionsDisplay;
             vm.directionsService;
             vm.directionsDisplays=[];
+            vm.segui=$localStorage.segui;
 
             socket.on('posizione', function (data) {
                 vm.addMarkerSocket(data);
@@ -74,6 +75,7 @@
                         if(vm.markers[i].id==idClient)
                         {
                             vm.map.setCenter(vm.markers[i].position);
+                            vm.segui=idClient;
                             $localStorage.segui=idClient;//segui
                         }
                     }

@@ -3,7 +3,7 @@
                 <div id="site-menu">
                         <div class="list-group" ng-init="vm.StampaListaUtentiConnessi()">
                                 <div class="title title-menu-canvas">Utenti Connessi {{vm.ListaUtentiConnessi.result.length}}</div>
-                                <button ng-click="vm.FocusUtente(utente.id)" class="list-user" ng-repeat="utente in vm.ListaUtentiConnessi.result"><div class="glyphicon glyphicon-user"></div>  {{utente.nome}}  <div class="pull-right text-success glyphicon glyphicon-record" aria-hidden="true"></div></button>
+                                <button ng-click="vm.FocusUtente(utente.id)" class="list-user" ng-repeat="utente in vm.ListaUtentiConnessi.result"><div class="glyphicon glyphicon-user"></div>  {{utente.nome}}  <div ng-if="vm.segui==utente.id" class="pull-right text-warning glyphicon glyphicon-record" aria-hidden="true"></div>  <div ng-if="vm.segui!=utente.id" class="pull-right text-success glyphicon glyphicon-record" aria-hidden="true"></div></button>
                         </div>
                 </div>
                 <div class="navbar-header">
@@ -16,10 +16,10 @@
                                         <span class="input-group-btn"><button id="cerca" class="btn btn-default glyphicon glyphicon-search" type="button"></button></span>
                                 </div>
                                 <br/>
-                                <button ng-click="vm.CreaPoligono();">Crea Poligono</button>
+                                <!-- <button ng-click="vm.CreaPoligono();">Crea Poligono</button>
                                 <button ng-click="vm.myPosition();">Dove Sono</button>
                                 <button ng-click="vm.CalcolaPercorso();">Calcola Percorso</button>
-                                <button ng-click="vm.deleteObjectMap();">Pulisci</button>
+                                <button ng-click="vm.deleteObjectMap();">Pulisci</button> -->
                                 <br/>
                                 <div ng-init="vm.MyMap();" id="mappa"></div>   
                         </div>

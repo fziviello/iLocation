@@ -1,3 +1,21 @@
+.error
+{
+  color:#a94442;
+}
+
+.errorInput .form-control:focus , .errorInput:focus
+{
+  border-color:#843534 !important;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483 ;
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
+  box-shadow:inset  0 1px 1px rgba(0,0,0,.075), 0 0 6px #ce8483;
+}
+
+.errorInput
+{
+  border-color:#843534 !important;
+}
+
 /* INIZIO MENU CANVAS*/
 
 #site-wrapper {
@@ -41,7 +59,7 @@
   border-bottom-right-radius: 50px;
 }
 
-.list-user,.list-user:hover{
+.list-user{
   background: #2B2B2B;
   color: #ffffff;
   width: 100%;
@@ -52,17 +70,8 @@
   border-bottom: 1px solid #ffffff;
   padding: 5px;
 }
-.list-user:active, .list-user:focus{
-  background: #2B2B2B;
-  color: #2FBEA7;
-  width: 100%;
-  border: none;
-  font-size: 20px;
-  margin-top: 5px;
-  border: none;
-  border-bottom: 1px solid #2FBEA7;
-  padding: 5px;
-}
+
+
 .title-menu-canvas{
   font-size: large;
   padding: 5px;
