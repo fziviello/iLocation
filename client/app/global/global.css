@@ -16,6 +16,22 @@
   border-color:#843534 !important;
 }
 
+/* INIZIO MODAL NGDIALOG*/
+.ngdialog-content{
+  width: 40% !important;
+}
+
+.modal-body label{
+  font-size: 25px;
+  padding-top: 40px;
+  padding-bottom: 15px;
+}
+
+.glyphicon-stop{
+  font-size: 40px;
+}
+/*FINE MODAL NGDIALOG*/
+
 /* INIZIO MENU CANVAS*/
 
 #site-wrapper {

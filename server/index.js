@@ -47,6 +47,7 @@ app.post(pathApi+'login', connectDB.connect,loginController.login,connectDB.disc
 app.post(pathApi+'updateStatus', auth.bearer(),connectDB.connect,loginController.updateStatus,connectDB.disconnect);
 app.post(pathApi+'logout', auth.bearer(),connectDB.connect,loginController.logout,connectDB.disconnect);
 app.get(pathApi+'user/:id', auth.bearer(),connectDB.connect,userController.searchID,connectDB.disconnect); //return utente
+app.get(pathApi+'userFull/:id', auth.bearer(),connectDB.connect,userController.FullsearchID,connectDB.disconnect); //return utente compresa la password
 app.get(pathApi+'userList', auth.bearer(),connectDB.connect,userController.list,connectDB.disconnect); //return lista utenti
 app.get(pathApi+'userConnected', auth.bearer(),connectDB.connect,userController.listConnected,connectDB.disconnect); //return lista utenti Connessi
 app.post(pathApi+'userUpdate', auth.bearer(),connectDB.connect,userController.change,connectDB.disconnect);//update utente

@@ -20,7 +20,7 @@ module.exports=()=>{
              return;
         }
 
-        conn.query('SELECT * FROM user WHERE id=?',[req.params.id], function (err, rows, fields) { 
+        conn.query('SELECT nome,cognome,email,room,colorMarker,status,timestamp FROM user WHERE id=?',[req.params.id], function (err, rows, fields) { 
             
         if (!err) 
         {
@@ -58,6 +58,60 @@ module.exports=()=>{
         });
 
     }
+
+    let FullsearchID =(conn,req,res,next)=>{
+        
+                if(!!!req.params.id || isNaN(req.params.id))
+                {
+                    res.status(403).json({  
+                        'success':false,
+                        'error':{
+                                    'code':'403',
+                                    'message':'Parametri Errati'
+                        }
+                    });
+                    
+                     return;
+                }
+        
+                conn.query('SELECT * FROM user WHERE id=?',[req.params.id], function (err, rows, fields) { 
+                    
+                if (!err) 
+                {
+                    if (rows.length>0)
+                    {
+                        res.status(200).json({
+                            'success':true,
+                            'result':rows
+                        });
+                    }
+                    else
+                    {
+                        res.status(401).json({  
+                            'success':false,
+                            'error':{
+                                        'code':'401',
+                                        'message':'Accesso Negato'
+                            }
+                        });
+                    }
+                } 
+                else 
+                {
+                    res.status(403).json({  
+                        'success':false,
+                        'error':{
+                                    'code':'403',
+                                    'message':err
+                        }
+                    });
+                };
+        
+                return next(conn);            
+                
+                });
+        
+            }
 
     let add =(conn,req,res,next)=>{
 
@@ -225,6 +279,7 @@ module.exports=()=>{
     }
 
     return {
+        FullsearchID:FullsearchID,
         searchID:searchID,
         add:add,
         del:del,

@@ -16,7 +16,7 @@
 
             vm.LoadProfile= function(){
             
-                return UserService.getProfile(objSend).then(function(data){
+                return UserService.getProfileFull(objSend).then(function(data){
                                                         
                 if(data.success===true)
                 {
