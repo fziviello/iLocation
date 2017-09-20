@@ -12,6 +12,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="vendors/AngularJS-Toaster/toaster.min.css" rel="stylesheet">
+    <link href="vendors/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
+    <link href="vendors/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet">
     <link href="static/style.css" rel="stylesheet">
   </head>
   <body ng-app="iLocation">
@@ -30,7 +32,7 @@
           <!-- Everything you want hidden at 940px or less -->
           <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li><a href="#/home">Home<span class="sr-only"></span></a></li>
+                <li><a href="#/home">Navigazione<span class="sr-only"></span></a></li>
             </ul>
             <div class="navbar-header navbar-option">
                 <ul class="nav navbar-nav">
@@ -69,7 +71,11 @@
     <script src="vendors/ngstorage/ngStorage.min.js"></script>
     <script src="static/bundle.js"></script>
     <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/moment/min/moment.min.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap.ui/dist/js/bootstrap-ui.min.js"></script>
+    <script src="vendors/ui-bootstrap-0.13.1-SNAPSHOT/ui-bootstrap-0.13.1-SNAPSHOT.min.js"></script>    
+    <script src="vendors/ng-dialog/js/ngDialog.min.js"></script>
     <script src="vendors/angular-socket-io/socket.min.js"></script>
     <script src="vendors/socket.io-client/dist/socket.io.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaVT1cbZmyfPzRmPJuLXSl45PGPDzoRPE&libraries=places" async defer></script>    

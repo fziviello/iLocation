@@ -59,16 +59,19 @@
   border-bottom-right-radius: 50px;
 }
 
-.list-user{
+.list-user {
   background: #2B2B2B;
   color: #ffffff;
-  width: 100%;
-  border-bottom: 2px solid #ffffff; 
   font-size: 20px;
   margin-top: 5px;
   border: none;
   border-bottom: 1px solid #ffffff;
   padding: 5px;
+}
+
+.list-user button{
+  background:none;
+  border: none;
 }
 
 

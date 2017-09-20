@@ -3,3 +3,9 @@
     width:100%;
     height:400px;
 }
+.btn-comandi{
+    width: 100%;
+    font-size: 15px !important;
+    padding: 2px !important;
+    margin-bottom: 5px !important;
+}

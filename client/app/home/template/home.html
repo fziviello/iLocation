@@ -3,24 +3,41 @@
                 <div id="site-menu">
                         <div class="list-group" ng-init="vm.StampaListaUtentiConnessi()">
                                 <div class="title title-menu-canvas">Utenti Connessi {{vm.ListaUtentiConnessi.result.length}}</div>
-                                <button ng-click="vm.FocusUtente(utente.id)" class="list-user" ng-repeat="utente in vm.ListaUtentiConnessi.result"><div class="glyphicon glyphicon-user"></div>  {{utente.nome}}  <div ng-if="vm.segui==utente.id" class="pull-right text-warning glyphicon glyphicon-record" aria-hidden="true"></div>  <div ng-if="vm.segui!=utente.id" class="pull-right text-success glyphicon glyphicon-record" aria-hidden="true"></div></button>
+                                <div class="list-user col-xs-12 col-md-12 col-sm-12"  ng-repeat="utente in vm.ListaUtentiConnessi.result">
+                                        <button ng-click="vm.OpenDialogProfilo(utente.id)" class="col-xs-10 col-md-10 col-sm-10"  data-toggle="tooltip" data-placement="top" title="Visualizza profilo"><div class="glyphicon glyphicon-user"></div>  {{utente.nome}}  </button>
+                                        <button ng-click="vm.FocusUtente(utente.id)" class="col-xs-2 col-md-2 col-sm-2"><div ng-if="vm.segui==utente.id" class="pull-right text-warning glyphicon glyphicon-record" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Segui: ON"></div>  <div ng-if="vm.segui!=utente.id" class="pull-right text-success glyphicon glyphicon-record" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Segui: OFF"></div></button>
+                                </div>
                         </div>
                 </div>
                 <div class="navbar-header">
                         <button class="btn btn-hamburger" ng-click="toggleMenu()"><i class="glyphicon glyphicon-menu-hamburger"></i></button> 
                 </div>
+                <br/>
+                <br/>
                 <div class="container">
                         <div class="col-xs-12 col-md-12 col-sm-12">
-                                <div class="input-group">
-                                        <input id="autocomplete" class="form-control" placeholder="indirizzo o coordinate" autocomplete="off" type="text">
-                                        <span class="input-group-btn"><button id="cerca" class="btn btn-default glyphicon glyphicon-search" type="button"></button></span>
-                                </div>
-                                <br/>
-                                <!-- <button ng-click="vm.CreaPoligono();">Crea Poligono</button>
-                                <button ng-click="vm.myPosition();">Dove Sono</button>
-                                <button ng-click="vm.CalcolaPercorso();">Calcola Percorso</button>
-                                <button ng-click="vm.deleteObjectMap();">Pulisci</button> -->
-                                <br/>
+                                <button class="btn btn-primary btn-comandi" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">COMANDI</button>
+                                        <div class="collapse" id="collapseExample">
+                                                <div class="well input-group col-xs-12 col-md-12 col-sm-12">
+                                                        <br/>
+                                                        <div class="col-xs-8 col-md-8 col-sm-8">
+                                                                <div class="input-group input-group-lg">
+                                                                        <input id="autocomplete" class="form-control" placeholder="indirizzo o coordinate" autocomplete="off" type="text" aria-describedby="sizing-addon1">                                                                
+                                                                        <span class="input-group-btn">
+                                                                                <button id="cerca" class="btn btn-default glyphicon glyphicon-search" type="button"></button>
+                                                                        </span>
+                                                                </div>
+                                                        </div>
+                                                        <div class="col-xs-4 col-md-4 col-sm-4"> 
+                                                                <div class="input-group input-group-lg">                                                       
+                                                                        <span class="input-group-btn"><button ng-click="vm.myPosition();" class="btn btn-default glyphicon glyphicon-screenshot" type="button"  data-toggle="tooltip" data-placement="top" title="La mia posizione"></button></span>                                                    
+                                                                        <span class="input-group-btn"><button ng-click="vm.CreaPoligono();" class="btn btn-default glyphicon glyphicon-sort" type="button"  data-toggle="tooltip" data-placement="top" title="Genera Poligono"> </button></span>                                                    
+                                                                        <span class="input-group-btn"><button ng-click="vm.CalcolaPercorso();" class="btn btn-default glyphicon glyphicon-road" type="button" data-toggle="tooltip" data-placement="top" title="Calcola Percorso"></button></span>
+                                                                        <span class="input-group-btn"><button ng-click="vm.deleteObjectMap();" class="btn btn-default glyphicon glyphicon-trash" type="button" data-toggle="tooltip" data-placement="top" title="Pulisci"></button></span>                                                                        
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
                                 <div ng-init="vm.MyMap();" id="mappa"></div>   
                         </div>
                 </div>     

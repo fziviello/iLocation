@@ -21,7 +21,6 @@
                 return Profilo.get(user,function(data){
                     return callback(data);
                 }).$promise;
-                
             }
 
             function updateProfile(user,callback){

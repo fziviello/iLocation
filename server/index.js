@@ -65,7 +65,6 @@ const serverSocket=https.createServer(certificato,myServer);
 function myServer (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.writeHead(200, {'Content-Type': 'json/plain'});
-  //res.write('Hello World!');
   res.end();
 }
 

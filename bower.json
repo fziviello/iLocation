@@ -26,6 +26,9 @@
     "angular-animate": "^1.6.6",
     "AngularJS-Toaster": "angularjs-toaster#^2.2.0",
     "angular-socket-io": "^0.7.0",
-    "socket.io-client": "^2.0.3"
+    "socket.io-client": "^2.0.3",
+    "moment": "^2.18.1",
+    "ui-bootstrap-0.13.1-SNAPSHOT": "ui-bootstrap-tpls-0.13.1-SNAPSHOT#*",
+    "ng-dialog": "^1.4.0"
   }
 }

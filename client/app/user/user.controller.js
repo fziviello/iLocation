@@ -35,7 +35,6 @@
                     });
 
                 });
-
             }
 
             vm.UpdateProfile= function(){

@@ -1,15 +1,15 @@
 (function(){
 
 'use strict';
-angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','iLocation.Login','iLocation.Home','iLocation.User','btford.socket-io'])
-.factory('socket', function (socketFactory) {
-    var myIoSocket = io.connect("https://192.168.1.24:4200",{secure: true, reconnect: true}); // da sistemare
-    var socket = socketFactory({
-        ioSocket: myIoSocket
-    });
+angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','ui.bootstrap','ngDialog','iLocation.Login','iLocation.Home','iLocation.User','btford.socket-io'])
+    .factory('socket', function (socketFactory) {
+        var myIoSocket = io.connect("https://192.168.1.24:4200",{secure: true}); // da sistemare
+        var socket = socketFactory({
+            ioSocket: myIoSocket
+        });
 
-    return socket;
-})
+        return socket;
+    })
     .config(config)
     .run(run);
     

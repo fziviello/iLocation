@@ -4,12 +4,14 @@
     angular.module('iLocation')
         .controller('HomeController', HomeController);
 
-        HomeController.$inject=['HomeService','toaster','$localStorage','socket'];
+        HomeController.$inject=['HomeService','UserService','toaster','$localStorage','socket','ngDialog'];
 
-        function HomeController(HomeService,toaster,$localStorage,socket){
+        function HomeController(HomeService,UserService,toaster,$localStorage,socket,ngDialog){
             
-            var vm = this;            
+            var vm = this;
+
             vm.markers=[];
+            vm.position=[];
             vm.elemIndirizzo = document.getElementById("autocomplete");
             vm.Poligono;
             vm.directionsDisplay;
@@ -19,6 +21,9 @@
 
             socket.on('posizione', function (data) {
                 vm.addMarkerSocket(data);
+                vm.position.push(data);
+                $localStorage.posizione= "";      
+                $localStorage.posizione= JSON.stringify(vm.position);
             });
             
             socket.on('user-status', function (data) {
@@ -48,6 +53,47 @@
 
             });
 
+            vm.OpenDialogProfilo=function(idUser){
+
+                let objSend={
+                    'id':idUser
+                };
+                    
+                    return UserService.getProfile(objSend).then(function(data){
+                                                            
+                    if(data.success===true)
+                    {
+                        vm.userProfile=data.result[0];
+    
+                        ngDialog.open({
+                            controller:'ProfiloModalController',
+                            controllerAs:'vm',
+                            template:'/view/home/template/profilo.modal.html',
+                            appendClassName:'ngdialog-custom',
+                            resolve: {
+                                dataProfile: function() {
+                                    return vm.userProfile;
+                                }
+                            }
+                        });
+
+                        return null;
+                    }
+                        
+                    }).catch(function(err){
+                        
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Errore',
+                            body: err
+                        });
+    
+                    });
+                    
+               
+
+            }
+           
             vm.StampaListaUtentiConnessi = function(){
                 
                 HomeService.listaUtentiConnessi().then(function(data){
@@ -96,6 +142,17 @@
                   vm.geocodeAddress();
                 
                 });
+
+                if($localStorage.posizione!=null)
+                {
+                    let JsonPos=[];
+                    JsonPos=JSON.parse($localStorage.posizione);
+
+                    for (var i = 0; i < JsonPos.length; i++) 
+                    {
+                        socket.emit('send-position', JsonPos[i]);
+                    }
+                }
              
              }
 
@@ -219,12 +276,13 @@
                 vm.elemIndirizzo.value ="";
         }
 
+      
+
         vm.deleteObjectMap=function() {
             
             vm.deleteMarkers();
             vm.deletePoligono();
             vm.deleteDirectionsDisplays();
-        
         }
 
         vm.deleteMarkers=function() {
@@ -235,6 +293,8 @@
             }
                 
             vm.markers = [];
+            vm.position = [];
+            $localStorage.posizione= "";
         }
 
         vm.deleteMarker=function(id) {
@@ -248,6 +308,19 @@
                 }
                 
             }
+
+            
+            for (var i = 0; i < vm.position.length; i++) 
+            {
+                if(vm.position[i].idSocketClient==id)
+                {
+                    vm.position[i].setMap(null);
+                    vm.position.splice(i,1);
+                }
+                
+            }
+
+            $localStorage.posizione= "";
                 
         }
 
