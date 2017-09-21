@@ -1,6 +1,6 @@
 {
   "name": "iLocation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Progetto iLocation",
   "main": "index.js",
   "scripts": {
@@ -12,8 +12,6 @@
   "author": "Fabio Ziviello",
   "license": "ISC",
   "dependencies": {
-    "angular-animate": "^1.6.6",
-    "angularjs-toaster": "^2.2.0",
     "base64url": "^2.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",

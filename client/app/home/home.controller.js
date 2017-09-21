@@ -110,7 +110,7 @@
         }
 
             vm.FocusUtente=function(idClient) {
-              if(vm.markers.length==0)
+              if(vm.markers.length===0)
               {
                 toaster.pop({
                     type: 'warning',
@@ -120,6 +120,8 @@
                 }
                 else
                 {
+                    let exist=false;
+
                     for (var i = 0; i < vm.markers.length; i++) 
                     {
                         if(vm.markers[i].id==idClient)
@@ -127,15 +129,16 @@
                             vm.map.setCenter(vm.markers[i].position);
                             vm.segui=idClient;
                             $localStorage.segui=idClient;//segui
+                            exist=true ;
                         }
-                        else
-                        {
-                            toaster.pop({
-                                type: 'warning',
-                                title: 'Attenzione',
-                                body: 'Posizione dell\'utente sconosciuta' 
-                             });
-                        }
+                    }
+                    if(!exist)
+                    {
+                        toaster.pop({
+                            type: 'warning',
+                            title: 'Attenzione',
+                            body: 'Posizione dell\'utente sconosciuta' 
+                         });
                     }
                 }
             }

@@ -5,7 +5,8 @@
                                 <div class="title title-menu-canvas">Utenti Connessi {{vm.ListaUtentiConnessi.result.length}}</div>
                                 <div class="list-user col-xs-12 col-md-12 col-sm-12"  ng-repeat="utente in vm.ListaUtentiConnessi.result">
                                         <button ng-click="vm.OpenDialogProfilo(utente.id)" class="col-xs-10 col-md-10 col-sm-10"  data-toggle="tooltip" data-placement="top" title="Visualizza profilo"><div class="glyphicon glyphicon-user"></div>  {{utente.nome}}  </button>
-                                        <button ng-click="vm.FocusUtente(utente.id)" class="col-xs-2 col-md-2 col-sm-2"><div ng-if="vm.segui==utente.id" class="pull-right text-warning glyphicon glyphicon-record" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Segui: ON"></div>  <div ng-if="vm.segui!=utente.id" class="pull-right text-success glyphicon glyphicon-record" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Segui: OFF"></div></button>
+                                        <button ng-click="vm.FocusUtente(utente.id)" ng-if="vm.segui==utente.id" class="col-xs-2 col-md-2 col-sm-2" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Segui: ON"><div class="pull-right text-warning glyphicon glyphicon-record"></div></button> 
+                                        <button ng-click="vm.FocusUtente(utente.id)" ng-if="vm.segui!=utente.id" class="col-xs-2 col-md-2 col-sm-2" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Segui: OFF"><div class="pull-right text-success glyphicon glyphicon-record"></div></button>
                                 </div>
                         </div>
                 </div>
