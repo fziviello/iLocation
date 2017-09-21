@@ -11,7 +11,10 @@
             var profilo=null;
             
             let objSend={
-                'id':$localStorage.id
+                'user':{
+                        'id':$localStorage.id,
+                        'token':$localStorage.token
+                }
             };
 
             vm.LoadProfile= function(){

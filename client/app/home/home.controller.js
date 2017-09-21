@@ -9,7 +9,6 @@
         function HomeController(HomeService,UserService,toaster,$localStorage,socket,ngDialog){
             
             var vm = this;
-
             vm.markers=[];
             vm.position=[];
             vm.elemIndirizzo = document.getElementById("autocomplete");
@@ -58,7 +57,6 @@
                 let objSend={
                     'id':idUser
                 };
-                    
                     return UserService.getProfile(objSend).then(function(data){
                                                             
                     if(data.success===true)
@@ -89,9 +87,6 @@
                         });
     
                     });
-                    
-               
-
             }
            
             vm.StampaListaUtentiConnessi = function(){
@@ -115,8 +110,17 @@
         }
 
             vm.FocusUtente=function(idClient) {
-              
-                for (var i = 0; i < vm.markers.length; i++) 
+              if(vm.markers.length==0)
+              {
+                toaster.pop({
+                    type: 'warning',
+                    title: 'Attenzione',
+                    body: 'Posizione dell\'utente sconosciuta' 
+                 });
+                }
+                else
+                {
+                    for (var i = 0; i < vm.markers.length; i++) 
                     {
                         if(vm.markers[i].id==idClient)
                         {
@@ -124,7 +128,16 @@
                             vm.segui=idClient;
                             $localStorage.segui=idClient;//segui
                         }
+                        else
+                        {
+                            toaster.pop({
+                                type: 'warning',
+                                title: 'Attenzione',
+                                body: 'Posizione dell\'utente sconosciuta' 
+                             });
+                        }
                     }
+                }
             }
 
             vm.MyMap=function() {
@@ -153,7 +166,6 @@
                         socket.emit('send-position', JsonPos[i]);
                     }
                 }
-             
              }
 
              vm.geocodeAddress=function() {
@@ -483,47 +495,88 @@
             {
                 if (navigator.geolocation) 
                 {
-                    navigator.geolocation.getCurrentPosition(function(position) {
+                    var geoSuccess = function(position) {
                         var pos = {
                             lat: position.coords.latitude,
                             lng: position.coords.longitude
                         };
-                            vm.geocoder.geocode({'location': pos}, function(results, status) {
-                                if (status === 'OK') 
-                                {
-                                    let titolo="Posizione Corrente";
-                                    vm.map.setCenter(results[0].geometry.location);
-                                    var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
-                                    var posizione = {
-                                        id:$localStorage.id,
-                                        lat: Number(coordinata[0]),
-                                        lng: Number(coordinata[1]),
-                                        title:$localStorage.cognome+" "+$localStorage.nome,
-                                        desc:results[0].formatted_address,
-                                        address:results[0].formatted_address
-                                    };
-                                    vm.sharePosition(posizione);
-                                }
-                                else
-                                {
-                                    toaster.pop({
-                                        type: 'error',
-                                        title: 'Errore',
-                                        body: 'Impossibile Rilevare la Posizione Corrente'
-                                        });
-                                }
-                            });
+                        vm.geocoder.geocode({'location': pos}, function(results, status) {
+                            if (status === 'OK') 
+                            {
+                                let titolo="Posizione Corrente";
+                                vm.map.setCenter(results[0].geometry.location);
+                                var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
+                                var posizione = {
+                                    id:$localStorage.id,
+                                    lat: Number(coordinata[0]),
+                                    lng: Number(coordinata[1]),
+                                    title:$localStorage.cognome+" "+$localStorage.nome,
+                                    desc:results[0].formatted_address,
+                                    address:results[0].formatted_address
+                                };
+                                vm.sharePosition(posizione);
+                            }
+                            else
+                            {
+                                toaster.pop({
+                                    type: 'error',
+                                    title: 'Errore',
+                                    body: 'Impossibile Rilevare la Posizione Corrente'
+                                    });
+                            }
                         });
+                    };
+                    var geoError = function(error) {
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Errore '+error.code,
+                            body: 'Impossibile Rilevare la Posizione Corrente'
+                        });
+                    };
+
+                    navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
                 } 
                 else
                 {
                     toaster.pop({
-                        type: 'error',
-                        title: 'Errore',
-                        body: 'Impossibile Rilevare la Posizione Corrente'
+                        type: 'warning',
+                        title: 'Attenzione',
+                        body: 'Il tuo Browser non supporta la Geolocalizzazione'
                         });
                     }
                 }
+                    // navigator.geolocation.getCurrentPosition(function(position) {
+                    //     var pos = {
+                    //         lat: position.coords.latitude,
+                    //         lng: position.coords.longitude
+                    //     };
+                    //         vm.geocoder.geocode({'location': pos}, function(results, status) {
+                    //             if (status === 'OK') 
+                    //             {
+                    //                 let titolo="Posizione Corrente";
+                    //                 vm.map.setCenter(results[0].geometry.location);
+                    //                 var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
+                    //                 var posizione = {
+                    //                     id:$localStorage.id,
+                    //                     lat: Number(coordinata[0]),
+                    //                     lng: Number(coordinata[1]),
+                    //                     title:$localStorage.cognome+" "+$localStorage.nome,
+                    //                     desc:results[0].formatted_address,
+                    //                     address:results[0].formatted_address
+                    //                 };
+                    //                 vm.sharePosition(posizione);
+                    //             }
+                    //             else
+                    //             {
+                    //                 toaster.pop({
+                    //                     type: 'error',
+                    //                     title: 'Errore',
+                    //                     body: 'Impossibile Rilevare la Posizione Corrente'
+                    //                     });
+                    //             }
+                    //         });
+                    //     });
+                
             }
         
 })();

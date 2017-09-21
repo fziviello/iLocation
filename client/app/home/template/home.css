@@ -9,3 +9,7 @@
     padding: 2px !important;
     margin-bottom: 5px !important;
 }
+
+.btn-hamburger {
+    outline: none !important; 
+  }

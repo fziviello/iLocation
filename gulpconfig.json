@@ -6,6 +6,9 @@
   "cssSrc":[
              "./client/app/**/*.css"
   ],
+  "IndexSrc":[
+             "./client/index.html"
+  ],
   "htmlSrc":[
              "./client/app/**/*.html"
   ],
@@ -17,6 +20,12 @@
 ],
 "buildBundle":[
            "build/bundle.js"
+],
+"buildIndex": [
+          "build/index.html"
+],
+"buildCss": [
+          "build/style.css"
 ],
 "buildLibs": [
           "build/view",

@@ -40,6 +40,7 @@
                      };
                    
                    //socket.on('socketLocation', function () {}); //apro connessione socket
+                   
                    socket.emit('subscribe', objSend);
                     
                     return $location.path('/home');

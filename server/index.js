@@ -46,9 +46,9 @@ app.use(function(req, res, next) {
 app.post(pathApi+'login', connectDB.connect,loginController.login,connectDB.disconnect);
 app.post(pathApi+'updateStatus', auth.bearer(),connectDB.connect,loginController.updateStatus,connectDB.disconnect);
 app.post(pathApi+'logout', auth.bearer(),connectDB.connect,loginController.logout,connectDB.disconnect);
-app.get(pathApi+'user/:id', auth.bearer(),connectDB.connect,userController.searchID,connectDB.disconnect); //return utente
-app.get(pathApi+'userFull/:id', auth.bearer(),connectDB.connect,userController.FullsearchID,connectDB.disconnect); //return utente compresa la password
-app.get(pathApi+'userList', auth.bearer(),connectDB.connect,userController.list,connectDB.disconnect); //return lista utenti
+app.get(pathApi+'user/:id', auth.bearer(),connectDB.connect,userController.searchID,connectDB.disconnect); //return utente limitato
+app.post(pathApi+'userProfile', auth.bearer(),connectDB.connect,userController.UserProfile,connectDB.disconnect); //return il profilo utente completo
+app.get(pathApi+'userList', auth.bearer(),connectDB.connect,userController.list,connectDB.disconnect); //return lista utenti limitata
 app.get(pathApi+'userConnected', auth.bearer(),connectDB.connect,userController.listConnected,connectDB.disconnect); //return lista utenti Connessi
 app.post(pathApi+'userUpdate', auth.bearer(),connectDB.connect,userController.change,connectDB.disconnect);//update utente
 app.post(pathApi+'user', auth.bearer(),connectDB.connect,userController.del,connectDB.disconnect);//delete utente

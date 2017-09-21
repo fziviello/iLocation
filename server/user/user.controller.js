@@ -20,7 +20,7 @@ module.exports=()=>{
              return;
         }
 
-        conn.query('SELECT nome,cognome,email,room,colorMarker,status,timestamp FROM user WHERE id=?',[req.params.id], function (err, rows, fields) { 
+        conn.query('SELECT id,nome,cognome,email,room,colorMarker,status,timestamp FROM user WHERE id=?',[req.params.id], function (err, rows, fields) { 
             
         if (!err) 
         {
@@ -59,9 +59,9 @@ module.exports=()=>{
 
     }
 
-    let FullsearchID =(conn,req,res,next)=>{
+    let UserProfile =(conn,req,res,next)=>{
         
-                if(!!!req.params.id || isNaN(req.params.id))
+                if(!!!req.body.user.id || isNaN(req.body.user.id) && (!!!req.body.user.token || isNaN(req.body.user.token)))
                 {
                     res.status(403).json({  
                         'success':false,
@@ -74,7 +74,7 @@ module.exports=()=>{
                      return;
                 }
         
-                conn.query('SELECT * FROM user WHERE id=?',[req.params.id], function (err, rows, fields) { 
+                conn.query('SELECT * FROM user WHERE id=? AND token=?',[req.body.user.id,req.body.user.token], function (err, rows, fields) { 
                     
                 if (!err) 
                 {
@@ -211,7 +211,7 @@ module.exports=()=>{
 
     let list =(conn,req,res,next)=>{
         
-        conn.query('SELECT * FROM user', function (err, rows, fields) { 
+        conn.query('SELECT id,nome,cognome,email,room,colorMarker,status,timestamp FROM user', function (err, rows, fields) { 
 
             if (!err) {
                 if (rows.length>0)
@@ -245,7 +245,7 @@ module.exports=()=>{
 
     let listConnected =(conn,req,res,next)=>{
         
-        conn.query('SELECT * FROM user WHERE status=1', function (err, rows, fields) { 
+        conn.query('SELECT id,nome,cognome,email,room,colorMarker,status,timestamp FROM user WHERE status=1', function (err, rows, fields) { 
 
             if (!err) {
                 if (rows.length>0)
@@ -279,7 +279,7 @@ module.exports=()=>{
     }
 
     return {
-        FullsearchID:FullsearchID,
+        UserProfile:UserProfile,
         searchID:searchID,
         add:add,
         del:del,
