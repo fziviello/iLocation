@@ -1,10 +1,5 @@
 node_modules
-build/medias
-build/vendors
-build/view
-build/*.js
-build/*.css
-build/*.json
+build
 server/config.js
 out.log
-err.log
+err.loggit 

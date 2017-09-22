@@ -36,11 +36,11 @@ npm start => Avvia l'app
 
 npm stop => Ferma l'app
 
-DEBUG
+Debug
 =====
 Nella root vengono salvati gli output (out.log) e gli errori (err.log) relativi all' applicazione avviata con forever.
 
-COMANDI GULP
+Comandi GULP
 ============
 
 gulp init : Installazione dipendenze bower (vendor), Creazione bundle.js, Creazione HTML/CSS/JS/MEDIA, Ottimizzazioni delle immagini
