@@ -10,6 +10,7 @@ var clean = require('gulp-clean');
 var sourcemaps = require('gulp-sourcemaps');
 var surge = require('gulp-surge');
 var deletefile = require('gulp-delete-file');
+var imagemin = require('gulp-imagemin');
 var exec = require('child_process').exec;
 
 gulp.task("ImportJS",function(){
@@ -45,6 +46,12 @@ gulp.task("ImportJSON",function(){
     .pipe(gulp.dest(config.DEST+"/view"))
 });
 
+gulp.task('MinImage', function() {  
+  return gulp.src(config.imgSrc)
+  .pipe(imagemin())
+  .pipe(gulp.dest(config.DEST+"/medias"));
+});
+
 gulp.task("init",[
   "vendors",
   "start"
@@ -68,6 +75,7 @@ gulp.task("build",[
     "ImportCSS",
     "ImportINDEX",
     "ImportHTML",
+    "MinImage",
     "ImportMEDIA",
     "ImportJSON"
 ]);

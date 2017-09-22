@@ -11,6 +11,8 @@ Versione di bower: 1.8.0
 
 Versione di gulp: 3.9.1
 
+Versione di forever: 0.15.3
+
 Installazione
 =============
 
@@ -32,3 +34,31 @@ Start
 =====
 npm start
 
+Stop
+====
+npm stop
+
+DEBUG
+=====
+Nella cartella log vengono salvati gli output e gli errori relativi all' applicazione avviata con forever.
+
+COMANDI GULP
+============
+
+gulp init : Installazione dipendenze bower (vendor), Creazione bundle.js, Creazione HTML/CSS/JS/MEDIA, Ottimizzazioni delle immagini
+
+gulp start: gulp build + gulp watch
+
+gulp build: Rigenerazione HTML/CSS/JS/MEDIA + gulp MinImage
+
+gulp watch: Aggiornamento HTML/CSS/JS/MEDIA
+
+gulp MinImage: Ottimizzazioni Immagini
+
+gulp clean-all: Eliminazione build
+
+gulp clean-dip: Eliminazione dipendenze di bower (vendors)
+
+gulp clean-bundle: Eliminazione file bundle.js
+
+gulp clean-lib: Eliminazione di HTML/CSS/JS/MEDIA

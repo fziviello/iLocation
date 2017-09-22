@@ -1,10 +1,11 @@
 {
   "name": "iLocation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Progetto iLocation",
   "main": "index.js",
   "scripts": {
-    "start": "node ./server/index.js"
+    "start": "forever start -o out.log -e err.log ./server/index.js",
+    "stop": "forever stopall"
   },
   "keywords": [
     "iLocation"
@@ -19,11 +20,14 @@
     "crypto": "^1.0.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "forever": "^0.15.3",
+    "forever-monitor": "^1.7.1",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
     "gulp-delete-file": "^1.0.2",
     "gulp-eslint": "^4.0.0",
+    "gulp-imagemin": "^3.3.0",
     "gulp-ng-config": "^1.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^2.6.0",

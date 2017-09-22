@@ -14,7 +14,14 @@
   ],
   "mediaSrc":[
             "./client/app/medias/*.*"
-],
+  ],
+  "imgSrc":[
+    "./client/app/medias/*.jpg",
+    "./client/app/medias/*.jpeg",
+    "./client/app/medias/*.gif",
+    "./client/app/medias/*.png",
+    "./client/app/medias/*.bmp"
+  ],
   "jsonSrc":[
             "./client/app/**/*.json"
 ],
