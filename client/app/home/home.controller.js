@@ -91,8 +91,10 @@
            
             vm.StampaListaUtentiConnessi = function(){
                 
-                HomeService.listaUtentiConnessi().then(function(data){
-                                            
+                if($localStorage.token!="" || $localStorage.token!=undefined)
+                {
+                    HomeService.listaUtentiConnessi().then(function(data){
+                        
                     if(data.success===true)
                     {
                         return vm.ListaUtentiConnessi=data;
@@ -104,9 +106,11 @@
                             type: 'error',
                             title: 'Errore',
                             body: err
-                         });
+                        });
 
                     });
+                }
+                
         }
 
             vm.FocusUtente=function(idClient) {
