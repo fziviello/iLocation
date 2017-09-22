@@ -30,17 +30,15 @@ Modificare nel file .env i parametri di connessione al vostro DB
 
 Modificare nel file client/app.js la URL con il vostro indirizzo IP LOCALE
 
-Start
+Avvio iLocation
 =====
-npm start
+npm start => Avvia l'app
 
-Stop
-====
-npm stop
+npm stop => Ferma l'app
 
 DEBUG
 =====
-Nella cartella log vengono salvati gli output e gli errori relativi all' applicazione avviata con forever.
+Nella root vengono salvati gli output (out.log) e gli errori (err.log) relativi all' applicazione avviata con forever.
 
 COMANDI GULP
 ============
