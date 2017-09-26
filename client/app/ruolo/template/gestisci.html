@@ -1,0 +1,30 @@
+<div class="container margineMenu">
+    <div class="col-xs-12 col-md-12 col-sm-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Ruolo</div>
+            <div class="panel-body">
+                <form id="gestisci_form" name="userForm" ng-init="vm.LoadRuolo();" ng-submit="vm.UpdateRuolo();">
+                    <div class="row">
+                        <div class="form-group single_panel col-xs-12 col-md-6 col-sm-6" ng-class="{'has-error':userForm.email.$invalid && !userForm.email.$pristine}">
+                            <label>Nome</label>
+                            <input ng-model="vm.ruolo.nome" name="nome" required type="nome" class="form-control"  placeholder="Nome">
+                            <p ng-show="userForm.id.$invalid && !userForm.id.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                        </div>
+                        <div class="form-group single_panel col-xs-12 col-md-6 col-sm-6" ng-class="{'has-error':userForm.email.$invalid && !userForm.email.$pristine}">
+                            <label>Descrizione</label>
+                            <input ng-model="vm.ruolo.descrizione" name="descrizione" type="descrizione" class="form-control"  placeholder="Descrizione">
+                            <p ng-show="userForm.id.$invalid && !userForm.id.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                        </div>
+                    </div>
+                    <div class="row salva-modifiche">
+                        <div class="form-group col-xs-12 col-md-12 col-sm-12 text-right">
+                            <a class="btn btn-warning" href="#/ruolo">Annulla</a>
+                            <button type="submit" class="btn btn-success">Salva</button>
+                        </div>   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

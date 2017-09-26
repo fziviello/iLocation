@@ -11,14 +11,14 @@ Versione di bower: 1.8.0
 
 Versione di gulp: 3.9.1
 
-Versione di forever: 0.15.3
-
 Installazione
 =============
 
 npm install
 
-bower install
+npm install bower -g
+
+npm install gulp -g
 
 gulp init
 

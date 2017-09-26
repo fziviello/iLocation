@@ -1,11 +1,11 @@
-.salva-modifiche{
-    margin-top: 3%;
-}
-
 .titoloPanel
 {
     font-size:20px;
     padding:5px 10px;
     color:#FFF;
     font-weight: bold;
+}
+
+.icon_modifica{
+    color: #000000;
 }

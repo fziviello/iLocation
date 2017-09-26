@@ -3,6 +3,21 @@ button {
   outline: none !important; 
 }
 
+.margineMenu{
+    margin-top: 90px;
+}
+
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+.sortorder:after {
+  content: '\25b2';
+}
+.sortorder.reverse:after {
+  content: '\25bc';
+}
+
 /* INIZIO GESTIONE ERRORI */
 .error
 {

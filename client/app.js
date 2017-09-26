@@ -1,7 +1,7 @@
 (function(){
 
 'use strict';
-angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','ui.bootstrap','ngDialog','iLocation.Login','iLocation.Home','iLocation.User','btford.socket-io'])
+angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','ui.bootstrap','ngDialog','iLocation.Login','iLocation.Home','iLocation.User','iLocation.Ruolo','btford.socket-io'])
     .factory('socket', function (socketFactory) {
         var myIoSocket = io.connect("https://192.168.1.24:4200",{secure: true}); // da sistemare
         var socket = socketFactory({
@@ -44,7 +44,17 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
             {
                 return true;
             }
-          };
+        };
+        $rootScope.showRole= function(){
+            if((atob($localStorage.id_ruolo))==1) //admin
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        };
     }
 
 })();

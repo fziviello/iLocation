@@ -1,6 +1,6 @@
 {
   "name": "iLocation",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Progetto iLocation",
   "main": "index.js",
   "scripts": {

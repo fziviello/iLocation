@@ -8,13 +8,7 @@
 
         function LoginController(LoginService,$localStorage,$location,toaster,socket){
             var vm = this;
-
-            if($localStorage.token) 
-            {
-                $location.path('/home');
-            }
-            else
-            {
+            
                 vm.login = function(){
                     let objSend={
                         'login':vm.user
@@ -28,6 +22,7 @@
                             $localStorage.nome=data.result[0].nome;
                             $localStorage.cognome=data.result[0].cognome;
                             $localStorage.email=data.result[0].email;
+                            $localStorage.id_ruolo=btoa(data.result[0].id_ruolo);
                             $localStorage.room=data.result[0].room;
                             $localStorage.colorMarker=data.result[0].colorMarker;
     
@@ -43,7 +38,7 @@
                             'nome':$localStorage.nome,
                             'cognome':$localStorage.cognome,
                             'room':$localStorage.room,
-                            'status':1
+                            'status_connected':1
                          };
                        
                        //socket.on('socketLocation', function () {}); //apro connessione socket
@@ -61,8 +56,6 @@
                         return err;
                     });
                 }   
-            }
-
             vm.logout = function(){
                 let objSend={
                     'logout':{
@@ -73,9 +66,10 @@
                   
                     objSend.room=$localStorage.room;
                     objSend.idClient=$localStorage.id;
+                    objSend.id_ruolo=$localStorage.id_ruolo;
                     objSend.nome=$localStorage.nome;
                     objSend.cognome=$localStorage.cognome;
-                    objSend.status=0;
+                    objSend.status_connected=0;
                     
                     socket.emit('unsubscribe', objSend);
                     //socket.disconnect();//chiudo connessione socket

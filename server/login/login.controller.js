@@ -30,7 +30,7 @@ module.exports=()=>{
                 return next(conn);
             }
             
-            conn.query('SELECT * FROM user WHERE email=? AND password=? LIMIT 1',[req.body.login.email,req.body.login.password], function (err, rows, fields) { 
+            conn.query('SELECT * FROM user WHERE email=? AND password=? AND status=1 LIMIT 1',[req.body.login.email,req.body.login.password], function (err, rows, fields) { 
                        
             if (!err) 
             {
@@ -72,7 +72,7 @@ module.exports=()=>{
         }
 
         let updateStatus =(conn,id)=>{
-            conn.query('UPDATE user SET status=1 WHERE id=?',[parseInt(id)], function (err, rows, fields) { });
+            conn.query('UPDATE user SET status_connected=1 AND status=1 WHERE id=?',[parseInt(id)], function (err, rows, fields) { });
         }
         
         let logout =(conn,req,res,next)=>{
@@ -101,7 +101,7 @@ module.exports=()=>{
                 return next(conn);
             }
 
-            conn.query('UPDATE user SET token=?,status=0 WHERE id=?',[base64url(crypto.randomBytes(64)),parseInt(req.body.logout.id)], function (err, rows, fields) { 
+            conn.query('UPDATE user SET token=?,status_connected=0 WHERE id=?',[base64url(crypto.randomBytes(64)),parseInt(req.body.logout.id)], function (err, rows, fields) { 
                     
                 if (!err) 
                 {

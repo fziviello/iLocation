@@ -8,13 +8,15 @@
 
         function UserService($resource,$rootScope){
            
-            var ProfiloFull = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userProfile', null, {'post': {'method': 'POST'}})
+            var ProfiloLogged = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userProfile', null, {'post': {'method': 'POST'}})
+            var ProfiloFull = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userProfileFull', null, {'post': {'method': 'POST'}})
             var Profilo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/:id', null, {'get': {'method': 'GET'}})
             var UpdateProfilo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userUpdate', null, {'update': {'method': 'POST'}})
 
             return {
                 getProfile: getProfile,
-                getProfileFull: getProfileFull,
+                getProfileLogged: getProfileLogged,
+                ProfiloFull: ProfiloFull,
                 updateProfile: updateProfile
             }
 
@@ -25,9 +27,16 @@
                 }).$promise;
             }
 
-            function getProfileFull(user,callback){
+            function getProfiloFull(user,callback){
                 callback = callback || angular.noop;
                 return ProfiloFull.post(user,function(data){
+                    return callback(data);
+                }).$promise;
+            }
+
+            function getProfileLogged(user,callback){
+                callback = callback || angular.noop;
+                return ProfiloLogged.post(user,function(data){
                     return callback(data);
                 }).$promise;
             }

@@ -82,9 +82,9 @@ gulp.task("build",[
 
 gulp.task("watch",function(){
   gulp.watch(config.jsSrc,["ImportJS"]);
-  gulp.watch(config.csSrc,["ImportCSS"]);
+  gulp.watch(config.cssSrc,["ImportCSS"]);
   gulp.watch(config.mediaSrc,["ImportMEDIA"]);
-  gulp.watch(config.htmlSrc,["ImportINDEX"]);
+  gulp.watch(config.IndexSrc,["ImportINDEX"]);
   gulp.watch(config.htmlSrc,["ImportHTML"]);
   gulp.watch(config.jsonSrc,["ImportJSON"]);
 });
