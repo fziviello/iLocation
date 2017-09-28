@@ -6,12 +6,12 @@
     
         function config($routeProvider){
             $routeProvider
-            .when('/ruolo', {
+            .when('/ruolo/list', {
                 templateUrl:'/view/ruolo/template/ruolo.html',
                 controller:'RuoloController',
                 controllerAs:'vm'
             })
-            .when('/ruolo/gestisci/:id', {
+            .when('/ruolo/edit/:id', {
                 templateUrl:'/view/ruolo/template/gestisci.html',
                 controller:'RuoloController',
                 controllerAs:'vm'

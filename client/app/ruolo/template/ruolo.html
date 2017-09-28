@@ -9,16 +9,16 @@
                         <table class="table table-striped datatable">
                         <thead class="info">
                             <tr>
-                            <th ng-click="vm.OrdinaRuolo('nome')" class="col-xs-12 col-md-5 col-sm-5">Nome<span class="sortorder" ng-show="vm.colonna === 'nome'" ng-class="{reverse:vm.reverse}"></span></th>
-                            <th ng-click="vm.OrdinaRuolo('descrizione')" class="col-xs-12 col-md-5 col-sm-5">Descrizione<span class="sortorder" ng-show="vm.colonna === 'descrizione'" ng-class="{reverse:vm.reverse}"></span></th>
-                            <th class="col-xs-12 col-md-2 col-sm-2 text-center">Gestione</th>
+                            <th ng-click="vm.OrdinaRuolo('nome')" class="col-xs-12 col-md-5 col-sm-5"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Nome<span class="sortorder" ng-show="vm.colonna === 'nome'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                            <th ng-click="vm.OrdinaRuolo('descrizione')" class="col-xs-12 col-md-5 col-sm-5"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Descrizione<span class="sortorder" ng-show="vm.colonna === 'descrizione'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                            <th class="col-xs-12 col-md-2 col-sm-2 text-center"><p>Gestione</p></th>
                             </tr>
                         </thead>
                             <tbody>
                             <tr ng-repeat="ruolo in vm.Ruoli | orderBy:vm.colonna:vm.reverse">
                                 <td>{{ruolo.nome}}</td>
                                 <td>{{ruolo.descrizione}}</td>
-                                <td class="text-center" ><a href="#/ruolo/gestisci/{{ruolo.id}}" type="link" data-toggle="tooltip" data-placement="right" title="Modifica"><span class="icon_modifica glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+                                <td class="text-center" ><a href="#/ruolo/edit/{{ruolo.id}}" type="link" data-toggle="tooltip" data-placement="right" title="Modifica"><span class="icon_modifica glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                             </tr>
                             </tbody>
                         </table>

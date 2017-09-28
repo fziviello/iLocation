@@ -1,0 +1,46 @@
+da modificare 
+
+
+<div class="container margineMenu">
+        <div class="col-xs-12 col-md-12 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="titoloPanel">Utenti</div>
+                </div>
+                <div class="panel-body" ng-init="vm.ListaUtentiFull();">
+                        <div class="table-responsive">
+                            <table class="table table-striped datatable">
+                            <thead class="info">
+                                <tr class="titoli_tabella">
+                                <th ng-click="vm.OrdinaUtenti('nome')" class="col-xs-12 col-md-2 col-sm-2"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Nome<span class="sortorder" ng-show="vm.colonna === 'nome'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                                <th ng-click="vm.OrdinaUtenti('cognome')" class="col-xs-12 col-md-2 col-sm-2"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Cognome<span class="sortorder" ng-show="vm.colonna === 'cognome'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                                <th ng-click="vm.OrdinaUtenti('email')" class="col-xs-12 col-md-2 col-sm-2"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Email<span class="sortorder" ng-show="vm.colonna === 'email'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                                <th ng-click="vm.OrdinaUtenti('ruolo')" class="col-xs-12 col-md-1 col-sm-1"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Ruolo<span class="sortorder" ng-show="vm.colonna === 'ruolo'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                                <th ng-click="vm.OrdinaUtenti('colorMarker')" class="col-xs-12 col-md-1 col-sm-1"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Marker<span class="sortorder" ng-show="vm.colonna === 'colorMarker'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                                <th ng-click="vm.OrdinaUtenti('status_connected')" class="col-xs-12 col-md-1 col-sm-1"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Connessione<span class="sortorder" ng-show="vm.colonna === 'status_connected'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                                <th ng-click="vm.OrdinaUtenti('room')" class="col-xs-12 col-md-1 col-sm-1"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Room<span class="sortorder" ng-show="vm.colonna === 'room'" ng-class="{reverse:vm.reverse}"></span></p></th>                                
+                                <th ng-click="vm.OrdinaUtenti('status')" class="col-xs-12 col-md-1 col-sm-1"><p data-toggle="tooltip" data-placement="top" title="Cambia Ordine">Stato<span class="sortorder" ng-show="vm.colonna === 'status'" ng-class="{reverse:vm.reverse}"></span></p></th>
+                                <th class="col-xs-12 col-md-1 col-sm-1"><p>Gestione</p></th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                <tr class="campi_tabella" ng-repeat="user in vm.user | orderBy:vm.colonna:vm.reverse">
+                                    <td>{{user.nome}}</td>
+                                    <td>{{user.cognome}}</td>
+                                    <td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+                                    <td>{{user.nome_ruolo}}</td>
+                                    <td><span class="glyphicon glyphicon-stop" aria-hidden="true" style="color:{{user.colorMarker}}"></span></td>
+                                    <td ng-if="user.status_connected==1"><div class="text-success glyphicon glyphicon-record"></div></td><td ng-if="user.status_connected==0"><div class="text-danger glyphicon glyphicon-record"></div></td>
+                                    <td>{{user.room}}</td>                                    
+                                    <td ng-if="user.status==1">Attivo</td><td class="text-center" ng-if="user.status==0">Disattivo</td>
+                                    <td><a href="#/user/edit/{{user.id}}" type="link" data-toggle="tooltip" data-placement="right" title="Modifica"><span class="glyphicon glyphicon-pencil icon_modifica" aria-hidden="true"></span></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+

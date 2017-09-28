@@ -96,7 +96,7 @@
                                         });
                                     }
 
-                                    return $location.path('/ruolo');                                
+                                    return $location.path('/ruolo/list');                                
                                     
                                 }).catch(function(err){
                                     toaster.pop({
@@ -142,7 +142,7 @@
                                     });
                                 }
 
-                                return $location.path('/ruolo');                                
+                                return $location.path('/ruolo/list');                                
                                 
                             }).catch(function(err){
                                 toaster.pop({

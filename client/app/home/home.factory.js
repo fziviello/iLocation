@@ -8,19 +8,8 @@
 
         function HomeService($resource,$rootScope){
            
-            var ListaUtentiConnessi = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userConnected', null, {'listConnected': {'method': 'GET'}})
+            return null
            
-            return {
-                listaUtentiConnessi: listaUtentiConnessi
-            }
-
-            function listaUtentiConnessi(callback){
-                callback = callback || angular.noop;
-                return ListaUtentiConnessi.listConnected(function(data){
-                    return callback(data);
-                }).$promise;
-                
-            }
         }
         
 })();

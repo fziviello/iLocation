@@ -8,46 +8,90 @@
 
         function UserService($resource,$rootScope){
            
-            var ProfiloLogged = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userProfile', null, {'post': {'method': 'POST'}})
-            var ProfiloFull = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userProfileFull', null, {'post': {'method': 'POST'}})
-            var Profilo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/:id', null, {'get': {'method': 'GET'}})
-            var UpdateProfilo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/userUpdate', null, {'update': {'method': 'POST'}})
+            var AddUser = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/add', null, {'add': {'method': 'POST'}})
+            var UpdateUser = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/update', null, {'update': {'method': 'POST'}})            
+            var GetProfilo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/search/:id', null, {'search': {'method': 'GET'}})
+            var GetProfiloLogged = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/profile', null, {'profile': {'method': 'POST'}})
+            var GetListaUser = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/list', null, {'list': {'method': 'GET'}})           
+            var GetListaUserFull = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/listFull', null, {'listFull': {'method': 'POST'}})
+            var GetUtentiConnessi = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/connected', null, {'connected': {'method': 'GET'}})
+            var SetUserPwd = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/update/pwd', null, {'pwd': {'method': 'POST'}})
 
             return {
+                addUser: addUser,
+                updateUser: updateUser,
                 getProfile: getProfile,
                 getProfileLogged: getProfileLogged,
-                ProfiloFull: ProfiloFull,
-                updateProfile: updateProfile
+                getlistaUser:getlistaUser,                
+                getlistaUserFull:getlistaUserFull,
+                getUtentiConnessi: getUtentiConnessi,
+                setUserPwd: setUserPwd
             }
 
+            //INSERISCI UTENTE
+            function addUser (user,callback){
+                callback = callback || angular.noop;
+                return AddUser.add(user,function(data){
+                    return callback(data);
+                }).$promise;
+            }
+
+            //AGGIORNA UTENTE
+            function updateUser(user,callback){
+                callback = callback || angular.noop;
+                return UpdateUser.update(user,function(data){
+                    return callback(data);
+                }).$promise;
+            }
+
+            //PROFILO UTENTE LIMITATO
             function getProfile(user,callback){
                 callback = callback || angular.noop;
-                return Profilo.get(user,function(data){
+                return GetProfilo.search(user,function(data){
                     return callback(data);
                 }).$promise;
             }
 
-            function getProfiloFull(user,callback){
-                callback = callback || angular.noop;
-                return ProfiloFull.post(user,function(data){
-                    return callback(data);
-                }).$promise;
-            }
-
+            //PROFILO UTENTE FULL LOGGATO
             function getProfileLogged(user,callback){
                 callback = callback || angular.noop;
-                return ProfiloLogged.post(user,function(data){
+                return GetProfiloLogged.profile(user,function(data){
                     return callback(data);
                 }).$promise;
             }
 
-            function updateProfile(user,callback){
+             // LISTA UTENTI ATTIVI LIMITATA
+             function getlistaUser(user, callback){
                 callback = callback || angular.noop;
-                return UpdateProfilo.update(user,function(data){
+                return GetListaUser.list(user, function(data){
                     return callback(data);
                 }).$promise;
-                
             }
+
+            // LISTA UTENTI FULL
+            function getlistaUserFull(user, callback){
+                callback = callback || angular.noop;
+                return GetListaUserFull.listFull(user, function(data){
+                    return callback(data);
+                }).$promise;
+            }
+
+            //LISTA UTENTI CONNESSI LIMITATA 
+            function getUtentiConnessi(callback){
+                callback = callback || angular.noop;
+                return GetUtentiConnessi.connected(function(data){
+                    return callback(data);
+                }).$promise;
+            }
+
+             //AGGIORNA PASSWORD UTENTE SELEZIONATO
+             function setUserPwd(callback){
+                callback = callback || angular.noop;
+                return SetUserPwd.pwd(function(data){
+                    return callback(data);
+                }).$promise;
+            }
+
         }
         
 })();

@@ -52,67 +52,7 @@
 
             });
 
-            vm.OpenDialogProfilo=function(idUser){
-
-                let objSend={
-                    'id':idUser
-                };
-                    return UserService.getProfile(objSend).then(function(data){
-                                                            
-                    if(data.success===true)
-                    {
-                        vm.userProfile=data.result[0];
-    
-                        ngDialog.open({
-                            controller:'ProfiloModalController',
-                            controllerAs:'vm',
-                            template:'/view/home/template/profilo.modal.html',
-                            appendClassName:'ngdialog-custom',
-                            resolve: {
-                                dataProfile: function() {
-                                    return vm.userProfile;
-                                }
-                            }
-                        });
-
-                        return null;
-                    }
-                        
-                    }).catch(function(err){
-                        
-                        toaster.pop({
-                            type: 'error',
-                            title: 'Errore',
-                            body: err
-                        });
-    
-                    });
-            }
-           
-            vm.StampaListaUtentiConnessi = function(){
-                
-                if($localStorage.token!="" || $localStorage.token!=undefined)
-                {
-                    HomeService.listaUtentiConnessi().then(function(data){
-                        
-                    if(data.success===true)
-                    {
-                        return vm.ListaUtentiConnessi=data;
-                    }
-                        
-                    }).catch(function(err){
-                        
-                        toaster.pop({
-                            type: 'error',
-                            title: 'Errore',
-                            body: err
-                        });
-
-                    });
-                }
-                
-        }
-
+            //MODALITA SEGUI UTENTE SULLA MAPPA
             vm.FocusUtente=function(idClient) {
               if(vm.markers.length===0)
               {
@@ -295,8 +235,6 @@
                 vm.elemIndirizzo.value ="";
         }
 
-      
-
         vm.deleteObjectMap=function() {
             
             vm.deleteMarkers();
@@ -328,7 +266,6 @@
                 
             }
 
-            
             for (var i = 0; i < vm.position.length; i++) 
             {
                 if(vm.position[i].idSocketClient==id)
@@ -474,9 +411,9 @@
                      });
                     }
                   });
-              }
-              
             }
+              
+        }
 
             vm.addMarkerSocket=function(data)
             {
@@ -552,5 +489,67 @@
                         });
                     }
                 }
+
+            //CARICAMENTO PROFILO NELLA DIALOG
+            vm.OpenDialogProfilo=function(idUser){
+                
+                let objSend={
+                    'id':idUser
+                };
+                    return UserService.getProfile(objSend).then(function(data){
+                                                            
+                    if(data.success===true)
+                    {
+                        vm.userProfile=data.result[0];
+    
+                        ngDialog.open({
+                            controller:'ProfiloModalController',
+                            controllerAs:'vm',
+                            template:'/view/home/template/profilo.modal.html',
+                            appendClassName:'ngdialog-custom',
+                            resolve: {
+                                dataProfile: function() {
+                                    return vm.userProfile;
+                                }
+                            }
+                        });
+
+                        return null;
+                    }
+                        
+                    }).catch(function(err){
+                        
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Errore',
+                            body: err
+                        });
+    
+                    });
             }
+            
+            //LISTA UTENTI CONNESSI
+            vm.StampaListaUtentiConnessi = function(){
+                
+                if($localStorage.token!="" || $localStorage.token!=undefined)
+                {
+                    UserService.getUtentiConnessi().then(function(data){
+                        
+                    if(data.success===true)
+                    {
+                        return vm.ListaUtentiConnessi=data;
+                    }
+                        
+                    }).catch(function(err){
+                        
+                        toaster.pop({
+                            type: 'error',
+                            title: 'Errore',
+                            body: err
+                        });
+
+                    });
+                }
+            }
+    }
 })();

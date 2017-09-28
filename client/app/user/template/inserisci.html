@@ -1,0 +1,69 @@
+<div class="container margineMenu">
+        <div class="col-xs-12 col-md-12 col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Crea Utente</div>
+                <div class="panel-body">
+                    <form id="inserisci_form" name="userForm" ng-submit="vm.addNewUser();">
+                        <div class="row">
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.email.$invalid && !userForm.email.$pristine}">
+                                <label>Email</label>
+                                <input ng-model="vm.user.email" name="email" required type="email" class="form-control"  placeholder="email">
+                                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.nome.$invalid && !userForm.nome.$pristine}">
+                                <label>Nome</label>
+                                <input ng-model="vm.user.nome" name="nome" required ng-minlength="1" type="text" class="form-control" placeholder="Nome">
+                                    <p ng-show="userForm.nome.$invalid && !userForm.nome.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.cognome.$invalid && !userForm.cognome.$pristine}">
+                                <label>Cognome</label>
+                                <input ng-model="vm.user.cognome" name="cognome" required ng-minlength="1" type="text" class="form-control"  placeholder="Cognome">
+                                    <p ng-show="userForm.cognome.$invalid && !userForm.cognome.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.password.$invalid && !userForm.password.$pristine}">
+                                <label>Password</label>
+                                <input ng-model="vm.user.password" name="password" required ng-minlength="1" type="password" class="form-control"  placeholder="password">
+                                <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
+                                <label>Conferma Password</label>
+                                <input ng-model="vm.user.passwordCheck" name="passwordCheck"  ng-minlength="1" required type="password" class="form-control"  ng-class="{'errorInput':vm.user.passwordCheck!=vm.user.password}" placeholder="conferma password">
+                                    <p ng-show="vm.user.passwordCheck!=vm.user.password" class="help-block error">password diversa</p>
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
+                                <label>Stato</label><br/>
+                                <select ng-init="vm.user.status = 1" class="form-control" name="status" ng-model="vm.user.status" ng-options="option.id as option.nome for option in vm.ListaStatus">
+                                        <option value='' disabled selected>Seleziona uno stato</option>
+                                </select>                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-init="vm.ListaRuoli();">
+                                <label>Ruolo</label><br/>
+                                <select class="form-control" name="id_ruolo" ng-model="vm.user.id_ruolo" ng-options="option.id as option.nome for option in vm.Ruoli">
+                                        <option value='' disabled selected>Seleziona un ruolo</option>
+                                </select>                                
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.room.$invalid && !userForm.room.$pristine}">
+                                    <label>Room</label>
+                                    <input ng-model="vm.user.room" name="room" required ng-minlength="1" type="text" class="form-control"  placeholder="Room">
+                                    <p ng-show="userForm.room.$invalid && !userForm.room.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                            </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
+                                <label>Colore Marker</label>
+                                <input ng-init="vm.user.colorMarker='#000000'" ng-model="vm.user.colorMarker" name="colorMarker" required ng-minlength="1" type="color" class="form-control" placeholder="#color">                                
+                            </div>
+                        </div>
+                        <div class="row salva-modifiche">
+                            <div class="form-group col-xs-12 col-md-12 col-sm-12 text-right">
+                                <a class="btn btn-warning" href="#/home">Annulla</a>
+                                <button type="submit" class="btn btn-success">Salva</button>
+                            </div>   
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>

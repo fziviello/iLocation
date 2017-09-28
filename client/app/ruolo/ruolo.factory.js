@@ -9,7 +9,7 @@
         function RuoloService($resource,$rootScope){
            
             var ListaRuolo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/ruolo/list', null, {'list': {'method': 'GET'}})
-            var Ruolo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/ruolo/:id', null, {'get': {'method': 'GET'}})
+            var Ruolo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/ruolo/search/:id', null, {'get': {'method': 'GET'}})
             var AddRuolo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/ruolo/add', null, {'add': {'method': 'POST'}})
             var UpdateRuolo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/ruolo/update', null, {'update': {'method': 'POST'}})
 

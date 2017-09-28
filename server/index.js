@@ -8,11 +8,13 @@ const dotenv = require('dotenv');
 const socketio = require('socket.io');
 const http = require('http');
 const https = require('https');
+const cors = require('cors');
 const app=express();
 const pathApi="/api/v1/";
 
 //middleware
 app.use(bodyParser.json());
+app.use(cors());
 app.use('/static',express.static(path.join(__dirname,'..','build')));
 app.use('/medias',express.static(path.join(__dirname,'..','build','medias')));
 app.use('/view',express.static(path.join(__dirname,'..','build','view')));
@@ -39,28 +41,27 @@ const certificato = {
 app.get('/',function(req,res,next){
     res.sendFile(path.join(__dirname,'..','build','index.html'));
 });
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,Authorization, Accept");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  next();
-});
 
 //LOGIN
 app.post(pathApi+'login', connectDB.connect,loginController.login,connectDB.disconnect);
 app.post(pathApi+'updateStatus', auth.bearer(),connectDB.connect,loginController.updateStatus,connectDB.disconnect);
 app.post(pathApi+'logout', auth.bearer(),connectDB.connect,loginController.logout,connectDB.disconnect);
+
 //USER
-app.get(pathApi+'user/:id', auth.bearer(),connectDB.connect,userController.searchID,connectDB.disconnect); //return utente limitato
-app.post(pathApi+'userProfile', auth.bearer(),connectDB.connect,userController.UserProfile,connectDB.disconnect); //return il profilo utente completo
-app.post(pathApi+'userProfileFull', auth.bearer(),connectDB.connect,userController.UserProfileFull,connectDB.disconnect); //return il profilo utente completo da ID
-app.get(pathApi+'userList', auth.bearer(),connectDB.connect,userController.list,connectDB.disconnect); //return lista utenti limitata
-app.get(pathApi+'userConnected', auth.bearer(),connectDB.connect,userController.listConnected,connectDB.disconnect); //return lista utenti Connessi
-app.post(pathApi+'userUpdate', auth.bearer(),connectDB.connect,userController.change,connectDB.disconnect);//aggiorna utente
-app.post(pathApi+'userDelete', auth.bearer(),connectDB.connect,userController.del,connectDB.disconnect);//cancella utente
+app.post(pathApi+'user/add', auth.bearer(),connectDB.connect,userController.add,connectDB.disconnect);//aggiunge utente
+app.post(pathApi+'user/update', auth.bearer(),connectDB.connect,userController.change,connectDB.disconnect);//aggiorna utente
+app.post(pathApi+'user/delete', auth.bearer(),connectDB.connect,userController.del,connectDB.disconnect);//cancella utente
+
+app.get(pathApi+'user/search/:id', auth.bearer(),connectDB.connect,userController.searchID,connectDB.disconnect); //return utente senza password
+app.post(pathApi+'user/profile', auth.bearer(),connectDB.connect,userController.UserProfile,connectDB.disconnect); //return il profilo personale
+app.get(pathApi+'user/list', auth.bearer(),connectDB.connect,userController.list,connectDB.disconnect); //return lista utenti limitata
+app.post(pathApi+'user/listFull', auth.bearer(),connectDB.connect,userController.listFull,connectDB.disconnect); //return lista utenti completa solo x ruolo admin
+app.get(pathApi+'user/connected', auth.bearer(),connectDB.connect,userController.listConnected,connectDB.disconnect); //return lista utenti Connessi
+app.post(pathApi+'user/update/pwd', auth.bearer(),connectDB.connect,userController.changePwd,connectDB.disconnect); //aggiorna la passowrd dell utente selezionato
+
 //RUOLO
 app.get(pathApi+'ruolo/list', auth.bearer(),connectDB.connect,ruoloController.lista,connectDB.disconnect); //return lista ruoli
-app.get(pathApi+'ruolo/:id', auth.bearer(),connectDB.connect,ruoloController.searchID,connectDB.disconnect); //return ruolo selezionato
+app.get(pathApi+'ruolo/search/:id', auth.bearer(),connectDB.connect,ruoloController.searchID,connectDB.disconnect); //return ruolo selezionato
 app.post(pathApi+'ruolo/add', auth.bearer(),connectDB.connect,ruoloController.add,connectDB.disconnect); //inserisci ruolo
 app.post(pathApi+'ruolo/update', auth.bearer(),connectDB.connect,ruoloController.change,connectDB.disconnect); //aggiorna ruolo
 
@@ -113,4 +114,3 @@ io.on('connection', function (socket) {
 serverSocket.listen(PORT_SOCKET,function(){
   console.log("Server Socket in ascolto su "+PORT_SOCKET);
 });
-
