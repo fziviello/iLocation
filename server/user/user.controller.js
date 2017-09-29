@@ -61,6 +61,18 @@ module.exports=()=>{
 
     let UserProfile =(conn,req,res,next)=>{
         
+        if(!!!req.body.user)
+        {
+            res.status(403).json({  
+                'success':false,
+                'error':{
+                            'code':'403',
+                            'message':'Parametri non corretti'
+                }
+            });
+            return next(conn);
+        }
+
         if(!!!req.body.user.id || isNaN(req.body.user.id) && (!!!req.body.user.token || isNaN(req.body.user.token)))
         {
             res.status(403).json({  
@@ -115,6 +127,18 @@ module.exports=()=>{
 
     let add =(conn,req,res,next)=>{
 
+        if(!!!req.body.user)
+        {
+            res.status(403).json({  
+                'success':false,
+                'error':{
+                            'code':'403',
+                            'message':'Parametri non corretti'
+                }
+            });
+            return next(conn);
+        }
+
         if((!!!req.body.user.nome || isNaN(req.body.user.nome)) && (!!!req.body.user.cognome || isNaN(req.body.user.cognome)) && (!!!req.body.user.password || isNaN(req.body.user.password)) && (!!!req.body.user.email || isNaN(req.body.user.email)) && (!!!req.body.user.room || isNaN(req.body.user.room)) && (!!!req.body.user.colorMarker || isNaN(req.body.user.colorMarker)) && (!!!req.body.user.status || isNaN(req.body.user.status)) && (!!!req.body.user.id_ruolo || isNaN(req.body.user.id_ruolo)))
         {
             res.status(403).json({  
@@ -125,7 +149,7 @@ module.exports=()=>{
                 }
             });
             
-                return next(conn);
+            return next(conn);
         }
 
         conn.query('SELECT email FROM user WHERE email=?',[req.body.user.email], function (err, rows, fields) { 
@@ -150,8 +174,6 @@ module.exports=()=>{
             }
         
         });
-
-       
     }
 
     let addUser=(conn,req,res,next)=>{
@@ -184,6 +206,18 @@ module.exports=()=>{
     }
 
     let change =(conn,req,res,next)=>{
+
+        if(!!!req.body.user)
+        {
+            res.status(403).json({  
+                'success':false,
+                'error':{
+                            'code':'403',
+                            'message':'Parametri non corretti'
+                }
+            });
+            return next(conn);
+        }
 
         if((!!!req.body.user.id || isNaN(req.body.user.id)) && (!!!req.body.user.nome || isNaN(req.body.user.nome)) && (!!!req.body.user.cognome || isNaN(req.body.user.cognome)) && (!!!req.body.user.email || isNaN(req.body.user.email)) && (!!!req.body.user.room || isNaN(req.body.user.room)) && (!!!req.body.user.colorMarker || isNaN(req.body.user.colorMarker)) && (!!!req.body.user.status || isNaN(req.body.user.status)) && (!!!req.body.user.id_ruolo || isNaN(req.body.user.id_ruolo)))    
         {
@@ -256,6 +290,18 @@ module.exports=()=>{
 
     let del =(conn,req,res,next)=>{
        
+        if(!!!req.body.user)
+        {
+            res.status(403).json({  
+                'success':false,
+                'error':{
+                            'code':'403',
+                            'message':'Parametri non corretti'
+                }
+            });
+            return next(conn);
+        }
+
         if(!!!req.body.user.id || isNaN(req.body.user.id))
         {
             res.status(403).json({  
@@ -270,6 +316,7 @@ module.exports=()=>{
         }
 
         conn.query('DELETE FROM user WHERE id=?',[req.body.user.id], function (err,fields) { 
+            
             
             if (!err) 
             {
@@ -330,6 +377,18 @@ module.exports=()=>{
 
     let listFull =(conn,req,res,next)=>{
         
+        if(!!!req.body.user)
+        {
+            res.status(403).json({  
+                'success':false,
+                'error':{
+                            'code':'403',
+                            'message':'Parametri non corretti'
+                }
+            });
+            return next(conn);
+        }
+
         if((!!!req.body.user.id || isNaN(req.body.user.id)) && (!!!req.body.user.token || isNaN(req.body.user.token)))
         {
             res.status(403).json({  
@@ -452,6 +511,18 @@ module.exports=()=>{
 
     let changePwd =(conn,req,res,next)=>{
         
+        if(!!!req.body.user)
+        {
+            res.status(403).json({  
+                'success':false,
+                'error':{
+                            'code':'403',
+                            'message':'Parametri non corretti'
+                }
+            });
+            return next(conn);
+        }
+
         if((!!!req.body.user.id || isNaN(req.body.user.id)) && (!!!req.body.user.id_change || isNaN(req.body.user.id_change)) && (!!!req.body.user.token || isNaN(req.body.user.token)))
         {
             res.status(403).json({  

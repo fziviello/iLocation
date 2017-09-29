@@ -95,7 +95,31 @@ module.exports=()=>{
         }
 
         let add =(conn,req,res,next)=>{
-                
+            
+            if(!!!req.body.ruolo)
+            {
+                res.status(403).json({  
+                    'success':false,
+                    'error':{
+                                'code':'403',
+                                'message':'Parametri non corretti'
+                    }
+                });
+                return next(conn);
+            }
+
+            if((!!!req.body.ruolo.nome || isNaN(req.body.ruolo.nome)) && (!!!req.body.ruolo.descrizione || isNaN(req.body.ruolo.descrizione)))
+            {
+                res.status(403).json({  
+                    'success':false,
+                    'error':{
+                                'code':'403',
+                                'message':'Parametri non corretti'
+                    }
+                });
+                return next(conn);
+            }
+
             conn.query('INSERT INTO ruolo SET nome=?,descrizione=?',[req.body.ruolo.nome,req.body.ruolo.descrizione], function (err, rows, fields) { 
                 
             if (!err) 
@@ -122,6 +146,30 @@ module.exports=()=>{
         }
 
         let change =(conn,req,res,next)=>{
+
+            if(!!!req.body.ruolo)
+            {
+                res.status(403).json({  
+                    'success':false,
+                    'error':{
+                                'code':'403',
+                                'message':'Parametri non corretti'
+                    }
+                });
+                return next(conn);
+            }
+            
+            if((!!!req.body.ruolo.nome || isNaN(req.body.ruolo.nome)) && (!!!req.body.ruolo.descrizione || isNaN(req.body.ruolo.descrizione)) && (!!!req.body.ruolo.id || isNaN(req.body.ruolo.id)))
+            {
+                res.status(403).json({  
+                    'success':false,
+                    'error':{
+                                'code':'403',
+                                'message':'Parametri non corretti'
+                    }
+                });
+                return next(conn);
+            }
             
             conn.query('UPDATE ruolo SET nome=?,descrizione=? WHERE id=?',[req.body.ruolo.nome,req.body.ruolo.descrizione,req.body.ruolo.id], function (err, rows, fields) { 
                 
