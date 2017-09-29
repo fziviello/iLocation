@@ -2,6 +2,26 @@
     #site-wrapper {
         padding-top: 7%;
     }
+
+    /* INIZIO MODAL NGDIALOG*/
+    .ngdialog-content{
+        width: 45% !important;
+        }
+        .ngdialog-changePwd .ngdialog-content{
+        width: 30% !important;
+        }
+
+        .modal-body label{
+        font-size: 25px;
+        padding-top: 40px;
+        padding-bottom: 15px;
+        }
+
+        .icon_color_marker{
+        font-size: 40px;
+        }
+    /*FINE MODAL NGDIALOG*/
+
 }
 
 @media only screen and (max-width: 1024px) {
@@ -13,34 +33,99 @@
     #site-wrapper {
         padding-top: 7%;
     }
+        /* INIZIO MODAL NGDIALOG*/
+        .ngdialog-content{
+            width: 45% !important;
+            }
+            .ngdialog-changePwd .ngdialog-content{
+            width: 30% !important;
+            }
 }
 @media only screen and (max-width: 800px) {
     #site-wrapper {
         padding-top: 9%;
     }
+        /* INIZIO MODAL NGDIALOG*/
+        .ngdialog-content{
+            width: 45% !important;
+            }
+            .ngdialog-changePwd .ngdialog-content{
+            width: 30% !important;
+            }
 }
 @media only screen and (max-width: 767px) {
     #site-wrapper {
         padding-top: 10%;
     }
+
+        /* INIZIO MODAL NGDIALOG*/
+        .ngdialog-content{
+            width: 45% !important;
+            }
+            .ngdialog-changePwd .ngdialog-content{
+            width: 30% !important;
+            }
 }
 @media only screen and (max-width: 640px) {
     #site-wrapper {
         padding-top: 12%;
     }
+
+     /* INIZIO MODAL NGDIALOG*/
+     .ngdialog-content{
+        width: 75% !important;
+        }
+        .ngdialog-changePwd .ngdialog-content{
+        width: 60% !important;
+        }
+
+
+    /*FINE MODAL NGDIALOG*/
 }
 @media only screen and (max-width: 480px) {
     #site-wrapper {
         padding-top: 17%;
     }
+
+         /* INIZIO MODAL NGDIALOG*/
+         .ngdialog-content{
+            width: 80% !important;
+            }
+            .ngdialog-changePwd .ngdialog-content{
+            width: 65% !important;
+            }
+    
+
+        /*FINE MODAL NGDIALOG*/
 }
 @media only screen and (max-width: 320px) {
     #site-wrapper {
         padding-top: 23%;
     }
+
+         /* INIZIO MODAL NGDIALOG*/
+         .ngdialog-content{
+            width: 80% !important;
+            }
+            .ngdialog-changePwd .ngdialog-content{
+            width: 70% !important;
+            }
+    
+
+        /*FINE MODAL NGDIALOG*/
 }
 @media only screen and (max-width: 240px) {
     #site-wrapper {
         padding-top: 28%;
     }
+     /* INIZIO MODAL NGDIALOG*/
+     .ngdialog-content{
+        width: 80% !important;
+        }
+        .ngdialog-changePwd .ngdialog-content{
+        width: 65% !important;
+        }
+
+
+    /*FINE MODAL NGDIALOG*/
 }

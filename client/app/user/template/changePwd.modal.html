@@ -1,0 +1,25 @@
+<div class="modal-header"><h3 class="modal-title text-center">Cambia Password</h3></div>
+<div class="modal-body">
+        <form id="gestisci_form" name="userChangePwdForm" ng-submit="vm.ChangePwdDialog();">
+                <div class="row">
+                        <div class="form-group single_panel col-xs-12 col-md-12 col-sm-12" ng-class="{'has-error':userChangePwdForm.password.$invalid && !userChangePwdForm.password.$pristine}">
+                                <label>Password</label>
+                                <input ng-model="vm.user.password" name="password" required ng-minlength="1" type="password" class="form-control"  placeholder="password">
+                                <p ng-show="userChangePwdForm.password.$invalid && !userChangePwdForm.password.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="form-group single_panel col-xs-12 col-md-12 col-sm-12">
+                                <label>Conferma Password</label>
+                                <input ng-model="vm.user.passwordCheck" name="passwordCheck" required type="password" class="form-control"  ng-class="{'errorInput':vm.user.passwordCheck!=vm.user.password}"placeholder="conferma password">
+                                <p ng-show="vm.user.passwordCheck!=vm.user.password" class="help-block error">password diversa</p>
+                        </div>
+                </div>
+                <div class="row salva-modifiche">
+                        <div class="form-group col-xs-12 col-md-12 col-sm-12 text-right">
+                                <button type="submit" class="btn btn-success">Salva</button>
+                        </div>   
+                </div>
+        </form>
+</div>
+<div class="modal-footer"></div>

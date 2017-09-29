@@ -85,9 +85,9 @@
             }
 
              //AGGIORNA PASSWORD UTENTE SELEZIONATO
-             function setUserPwd(callback){
+             function setUserPwd(user,callback){
                 callback = callback || angular.noop;
-                return SetUserPwd.pwd(function(data){
+                return SetUserPwd.pwd(user,function(data){
                     return callback(data);
                 }).$promise;
             }

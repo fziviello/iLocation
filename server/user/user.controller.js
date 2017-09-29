@@ -465,7 +465,7 @@ module.exports=()=>{
             return next(conn);  
         }
 
-        conn.query('SELECT id,token FROM user WHERE id=? AND token=? AND id_ruolo=1',[req.body.user.id,req.body.user.token], function (err, rows, fields) { 
+        conn.query('SELECT id,token,id_ruolo FROM user WHERE id=? AND token=? AND id_ruolo=1',[req.body.user.id,req.body.user.token], function (err, rows, fields) { 
             
             if (!err) {
                 if (rows.length<=0)
@@ -505,7 +505,7 @@ module.exports=()=>{
 
     let extChangePsw=(conn,req,res,next)=>{
     
-        conn.query('UPDATE user SET password=?, WHERE id=?',[req.body.user.password,req.body.user.id_change], function (err, rows, fields) { 
+        conn.query('UPDATE user SET password=? WHERE id=?',[req.body.user.password,req.body.user.id_change], function (err, rows, fields) { 
             
         if (!err) 
         {
