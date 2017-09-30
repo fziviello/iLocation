@@ -3,3 +3,5 @@ build
 server/config.js
 out.log
 err.log
+.DS_Store
+.vscode
