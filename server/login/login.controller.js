@@ -7,15 +7,16 @@ module.exports=()=>{
     
         let login =(conn,req,res,next)=>{
     
-            if(!!!req.body.login)
+            if(req.body.login==undefined)
             {
-                res.status(403).json({  
+                res.status(400).json({  
                     'success':false,
                     'error':{
-                                'code':'403',
-                                'message':'Parametri non corretti'
+                                'code':'400',
+                                'message':'Richiesta Errata'
                     }
                 });
+    
                 return next(conn);
             }
             else if(!!!req.body.login.email || !!!req.body.login.password)
@@ -30,7 +31,7 @@ module.exports=()=>{
                 return next(conn);
             }
             
-            conn.query('SELECT * FROM user WHERE email=? AND password=? AND status=1 LIMIT 1',[req.body.login.email,req.body.login.password], function (err, rows, fields) { 
+            conn.query('SELECT * FROM user WHERE email=? AND password=SHA1(?) AND status=1',[req.body.login.email,req.body.login.password], function (err, rows, fields) { 
                        
             if (!err) 
             {
@@ -77,15 +78,16 @@ module.exports=()=>{
         
         let logout =(conn,req,res,next)=>{
             
-            if(!!!req.body.logout)
+            if(req.body.logout==undefined)
             {
-                res.status(403).json({  
+                res.status(400).json({  
                     'success':false,
                     'error':{
-                                'code':'403',
-                                'message':'Parametri non corretti'
+                                'code':'400',
+                                'message':'Richiesta Errata'
                     }
                 });
+    
                 return next(conn);
             }
             else if(!!!req.body.logout.id || isNaN(req.body.logout.id))
@@ -133,3 +135,7 @@ module.exports=()=>{
             logout:logout
         }
     }
+
+
+
+

@@ -33,7 +33,7 @@ module.exports=()=>{
             }
             else
             {
-                console.error(r);
+                console.error(JSON.stringify(err));
             }
         });
 
@@ -52,14 +52,15 @@ module.exports=()=>{
                 }   
                 else
                 {
-                   console.error(err);
+                   console.error(JSON.stringify(err));
                 } 
             }
         );
 
         return;
     }
-
-
-    return {connect:connectDB,disconnect:disconnectDB}
+    return {
+        connect:connectDB,
+        disconnect:disconnectDB
+    }
 }

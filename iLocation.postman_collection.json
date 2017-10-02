@@ -1,0 +1,638 @@
+{
+	"id": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+	"name": "iLocation",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"name": "Login",
+			"description": "",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"order": [
+				"c2ad3fe2-1a18-e7b9-2639-fe678d4bcd83",
+				"1899dad7-0f54-edbb-53ee-24c70ae0c927"
+			],
+			"owner": "508960",
+			"folders_order": [],
+			"id": "eb501c5b-5ab0-4f31-61e1-193b1ea25f0e"
+		},
+		{
+			"name": "Ruolo",
+			"description": "",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"order": [
+				"a1494d7b-953e-ad42-d24f-dba9e4c1fc52",
+				"359c72f5-0fb4-53bf-54a4-055cf7914666",
+				"afa562fb-6dc3-2a0e-cf48-11780723dc55",
+				"6c4b1db8-55d8-6f72-db50-a7c6a4530be2",
+				"83099910-1a47-2d4f-8c48-8657040563af"
+			],
+			"owner": "508960",
+			"folders_order": [],
+			"id": "0070f2ab-d830-c50f-c3eb-9c3a5252de45"
+		},
+		{
+			"name": "Utente",
+			"description": "",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"order": [
+				"11b8f8b2-8a2e-cde6-c1ab-ea3892265d7a",
+				"0afc3b90-c420-1317-c41f-8682b34ac2e2",
+				"f2247bcf-6428-cba4-437d-c9d49a4c81ff",
+				"24874122-9f9b-2a99-e607-3a42544613f3",
+				"7a8814f1-6a9f-7445-3d49-756d1b8af532",
+				"f5117544-bb86-9171-abb9-20bcf61cae8c",
+				"68acab90-d016-0a3f-cb1b-57471e56a7f3",
+				"fe7563dd-b76b-2b71-2429-1bf2d84d4c22",
+				"b54fa379-b7b6-85b6-cd8c-7af206a6778b"
+			],
+			"owner": "508960",
+			"folders_order": [],
+			"id": "7d883734-9360-4c15-248e-6c70b5f2230c"
+		}
+	],
+	"folders_order": [
+		"7d883734-9360-4c15-248e-6c70b5f2230c",
+		"eb501c5b-5ab0-4f31-61e1-193b1ea25f0e",
+		"0070f2ab-d830-c50f-c3eb-9c3a5252de45"
+	],
+	"timestamp": 1506930302842,
+	"owner": "508960",
+	"public": false,
+	"requests": [
+		{
+			"id": "0afc3b90-c420-1317-c41f-8682b34ac2e2",
+			"headers": "Content-Type: application/json\nAuthorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/profile",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Profilo utente loggato",
+			"description": "https://192.168.1.24:3000/api/v1/user/profile",
+			"descriptionFormat": "html",
+			"time": 1506933868809,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c",
+			"rawModeData": "{\n\t\"user\":{\n\t        \"token\": \"EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\",\n            \"id\": 1\n\t}\n}"
+		},
+		{
+			"id": "11b8f8b2-8a2e-cde6-c1ab-ea3892265d7a",
+			"headers": "Authorization: Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/add",
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506940269190,
+			"name": "Inserisci",
+			"description": "https://192.168.1.24:3000/api/v1/user/add",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"responses": [],
+			"rawModeData": "{\n\t\"user\":{\n\t        \"nome\":\"Mario\",\n            \"id_ruolo\": 1,\n            \"email\": \"mario.rossi@email.it\",\n            \"cognome\": \"Rossi\",\n            \"password\": \"psw\",\n            \"status\":1,\n            \"room\": \"gruppo\",\n            \"colorMarker\": \"#5fc13e\"\n\t}\n}"
+		},
+		{
+			"id": "1899dad7-0f54-edbb-53ee-24c70ae0c927",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/logout",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Logout",
+			"description": "https://192.168.1.24:3000/api/v1/logout",
+			"descriptionFormat": "html",
+			"time": 1506939583351,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "eb501c5b-5ab0-4f31-61e1-193b1ea25f0e",
+			"rawModeData": "{\n\t\"logout\":{\n\t\t\t\"id\":1\n\t}\n}"
+		},
+		{
+			"id": "24874122-9f9b-2a99-e607-3a42544613f3",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/delete",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Elimina Utente",
+			"description": "https://192.168.1.24:3000/api/v1/user/delete",
+			"descriptionFormat": "html",
+			"time": 1506936380468,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c",
+			"rawModeData": "{\n\t\"user\":{\n            \"id\": 3\n        }\n}"
+		},
+		{
+			"id": "359c72f5-0fb4-53bf-54a4-055cf7914666",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/ruolo/update",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Aggiorna Ruolo",
+			"description": "https://192.168.1.24:3000/api/v1/ruolo/update",
+			"descriptionFormat": "html",
+			"time": 1506939116450,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0070f2ab-d830-c50f-c3eb-9c3a5252de45",
+			"rawModeData": "{\n\t\"ruolo\":{\n\t\t\t\"nome\":\"test2\",\n\t\t\t\"descrizione\":\"\",\n\t\t\t\"id\":5\n        }\n}"
+		},
+		{
+			"id": "68acab90-d016-0a3f-cb1b-57471e56a7f3",
+			"headers": "Authorization: Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/search/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": null,
+			"dataMode": "params",
+			"name": "Utente Search",
+			"description": "https://192.168.1.24:3000/api/v1/user/search/1",
+			"descriptionFormat": "html",
+			"time": 1506941200973,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c"
+		},
+		{
+			"id": "6c4b1db8-55d8-6f72-db50-a7c6a4530be2",
+			"headers": "Authorization: Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/ruolo/list",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": null,
+			"dataMode": "params",
+			"name": "Lista Ruoli",
+			"description": "https://192.168.1.24:3000/api/v1/ruolo/list",
+			"descriptionFormat": "html",
+			"time": 1506941064625,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0070f2ab-d830-c50f-c3eb-9c3a5252de45"
+		},
+		{
+			"id": "7a8814f1-6a9f-7445-3d49-756d1b8af532",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/listFull",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Lista Utenti Full",
+			"description": "https://192.168.1.24:3000/api/v1/user/listFull",
+			"descriptionFormat": "html",
+			"time": 1506936768488,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c",
+			"rawModeData": "{\n\t\"user\":{\n            \"id\": 1,\n            \"token\": \"EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\"\n        }\n}"
+		},
+		{
+			"id": "83099910-1a47-2d4f-8c48-8657040563af",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/ruolo/delete",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Elimina Ruolo",
+			"description": "https://192.168.1.24:3000/api/v1/ruolo/delete",
+			"descriptionFormat": "html",
+			"time": 1506952897547,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0070f2ab-d830-c50f-c3eb-9c3a5252de45",
+			"rawModeData": "{\n\t\"ruolo\":{\n            \"id\": 3\n        }\n}"
+		},
+		{
+			"id": "a1494d7b-953e-ad42-d24f-dba9e4c1fc52",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/ruolo/add",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Agiungi Ruolo",
+			"description": "https://192.168.1.24:3000/api/v1/ruolo/add",
+			"descriptionFormat": "html",
+			"time": 1506938824025,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0070f2ab-d830-c50f-c3eb-9c3a5252de45",
+			"rawModeData": "{\n\t\"ruolo\":{\n\t\t\t\"nome\":\"test2\",\n\t\t\t\"descrizione\":\"\"\n        }\n}"
+		},
+		{
+			"id": "afa562fb-6dc3-2a0e-cf48-11780723dc55",
+			"headers": "Authorization: Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/ruolo/search/1",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Ruolo Search",
+			"description": "https://192.168.1.24:3000/api/v1/ruolo/search/1",
+			"descriptionFormat": "html",
+			"time": 1506940979875,
+			"version": 2,
+			"responses": [],
+			"tests": "{\n\t\"ruolo\":{\n\t\t\t\"id\":1\n\t}\n}",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "0070f2ab-d830-c50f-c3eb-9c3a5252de45",
+			"rawModeData": "{\n\t\"ruolo\":{\n\t\t\t\"id\":1\n\t}\n}"
+		},
+		{
+			"id": "b54fa379-b7b6-85b6-cd8c-7af206a6778b",
+			"headers": "Authorization: Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/connected",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": null,
+			"dataMode": "params",
+			"name": "Lista Utenti Connessi",
+			"description": "https://192.168.1.24:3000/api/v1/user/connected",
+			"descriptionFormat": "html",
+			"time": 1506941370232,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c"
+		},
+		{
+			"id": "c2ad3fe2-1a18-e7b9-2639-fe678d4bcd83",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/login",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Login",
+			"description": "https://192.168.1.24:3000/api/v1/login",
+			"descriptionFormat": "html",
+			"time": 1506930354308,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"isFromCollection": true,
+			"collectionRequestId": "c2ad3fe2-1a18-e7b9-2639-fe678d4bcd83",
+			"folder": "eb501c5b-5ab0-4f31-61e1-193b1ea25f0e",
+			"rawModeData": "{\n\t\"login\":{\n\t\"email\":\"admin@email.it\",\n\t\"password\":\"psw\"\n\t}\n}"
+		},
+		{
+			"id": "f2247bcf-6428-cba4-437d-c9d49a4c81ff",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/update",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Aggiorna utente",
+			"description": "https://192.168.1.24:3000/api/v1/user/update",
+			"descriptionFormat": "html",
+			"time": 1506935584192,
+			"version": 2,
+			"responses": [],
+			"tests": "{\n\t\"user\":{\n\t        \"id\": 1,\n\t        \"nome\":\"Mario\",\n            \"id_ruolo\": 1,\n            \"email\": \"mario.rossi@email.it\",\n            \"cognome\": \"Rossi\",\n            \"password\": \"psw\",\n            \"status\":1,\n            \"room\": \"gruppo\",\n            \"colorMarker\": \"#5fc13e\"\n\t}\n}",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c",
+			"rawModeData": "{\n\t\"user\":{\n            \"id\": 1,\n            \"nome\": \"Fabio\",\n            \"cognome\": \"Ziviello\",\n            \"email\": \"admin@email.it\",  \n            \"room\": \"gruppo\",\n            \"status\": 1,\n            \"colorMarker\": \"#5fc13e\",            \n            \"id_ruolo\": 1\n        }\n}"
+		},
+		{
+			"id": "f5117544-bb86-9171-abb9-20bcf61cae8c",
+			"headers": "Authorization: Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/update/pwd",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Aggiorna Password",
+			"description": "https://192.168.1.24:3000/api/v1/user/update/pwd",
+			"descriptionFormat": "html",
+			"time": 1506937444909,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c",
+			"rawModeData": "{\n\t\"user\":{\n            \"id\": 1,\n            \"id_change\": 2,\n            \"token\": \"EcQnmhwdYhcYZEhtwXOrn-VnWQy7ZXJaR9ew8UH620vL-xXdHhyI82_kC_eT_eC03WJ_ZE3jDc0MVhG_s3DitA\"\n        }\n}"
+		},
+		{
+			"id": "fe7563dd-b76b-2b71-2429-1bf2d84d4c22",
+			"headers": "Authorization: Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer h_6rNwxCS0K34oaiByFRBDVLDIFTxAM0eIHOUs6dtpxYxiqpRDWCEyI2Y10RRtbb8ipMUki-G0sVQ4s13RiZMg",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://192.168.1.24:3000/api/v1/user/list",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "10d3c83c-84a4-0320-9f79-aa60e9ca0fe6",
+			"data": null,
+			"dataMode": "params",
+			"name": "Lista Utenti",
+			"description": "https://192.168.1.24:3000/api/v1/user/list",
+			"descriptionFormat": "html",
+			"time": 1506941279723,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "7d883734-9360-4c15-248e-6c70b5f2230c"
+		}
+	]
+}

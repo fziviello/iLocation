@@ -40,7 +40,7 @@ passport.use('bearer', new BearerStrategy(
 
     connection.connect();
     //TODO decrypt
-    connection.query('SELECT token FROM user WHERE token = ? LIMIT 1', [accessToken], function(err, rows, fields) {
+    connection.query('SELECT token FROM user WHERE token = ?', [accessToken], function(err, rows, fields) {
       
       if(err) {
         connection.end();

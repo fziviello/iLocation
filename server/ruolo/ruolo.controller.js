@@ -95,20 +95,21 @@ module.exports=()=>{
         }
 
         let add =(conn,req,res,next)=>{
-            
-            if(!!!req.body.ruolo)
+                
+            if(req.body.ruolo==undefined)
             {
-                res.status(403).json({  
+                res.status(400).json({  
                     'success':false,
                     'error':{
-                                'code':'403',
-                                'message':'Parametri non corretti'
+                                'code':'400',
+                                'message':'Richiesta Errata'
                     }
                 });
+    
                 return next(conn);
             }
 
-            if((!!!req.body.ruolo.nome || isNaN(req.body.ruolo.nome)) && (!!!req.body.ruolo.descrizione || isNaN(req.body.ruolo.descrizione)))
+            if((!!!req.body.ruolo.nome) && (!!!req.body.ruolo.descrizione))
             {
                 res.status(403).json({  
                     'success':false,
@@ -147,19 +148,20 @@ module.exports=()=>{
 
         let change =(conn,req,res,next)=>{
 
-            if(!!!req.body.ruolo)
+            if(req.body.ruolo==undefined)
             {
-                res.status(403).json({  
+                res.status(400).json({  
                     'success':false,
                     'error':{
-                                'code':'403',
-                                'message':'Parametri non corretti'
+                                'code':'400',
+                                'message':'Richiesta Errata'
                     }
                 });
+    
                 return next(conn);
             }
             
-            if((!!!req.body.ruolo.nome || isNaN(req.body.ruolo.nome)) && (!!!req.body.ruolo.descrizione || isNaN(req.body.ruolo.descrizione)) && (!!!req.body.ruolo.id || isNaN(req.body.ruolo.id)))
+            if((!!!req.body.ruolo.nome) || (!!!req.body.ruolo.descrizione) || (!!!req.body.ruolo.id || isNaN(req.body.ruolo.id)))
             {
                 res.status(403).json({  
                     'success':false,
@@ -195,12 +197,66 @@ module.exports=()=>{
     
             });
         }
+
+        let del =(conn,req,res,next)=>{
             
+             if(req.body.ruolo==undefined)
+             {
+                 res.status(400).json({  
+                     'success':false,
+                     'error':{
+                                 'code':'400',
+                                 'message':'Richiesta Errata'
+                     }
+                 });
+     
+                 return next(conn);
+             }
+     
+             if(!!!req.body.ruolo.id || isNaN(req.body.ruolo.id))
+             {
+                 res.status(403).json({  
+                     'success':false,
+                     'error':{
+                                 'code':'403',
+                                 'message':'Parametri Errati'
+                     }
+                 });
+                 
+                 return next(conn);  
+             }
+     
+             conn.query('DELETE FROM ruolo WHERE id=?',[req.body.ruolo.id], function (err,fields) { 
+                 
+                 
+                 if (!err) 
+                 {
+                     res.status(200).json({
+                         'success':true,
+                         'result':fields
+                     });
+                 } 
+                 else 
+                 {
+                     res.status(403).json({  
+                         'success':false,
+                         'error':{
+                                     'code':'403',
+                                     'message':err
+                         }
+                     });
+                 };
+     
+                 return next(conn);            
+             
+             });
+         }
     
     return {
         searchID:searchID,
         lista:lista,
         add:add,
-        change:change
+        change:change,
+        del:del
     }
 }

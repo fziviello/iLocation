@@ -61,19 +61,20 @@ module.exports=()=>{
 
     let UserProfile =(conn,req,res,next)=>{
         
-        if(!!!req.body.user)
+        if(req.body.user==undefined)
         {
-            res.status(403).json({  
+            res.status(400).json({  
                 'success':false,
                 'error':{
-                            'code':'403',
-                            'message':'Parametri non corretti'
+                            'code':'400',
+                            'message':'Richiesta Errata'
                 }
             });
+
             return next(conn);
         }
 
-        if(!!!req.body.user.id || isNaN(req.body.user.id) && (!!!req.body.user.token || isNaN(req.body.user.token)))
+        if(!!!req.body.user.id || isNaN(req.body.user.id) || (!!!req.body.user.token))
         {
             res.status(403).json({  
                 'success':false,
@@ -126,20 +127,20 @@ module.exports=()=>{
     }
 
     let add =(conn,req,res,next)=>{
-
-        if(!!!req.body.user)
+    
+        if(req.body.user==undefined)
         {
-            res.status(403).json({  
+            res.status(400).json({  
                 'success':false,
                 'error':{
-                            'code':'403',
-                            'message':'Parametri non corretti'
+                            'code':'400',
+                            'message':'Richiesta Errata'
                 }
             });
+
             return next(conn);
         }
-
-        if((!!!req.body.user.nome || isNaN(req.body.user.nome)) && (!!!req.body.user.cognome || isNaN(req.body.user.cognome)) && (!!!req.body.user.password || isNaN(req.body.user.password)) && (!!!req.body.user.email || isNaN(req.body.user.email)) && (!!!req.body.user.room || isNaN(req.body.user.room)) && (!!!req.body.user.colorMarker || isNaN(req.body.user.colorMarker)) && (!!!req.body.user.status || isNaN(req.body.user.status)) && (!!!req.body.user.id_ruolo || isNaN(req.body.user.id_ruolo)))
+        if((!!!req.body.user.nome) || (!!!req.body.user.cognome) || (!!!req.body.user.password) || (!!!req.body.user.email ) || (!!!req.body.user.room) || (!!!req.body.user.colorMarker) || (!!!req.body.user.status || isNaN(req.body.user.status)) || (!!!req.body.user.id_ruolo || isNaN(req.body.user.id_ruolo)))
         {
             res.status(403).json({  
                 'success':false,
@@ -169,18 +170,18 @@ module.exports=()=>{
                 }
                 else
                 {
-                    addUser(conn,req,res,next);
+                    extAdd(conn,req,res,next);
                 }
             }
         
         });
     }
 
-    let addUser=(conn,req,res,next)=>{
+    let extAdd=(conn,req,res,next)=>{
 
         req.body.user.token=base64url(crypto.randomBytes(64));
         
-        conn.query('INSERT INTO user SET nome=?,cognome=?,password=?,email=?,room=?,colorMarker=?,token=?,id_ruolo=?,status=?',[req.body.user.nome,req.body.user.cognome,req.body.user.password,req.body.user.email,req.body.user.room,req.body.user.colorMarker,req.body.user.token,req.body.user.id_ruolo,req.body.user.status], function (err, rows, fields) { 
+        conn.query('INSERT INTO user SET nome=?,cognome=?,password=SHA1(?),email=?,room=?,colorMarker=?,token=?,id_ruolo=?,status=?',[req.body.user.nome,req.body.user.cognome,req.body.user.password,req.body.user.email,req.body.user.room,req.body.user.colorMarker,req.body.user.token,req.body.user.id_ruolo,req.body.user.status], function (err, rows, fields) { 
             
         if (!err) 
         {
@@ -207,19 +208,20 @@ module.exports=()=>{
 
     let change =(conn,req,res,next)=>{
 
-        if(!!!req.body.user)
+        if(req.body.user==undefined)
         {
-            res.status(403).json({  
+            res.status(400).json({  
                 'success':false,
                 'error':{
-                            'code':'403',
-                            'message':'Parametri non corretti'
+                            'code':'400',
+                            'message':'Richiesta Errata'
                 }
             });
+
             return next(conn);
         }
 
-        if((!!!req.body.user.id || isNaN(req.body.user.id)) && (!!!req.body.user.nome || isNaN(req.body.user.nome)) && (!!!req.body.user.cognome || isNaN(req.body.user.cognome)) && (!!!req.body.user.email || isNaN(req.body.user.email)) && (!!!req.body.user.room || isNaN(req.body.user.room)) && (!!!req.body.user.colorMarker || isNaN(req.body.user.colorMarker)) && (!!!req.body.user.status || isNaN(req.body.user.status)) && (!!!req.body.user.id_ruolo || isNaN(req.body.user.id_ruolo)))    
+        if((!!!req.body.user.id || isNaN(req.body.user.id)) || (!!!req.body.user.nome) || (!!!req.body.user.cognome) || (!!!req.body.user.email) || (!!!req.body.user.room) || (!!!req.body.user.colorMarker) || (!!!req.body.user.status || isNaN(req.body.user.status)) || (!!!req.body.user.id_ruolo || isNaN(req.body.user.id_ruolo)))    
         {
             res.status(403).json({  
                 'success':false,
@@ -232,8 +234,8 @@ module.exports=()=>{
             return next(conn);  
         }
 
-        //CAMBIO LA QUERY IN BASE ALLA PASSWORD
-        if (!!!req.body.user.password || isNaN(req.body.user.password))
+        //CAMBIO LA QUERY IN BASE ALL ESISTENZA DEL CAMPO PASSWORD
+        if (!!!req.body.user.password)
         {
             conn.query('UPDATE user SET nome=?,cognome=?,email=?,room=?,colorMarker=?,id_ruolo=?,status=? WHERE id=?',[req.body.user.nome,req.body.user.cognome,req.body.user.email,req.body.user.room,req.body.user.colorMarker,req.body.user.id_ruolo,req.body.user.status,req.body.user.id], function (err, rows, fields) { 
                 
@@ -261,7 +263,7 @@ module.exports=()=>{
         }
         else
         {
-            conn.query('UPDATE user SET nome=?,cognome=?,password=?,email=?,room=?,colorMarker=?,id_ruolo=?,status=? WHERE id=?',[req.body.user.nome,req.body.user.cognome,req.body.user.password,req.body.user.email,req.body.user.room,req.body.user.colorMarker,req.body.user.id_ruolo,req.body.user.status,req.body.user.id], function (err, rows, fields) { 
+            conn.query('UPDATE user SET nome=?,cognome=?,password=SHA1(?),email=?,room=?,colorMarker=?,id_ruolo=?,status=? WHERE id=?',[req.body.user.nome,req.body.user.cognome,req.body.user.password,req.body.user.email,req.body.user.room,req.body.user.colorMarker,req.body.user.id_ruolo,req.body.user.status,req.body.user.id], function (err, rows, fields) { 
                 
             if (!err) 
             {
@@ -290,15 +292,16 @@ module.exports=()=>{
 
     let del =(conn,req,res,next)=>{
        
-        if(!!!req.body.user)
+        if(req.body.user==undefined)
         {
-            res.status(403).json({  
+            res.status(400).json({  
                 'success':false,
                 'error':{
-                            'code':'403',
-                            'message':'Parametri non corretti'
+                            'code':'400',
+                            'message':'Richiesta Errata'
                 }
             });
+
             return next(conn);
         }
 
@@ -377,19 +380,20 @@ module.exports=()=>{
 
     let listFull =(conn,req,res,next)=>{
         
-        if(!!!req.body.user)
+        if(req.body.user==undefined)
         {
-            res.status(403).json({  
+            res.status(400).json({  
                 'success':false,
                 'error':{
-                            'code':'403',
-                            'message':'Parametri non corretti'
+                            'code':'400',
+                            'message':'Richiesta Errata'
                 }
             });
+
             return next(conn);
         }
 
-        if((!!!req.body.user.id || isNaN(req.body.user.id)) && (!!!req.body.user.token || isNaN(req.body.user.token)))
+        if((!!!req.body.user.id || isNaN(req.body.user.id)) || (!!!req.body.user.token))
         {
             res.status(403).json({  
                 'success':false,
@@ -509,21 +513,90 @@ module.exports=()=>{
         
     }
 
-    let changePwd =(conn,req,res,next)=>{
+    //CAMBIA LA PASSWORD UTENTE LOGGATO
+    let changeProfilePwd =(conn,req,res,next)=>{
         
-        if(!!!req.body.user)
+        if(req.body.user==undefined)
+        {
+            res.status(400).json({  
+                'success':false,
+                'error':{
+                            'code':'400',
+                            'message':'Richiesta Errata'
+                }
+            });
+
+            return next(conn);
+        }
+
+        if((!!!req.body.user.id || isNaN(req.body.user.id)) || (!!!req.body.user.id_change || isNaN(req.body.user.id_change)) || (!!!req.body.user.token))
         {
             res.status(403).json({  
                 'success':false,
                 'error':{
                             'code':'403',
-                            'message':'Parametri non corretti'
+                            'message':'Parametri Errati'
                 }
             });
+            
+            return next(conn);  
+        }
+
+        conn.query('SELECT id,token FROM user WHERE id=? AND token=?',[req.body.user.id,req.body.user.token], function (err, rows, fields) { 
+            
+            if (!err) {
+                if (rows.length<=0)
+                {
+                    res.status(201).json({  
+                        'success':false,
+                        'error':{
+                                'code':'401',
+                                'message': 'Accesso Negato'
+                        }
+                    });
+
+                    return next(conn);
+                }
+                else
+                {
+                    extChangePwd(conn,req,res,next);
+                }
+            
+            } 
+            else
+            {
+                res.status(403).json({  
+                    'success':false,
+                    'error':{
+                            'code':'403',
+                            'message': err
+                    }
+                });
+
+                return next(conn);
+            };
+        
+        });
+
+    }
+
+    //CAMBIA LA PASSWORD UTENTE SOLO DA PARTE DI UN ADMIN
+    let changePwd =(conn,req,res,next)=>{
+        
+        if(req.body.user==undefined)
+        {
+            res.status(400).json({  
+                'success':false,
+                'error':{
+                            'code':'400',
+                            'message':'Richiesta Errata'
+                }
+            });
+
             return next(conn);
         }
 
-        if((!!!req.body.user.id || isNaN(req.body.user.id)) && (!!!req.body.user.id_change || isNaN(req.body.user.id_change)) && (!!!req.body.user.token || isNaN(req.body.user.token)))
+        if((!!!req.body.user.id || isNaN(req.body.user.id)) || (!!!req.body.user.id_change || isNaN(req.body.user.id_change)) || (!!!req.body.user.token))
         {
             res.status(403).json({  
                 'success':false,
@@ -553,7 +626,7 @@ module.exports=()=>{
                 }
                 else
                 {
-                    extChangePsw(conn,req,res,next);
+                    extChangePwd(conn,req,res,next);
                 }
             
             } 
@@ -574,9 +647,10 @@ module.exports=()=>{
 
     }
 
-    let extChangePsw=(conn,req,res,next)=>{
+    //ESEGUO CAMBIO PASSWORD
+    let extChangePwd=(conn,req,res,next)=>{
     
-        conn.query('UPDATE user SET password=? WHERE id=?',[req.body.user.password,req.body.user.id_change], function (err, rows, fields) { 
+        conn.query('UPDATE user SET password=SHA1(?) WHERE id=?',[req.body.user.password,req.body.user.id_change], function (err, rows, fields) { 
             
         if (!err) 
         {
@@ -610,6 +684,7 @@ module.exports=()=>{
         list:list,
         listFull:listFull,
         listConnected:listConnected,
-        changePwd:changePwd
+        changePwd:changePwd,
+        changeProfilePwd:changeProfilePwd
     }
 }

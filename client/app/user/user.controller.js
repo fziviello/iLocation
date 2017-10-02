@@ -141,6 +141,18 @@
 
             }
 
+
+            vm.OpenChangeProfilePwdDialog= function(){
+                
+                    ngDialog.open({
+                        controller:'ChangeProfilePwdModalController',
+                        controllerAs:'vm',
+                        template:'/view/user/template/changeProfilePwd.modal.html',
+                        appendClassName:'ngdialog-changePwd'
+                    });
+
+            }
+
             
             //LISTA DEI RUOLI
             vm.ListaRuoli = function(){

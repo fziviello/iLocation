@@ -31,7 +31,7 @@ Modificare nel file .env i parametri di connessione al vostro DB
 Modificare nel file client/app.js la URL con il vostro indirizzo IP LOCALE
 
 Avvio iLocation
-=====
+===============
 npm start => Avvia l'app
 
 npm stop => Ferma l'app

@@ -16,6 +16,7 @@
             var GetListaUserFull = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/listFull', null, {'listFull': {'method': 'POST'}})
             var GetUtentiConnessi = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/connected', null, {'connected': {'method': 'GET'}})
             var SetUserPwd = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/update/pwd', null, {'pwd': {'method': 'POST'}})
+            var SetUserProfilePwd = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/update/profile/pwd', null, {'pwd': {'method': 'POST'}})
 
             return {
                 addUser: addUser,
@@ -25,7 +26,8 @@
                 getlistaUser:getlistaUser,                
                 getlistaUserFull:getlistaUserFull,
                 getUtentiConnessi: getUtentiConnessi,
-                setUserPwd: setUserPwd
+                setUserPwd: setUserPwd,
+                setUserProfilePwd:setUserProfilePwd
             }
 
             //INSERISCI UTENTE
@@ -88,6 +90,14 @@
              function setUserPwd(user,callback){
                 callback = callback || angular.noop;
                 return SetUserPwd.pwd(user,function(data){
+                    return callback(data);
+                }).$promise;
+            }
+
+            //AGGIORNA PASSWORD UTENTE LOGGATO
+            function setUserProfilePwd(user,callback){
+                callback = callback || angular.noop;
+                return SetUserProfilePwd.pwd(user,function(data){
                     return callback(data);
                 }).$promise;
             }

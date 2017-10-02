@@ -2,31 +2,16 @@
     'use strict';
 
     angular.module('iLocation')
-        .controller('ChangePwdModalController', ChangePwdModalController);
+        .controller('ChangeProfilePwdModalController', ChangeProfilePwdModalController);
 
-        ChangePwdModalController.$inject=['dataChangePwd','UserService','$localStorage','toaster','ngDialog'];
+        ChangeProfilePwdModalController.$inject=['UserService','$localStorage','toaster','ngDialog'];
 
-        function ChangePwdModalController(dataChangePwd,UserService,$localStorage,toaster,ngDialog){
+        function ChangeProfilePwdModalController(UserService,$localStorage,toaster,ngDialog){
 
             var vm = this;
 
-            if(!!!dataChangePwd || isNaN(dataChangePwd))
-            {
-                ngDialog.close();
-
-                toaster.pop({
-                    type: 'warning',
-                    title: 'Utente',
-                    body: 'Impossibile Aggiornare la password riprovare più tardi'
-                });                
-            }
-            else
-            {
-                vm.id_change=dataChangePwd;
-            }
-
-            //AGGIORNA PASSWORD UTENTE SELEZIONATO
-            vm.ChangePwdDialog= function(){
+            //AGGIORNA PASSWORD UTENTE LOGGATO
+            vm.ChangeProfilePwdDialog= function(){
                 
                     if(vm.user.passwordCheck==vm.user.password)
                     {
@@ -34,12 +19,12 @@
                             'user':{
                                 'id':$localStorage.id,
                                 'token':$localStorage.token,
-                                'id_change':vm.id_change,
+                                'id_change':$localStorage.id,
                                 'password':vm.user.password
                             }
                         };
 
-                        return UserService.setUserPwd(objSendPwd).then(function(data){
+                        return UserService.setUserProfilePwd(objSendPwd).then(function(data){
                             if(data.success===true)
                             {
 
@@ -92,5 +77,4 @@
             }
 
         }
-
 })();

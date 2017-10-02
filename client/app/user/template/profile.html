@@ -22,30 +22,23 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.password.$invalid && !userForm.password.$pristine}">
-                                <label>Password</label>
-                                <input ng-model="vm.user.password" name="password" required ng-minlength="1" type="password" class="form-control"  placeholder="password">
-                                <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Il campo non può essere vuoto</p>
-                            </div>
-                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':!userForm.passwordCheck.$valid}">
-                                <label>Conferma Password</label>
-                                <input ng-model="vm.user.passwordCheck" name="passwordCheck" required type="password" class="form-control"  ng-class="{'errorInput':vm.user.passwordCheck!=vm.user.password}"placeholder="conferma password">
-                                    <p ng-show="vm.user.passwordCheck!=vm.user.password" class="help-block error">password diversa</p>
-                            </div>
                             <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
                                     <label>Status</label><br/>
                                     <select class="form-control" name="status" ng-model="vm.user.status" ng-options="option.id as option.nome for option in vm.ListaStatus"></select>                                
                             </div>
+                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.room.$invalid && !userForm.room.$pristine}">
+                                <label>Room</label>
+                                <input ng-model="vm.user.room" name="room" required ng-minlength="1" type="text" class="form-control"  placeholder="Room">
+                                <p ng-show="userForm.room.$invalid && !userForm.room.$pristine" class="help-block">Il campo non può essere vuoto</p>
+                           </div>
+                           <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
+                               <label>Colore Marker</label>
+                               <input ng-model="vm.user.colorMarker" name="colorMarker" required ng-minlength="1" type="color" class="form-control" placeholder="#color">
+                           </div>
                         </div>
                         <div class="row">
-                            <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.room.$invalid && !userForm.room.$pristine}">
-                                 <label>Room</label>
-                                 <input ng-model="vm.user.room" name="room" required ng-minlength="1" type="text" class="form-control"  placeholder="Room">
-                                 <p ng-show="userForm.room.$invalid && !userForm.room.$pristine" class="help-block">Il campo non può essere vuoto</p>
-                            </div>
                             <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4">
-                                <label>Colore Marker</label>
-                                <input ng-model="vm.user.colorMarker" name="colorMarker" required ng-minlength="1" type="color" class="form-control" placeholder="#color">
+                                <button type="button" ng-click="vm.OpenChangeProfilePwdDialog();" class="btn btn-default col-xs-12 col-md-12 col-sm-12"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Cambia Password</button>      
                             </div>
                         </div>
                         <div class="row salva-modifiche">
