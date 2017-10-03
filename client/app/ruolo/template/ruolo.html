@@ -18,13 +18,36 @@
                             </tr>
                         </thead>
                             <tbody>
-                            <tr ng-repeat="ruolo in vm.Ruoli | filter: vm.ruolo.search | orderBy:vm.colonna:vm.reverse" class="campi_tabella">
+                            <tr ng-repeat="ruolo in vm.RuoliPaginati | filter: vm.ruolo.search | orderBy:vm.colonna:vm.reverse" class="campi_tabella">
                                 <td>{{ruolo.nome}}</td>
                                 <td>{{ruolo.descrizione}}</td>
                                 <td class="text-center" ><a href="#/ruolo/edit/{{ruolo.id}}" type="link" data-toggle="tooltip" data-placement="right" title="Modifica"><span class="icon_modifica glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
                             </tr>
                             </tbody>
-                        </table>                        
+                        </table>
+                        <nav aria-label="Page navigation">
+                            <ul ng-if="vm.pager.pages.length" class="pagination">
+                                 <li ng-class="{disabled:vm.pager.currentPage === 1}">
+                                        <a ng-click="vm.setPage(1)">Prima</a>
+                                  </li>
+                                  <li ng-class="{disabled:vm.pager.currentPage === 1}">
+                                    <a ng-click="vm.setPage(vm.pager.currentPage - 1)" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                  </li>
+                                  <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
+                                        <a ng-click="vm.setPage(page)">{{page}}</a>
+                                    </li>
+                                  <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+                                    <a ng-click="vm.setPage(vm.pager.currentPage + 1)" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                  </li>
+                                  <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+                                        <a ng-click="vm.setPage(vm.pager.totalPages)">Ultima</a>
+                                  </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

@@ -4,9 +4,9 @@
     angular.module('iLocation')
         .controller('UserController', UserController);
 
-        UserController.$inject=['UserService','RuoloService','$localStorage','$location','$routeParams','toaster','ngDialog'];
+        UserController.$inject=['UserService','RuoloService','$localStorage','$location','$routeParams','toaster','ngDialog','BlobService'];
 
-        function UserController(UserService,RuoloService,$localStorage,$location,$routeParams,toaster,ngDialog){
+        function UserController(UserService,RuoloService,$localStorage,$location,$routeParams,toaster,ngDialog,BlobService){
             
             var vm = this;
             var profilo=null;
@@ -52,6 +52,8 @@
 
                 });
             }
+
+        
 
             //INSERISCI UTENTE
             vm.addNewUser= function(){
@@ -218,10 +220,9 @@
 
             //AGGIORNAMENTO DELL UTENTE LOGGATO
             vm.UpdateProfile= function(){
-                
-                if(vm.user.nome!="" || vm.user.cognome!="" || vm.user.email!="" || vm.user.room!="" || vm.user.id_ruolo!="" || vm.user.status!="" || vm.user.colorMarker!="" || vm.user.password!=""){
-                    if(vm.user.passwordCheck==vm.user.password)
-                    {
+
+                if(vm.user.nome!="" || vm.user.cognome!="" || vm.user.email!="" || vm.user.room!="" || vm.user.id_ruolo!="" || vm.user.status!="" || vm.user.colorMarker!="")
+                {
                         let objSend={
                             'user':{
                                 'id':$localStorage.id,
@@ -231,7 +232,6 @@
                                 "id_ruolo":atob($localStorage.id_ruolo),
                                 'room':vm.user.room,
                                 'colorMarker':vm.user.colorMarker,
-                                'password':vm.user.password,
                                 'status':vm.user.status
                             }
                         };
@@ -241,8 +241,7 @@
                         $localStorage.email=vm.user.email;
                         $localStorage.room=vm.user.room;
                         $localStorage.colorMarker=vm.user.colorMarker;
-                        $localStorage.password=vm.user.password;
-        
+
                         return UserService.updateUser(objSend).then(function(data){
                             
                             if(data.success===true)
@@ -270,16 +269,6 @@
         
                             return err;
                         });
-                    }
-                    else
-                    {
-                        toaster.pop({
-                            type: 'error',
-                            title: 'Errore Password',
-                            body: 'Le password non corrispondono'
-                        });
-
-                    }
                 }
             }
 

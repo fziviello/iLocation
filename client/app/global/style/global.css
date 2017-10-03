@@ -38,6 +38,11 @@ button {
 }
 /* FINE GESTIONE ERRORI */
 
+.pagination a:hover
+{
+  cursor: pointer;
+}
+
 /* INIZIO MENU CANVAS*/
 
 #site-wrapper {

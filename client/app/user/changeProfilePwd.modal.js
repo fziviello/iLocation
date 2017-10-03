@@ -28,6 +28,8 @@
                             if(data.success===true)
                             {
 
+                                $localStorage.password=vm.user.password;
+                                
                                 toaster.pop({
                                     type: 'success',
                                     title: 'Utente',

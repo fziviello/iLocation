@@ -234,9 +234,6 @@ module.exports=()=>{
             return next(conn);  
         }
 
-        //CAMBIO LA QUERY IN BASE ALL ESISTENZA DEL CAMPO PASSWORD
-        if (!!!req.body.user.password)
-        {
             conn.query('UPDATE user SET nome=?,cognome=?,email=?,room=?,colorMarker=?,id_ruolo=?,status=? WHERE id=?',[req.body.user.nome,req.body.user.cognome,req.body.user.email,req.body.user.room,req.body.user.colorMarker,req.body.user.id_ruolo,req.body.user.status,req.body.user.id], function (err, rows, fields) { 
                 
             if (!err) 
@@ -260,34 +257,6 @@ module.exports=()=>{
             return next(conn);
     
             });
-        }
-        else
-        {
-            conn.query('UPDATE user SET nome=?,cognome=?,password=SHA1(?),email=?,room=?,colorMarker=?,id_ruolo=?,status=? WHERE id=?',[req.body.user.nome,req.body.user.cognome,req.body.user.password,req.body.user.email,req.body.user.room,req.body.user.colorMarker,req.body.user.id_ruolo,req.body.user.status,req.body.user.id], function (err, rows, fields) { 
-                
-            if (!err) 
-            {
-                res.status(200).json({
-                    'success':true,
-                    'result':rows
-                });
-            } 
-            else 
-            {
-                res.status(403).json({  
-                    'success':false,
-                    'error':{
-                                'code':'403',
-                                'message':err
-                    }
-                });
-            };
-    
-            return next(conn);
-    
-            });
-        }
-        
     }
 
     let del =(conn,req,res,next)=>{
