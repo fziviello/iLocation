@@ -104,3 +104,8 @@ button {
 }
 
 /*FINE MENU CANVAS*/
+
+.form-control{
+  height: 35px;
+  border-radius: 4px !important;
+}

@@ -15,7 +15,7 @@
                 }
 
                 vm.reverse =false;
-
+                
                 vm.ListaRuoli = function(){
                     return RuoloService.lista().then(function(data){
                         

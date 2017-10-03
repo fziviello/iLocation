@@ -9,3 +9,11 @@
 .icon_modifica{
     color: #000000;
 }
+
+.titoli_tabella th{
+    text-align: center;
+}
+
+.campi_tabella td{
+    text-align: center;
+}

@@ -9,6 +9,12 @@
         function LoginController(LoginService,$localStorage,$location,toaster,socket){
             var vm = this;
             
+                vm.loginStatus=function(){
+                    if($localStorage.token) {
+                        return $location.path('/home');
+                    }
+                }
+
                 vm.login = function(){
                     let objSend={
                         'login':vm.user
