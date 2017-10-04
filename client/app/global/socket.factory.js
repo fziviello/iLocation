@@ -1,20 +1,13 @@
-
 (function(){
     'use strict';
 
     angular.module('iLocation')
-        .factory('SocketService', SocketService);
-
-        SocketService.$inject=['socket','btford.socket-io'];
-
-        function SocketService(socket){
-           
-            var myIoSocket = io.connect("http://localhost:4200"); // da sistemare
-            
-            return {
+    .factory('socket', function (socketFactory) {
+        var myIoSocket = io.connect("https://192.168.1.24:4200",{secure: true});
+            var socket = socketFactory({
                 ioSocket: myIoSocket
-            }
-         
-        }
-        
+            });
+    
+            return socket;
+        })
 })();

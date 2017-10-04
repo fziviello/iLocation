@@ -2,14 +2,6 @@
 
 'use strict';
 angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','ui.bootstrap','ngDialog','underscore','iLocation.Login','iLocation.Home','iLocation.User','iLocation.Ruolo','btford.socket-io'])
-    .factory('socket', function (socketFactory) {
-        var myIoSocket = io.connect("https://192.168.1.24:4200",{secure: true}); // da sistemare
-        var socket = socketFactory({
-            ioSocket: myIoSocket
-        });
-
-        return socket;
-    })
     .config(config)
     .run(run);
     

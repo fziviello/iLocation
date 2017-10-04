@@ -78,7 +78,7 @@
                     objSend.status_connected=0;
                     
                     socket.emit('unsubscribe', objSend);
-                    //socket.disconnect();//chiudo connessione socket
+                    socket.disconnect();//chiudo connessione socket
                     
                     if(data.success===true)
                     {
