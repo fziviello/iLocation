@@ -2,23 +2,32 @@
 
 const express=require('express');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 const path=require('path');
+const nodemailer = require('nodemailer');
+const fileUpload = require('express-fileupload');
 const bodyParser=require('body-parser');
 const dotenv = require('dotenv');
 const socketio = require('socket.io');
+const morgan  = require('morgan');
 const http = require('http');
 const https = require('https');
 const cors = require('cors');
-const app=express();
 const pathApi="/api/v1/";
+const app=express();
 
 //MIDDLEWARE
 app.use(bodyParser.json());
 app.use(cors());
+app.options('*', cors());
+app.use(fileUpload());
+//app.use(morgan('dev'));
 app.use('/static',express.static(path.join(__dirname,'..','build')));
 app.use('/medias',express.static(path.join(__dirname,'..','build','medias')));
+app.use('/uploads',express.static(path.join(__dirname,'..','build','uploads')));
 app.use('/view',express.static(path.join(__dirname,'..','build','view')));
 app.use('/vendors',express.static(path.join(__dirname,'..','build','vendors')));
+app.disable('x-powered-by');
 
 //IMPORT CONTROLLER
 const loginController=require('./login/login.controller.js')();
@@ -57,6 +66,7 @@ app.post(pathApi+'user/listFull', auth.bearer(),connectDB.connect,userController
 app.get(pathApi+'user/connected', auth.bearer(),connectDB.connect,userController.listConnected,connectDB.disconnect); //return lista utenti Connessi
 app.post(pathApi+'user/update/pwd', auth.bearer(),connectDB.connect,userController.changePwd,connectDB.disconnect); //aggiorna la passowrd dell utente selezionato
 app.post(pathApi+'user/update/profile/pwd', auth.bearer(),connectDB.connect,userController.changeProfilePwd,connectDB.disconnect); //aggiorna la passowrd dell utente loggato
+app.post(pathApi+'user/update/profile/photo',auth.bearer(),userController.photo);//aggiorna immagine del profilo dell utente loggato
 
 //RUOLO
 app.get(pathApi+'ruolo/list', auth.bearer(),connectDB.connect,ruoloController.lista,connectDB.disconnect); //return lista ruoli

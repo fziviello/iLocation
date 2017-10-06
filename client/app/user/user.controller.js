@@ -4,9 +4,9 @@
     angular.module('iLocation')
         .controller('UserController', UserController);
 
-        UserController.$inject=['UserService','RuoloService','$localStorage','$location','$routeParams','toaster','ngDialog','BlobService'];
+        UserController.$inject=['UserService','RuoloService','$localStorage','$location','$routeParams','toaster','ngDialog','BlobService','$http','$scope','$rootScope'];
 
-        function UserController(UserService,RuoloService,$localStorage,$location,$routeParams,toaster,ngDialog,BlobService){
+        function UserController(UserService,RuoloService,$localStorage,$location,$routeParams,toaster,ngDialog,BlobService,$http,$scope,$rootScope){
             
             var vm = this;
             var profilo=null;
@@ -140,9 +140,7 @@
                             }
                         }
                     });
-
             }
-
 
             vm.OpenChangeProfilePwdDialog= function(){
                 
@@ -152,7 +150,6 @@
                         template:'/view/user/template/changeProfilePwd.modal.html',
                         appendClassName:'ngdialog-changePwd'
                     });
-
             }
 
             
@@ -223,6 +220,11 @@
 
                 if(vm.user.nome!="" || vm.user.cognome!="" || vm.user.email!="" || vm.user.room!="" || vm.user.id_ruolo!="" || vm.user.status!="" || vm.user.colorMarker!="")
                 {
+                    
+                    if(vm.user.filePhoto==undefined)
+                    {
+                        //AGGIORNAMENTO DEL PROFILO SENZA FOTO
+
                         let objSend={
                             'user':{
                                 'id':$localStorage.id,
@@ -240,6 +242,7 @@
                         $localStorage.cognome=vm.user.cognome;
                         $localStorage.email=vm.user.email;
                         $localStorage.room=vm.user.room;
+                        $localStorage.photo=undefined;
                         $localStorage.colorMarker=vm.user.colorMarker;
 
                         return UserService.updateUser(objSend).then(function(data){
@@ -269,7 +272,114 @@
         
                             return err;
                         });
+
+                    }
+                    else 
+                    {
+                        //AGGIORNAMENTO DEL PROFILO CON FOTO
+
+                        let extFile=$scope.file.name.substring($scope.file.name.lastIndexOf(".") + 1);
+
+                        if(extFile=='jpeg' || extFile=='jpg'|| extFile=='png')
+                        {
+                            let objDataSend = new FormData();
+
+                            objDataSend.append('File', vm.user.filePhoto);
+                            objDataSend.append('ext', extFile);
+                            objDataSend.append('id', $localStorage.id);
+                            //invio al server la vecchia foto se esiste
+                            if(vm.user.photo)
+                            {
+                                objDataSend.append('oldFile', vm.user.photo);
+                            }
+                            
+                            let config = {headers : {'Content-Type': undefined }}
+
+                            $http.post($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/update/profile/photo', objDataSend, config)
+                            .then(
+                                function(response){
+                                
+                                    let nomeFileSalvato=response.data.result;
+
+                                    let objSend={
+                                        'user':{
+                                            'id':$localStorage.id,
+                                            'nome':vm.user.nome,
+                                            'cognome':vm.user.cognome,
+                                            'email':vm.user.email,
+                                            'photo':nomeFileSalvato,
+                                            "id_ruolo":atob($localStorage.id_ruolo),
+                                            'room':vm.user.room,
+                                            'colorMarker':vm.user.colorMarker,
+                                            'status':vm.user.status
+                                        }
+                                    };
+            
+                                    $localStorage.nome=vm.user.nome;
+                                    $localStorage.cognome=vm.user.cognome;
+                                    $localStorage.email=vm.user.email;
+                                    $localStorage.room=vm.user.room;
+                                    $localStorage.photo=btoa(nomeFileSalvato);
+                                    $localStorage.colorMarker=vm.user.colorMarker;
+            
+                                    return UserService.updateUser(objSend).then(function(data){
+                                        
+                                        if(data.success===true)
+                                        {
+                                            toaster.pop({
+                                                type: 'success',
+                                                title: 'Profilo',
+                                                body: 'Profilo Aggiornato'
+                                            });
+                                        }
+            
+                                        if(objSend.user.status==0) //account disattivato
+                                        {
+                                            return $location.path('/logout');     
+                                        }
+            
+                                        return $location.path('/user/profile');                                
+                                        
+                                    }).catch(function(err){
+                                        toaster.pop({
+                                            type: 'error',
+                                            title: 'Profilo',
+                                            body: err
+                                        });
+                    
+                                        return err;
+                                    });
+                                }, 
+                                function(response){
+                                    toaster.pop({
+                                        type: 'error',
+                                        title: 'Immagine',
+                                        body: 'Impossibile Caricare la foto'
+                                    });
+                                }
+                            );
+                        }
+                        else
+                        {
+                            toaster.pop({
+                                type: 'error',
+                                title: 'Immagine',
+                                body: 'Formato immagine errato'
+                            });
+                        }
+                    }
                 }
+                else
+                {
+                    toaster.pop({
+                        type: 'error',
+                        title: 'Errore',
+                        body: 'Completa i campi obbligatori'
+                    });
+    
+                    return null;
+                }
+               
             }
 
             //AGGIORNAMENTO DELL UTENTE DA UN ADMIN
@@ -313,6 +423,16 @@
                         return err;
                     });
                 }
+                else
+                {
+                    toaster.pop({
+                        type: 'error',
+                        title: 'Errore',
+                        body: 'Completa i campi obbligatori'
+                    });
+    
+                    return null;
+                }
             }
 
             //CARICA UTENTE SELEZIONATO
@@ -340,7 +460,5 @@
 
                 });
             }
-
-            
         }
 })();

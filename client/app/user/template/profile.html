@@ -5,6 +5,17 @@
                 <div class="panel-body">
                     <form id="profile_form" name="userForm" ng-init="vm.LoadProfile();" ng-submit="vm.UpdateProfile();">
                         <div class="row">
+                            <div class="col-xs-12 col-md-2 col-sm-2">
+                                <img src="/uploads/profile/{{vm.user.photo}}" class="img-circle img-thumbnail profile-image"/>
+                            </div>
+                            <div class="col-xs-12 col-md-2 col-sm-2">
+                                <span class="btn btn-default btn-file btn-lg" data-toggle="tooltip" data-placement="right" title="Carica Foto">
+                                    <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>   
+                                    <input type="file" ng-model="file" data-file fileread="vm.user.filePhoto">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.email.$invalid && !userForm.email.$pristine}">
                                 <label>Email</label>
                                 <input ng-model="vm.user.email" name="email" required disabled type="email" class="form-control"  placeholder="email">
@@ -46,7 +57,7 @@
                                 <a class="btn btn-warning" href="#/home">Annulla</a>
                                 <button type="submit" class="btn btn-success">Salva</button>
                             </div>   
-                        </div>
+                        </div>                   
                     </form>
                 </div>
             </div>

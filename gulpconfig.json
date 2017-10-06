@@ -31,6 +31,7 @@
 "buildIndex": [
           "build/index.html"
 ],
+
 "buildCss": [
           "build/style.css"
 ],
@@ -41,6 +42,6 @@
 "buildDependency": [
   "build/vendors"
 ],
-  "DEST": "build"
 
+  "DEST": "build"
 }

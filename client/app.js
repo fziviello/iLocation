@@ -6,10 +6,9 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
     .run(run);
     
     function config($routeProvider, $locationProvider,$httpProvider){
-
         $httpProvider.interceptors.push('myHttpInterceptor');
-        $locationProvider.hashPrefix('');
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';        
+        $locationProvider.hashPrefix('');        
+        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     }
 
     function run($rootScope,$location,$localStorage){
@@ -48,5 +47,4 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
             }
         };
     }
-
 })();

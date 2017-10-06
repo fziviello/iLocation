@@ -7,7 +7,8 @@
         UserService.$inject=['$resource','$rootScope'];
 
         function UserService($resource,$rootScope){
-           
+            
+            
             var AddUser = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/add', null, {'add': {'method': 'POST'}})
             var UpdateUser = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/update', null, {'update': {'method': 'POST'}})            
             var GetProfilo = $resource($rootScope.URL+ $rootScope.PORT+ $rootScope.API+'/user/search/:id', null, {'search': {'method': 'GET'}})

@@ -1,7 +1,7 @@
 'use strict';
 
 const crypto = require('crypto');
-const base64url = require('base64url');
+const base64url = require('base64-url');
 
 module.exports=()=>{
     
@@ -103,7 +103,7 @@ module.exports=()=>{
                 return next(conn);
             }
 
-            conn.query('UPDATE user SET token=?,status_connected=0 WHERE id=?',[base64url(crypto.randomBytes(64)),parseInt(req.body.logout.id)], function (err, rows, fields) { 
+            conn.query('UPDATE user SET token=?,status_connected=0 WHERE id=?',[base64url.encode(crypto.randomBytes(64)),parseInt(req.body.logout.id)], function (err, rows, fields) { 
                     
                 if (!err) 
                 {

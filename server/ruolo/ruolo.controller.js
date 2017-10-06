@@ -1,8 +1,5 @@
 'use strict';
 
-const crypto = require('crypto');
-const base64url = require('base64url');
-
 module.exports=()=>{
     
         let lista =(conn,req,res,next)=>{
