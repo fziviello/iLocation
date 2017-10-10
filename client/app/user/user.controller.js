@@ -4,12 +4,22 @@
     angular.module('iLocation')
         .controller('UserController', UserController);
 
-        UserController.$inject=['UserService','RuoloService','$localStorage','$location','$routeParams','toaster','ngDialog','BlobService','$http','$scope','$rootScope'];
+        UserController.$inject=['UserService','RuoloService','$localStorage','$location','$routeParams','toaster','ngDialog','BlobService','$http','$scope','$rootScope','PagerService'];
 
-        function UserController(UserService,RuoloService,$localStorage,$location,$routeParams,toaster,ngDialog,BlobService,$http,$scope,$rootScope){
+        function UserController(UserService,RuoloService,$localStorage,$location,$routeParams,toaster,ngDialog,BlobService,$http,$scope,$rootScope,PagerService){
             
             var vm = this;
             var profilo=null;
+
+
+            vm.pager = {};
+
+            vm.setPage = function(page){
+                if (page < 1 || page > vm.pager.totalPages) {return;}
+                vm.pager = PagerService.GetPager(vm.user.length, page);
+                vm.UtentiPaginati = vm.user.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+            }
+            
 
             
             vm.ListaStatus=[
@@ -191,7 +201,7 @@
                     if(data.success===true)
                     {
                         vm.user=data.result;
-
+                        vm.setPage(1);
                         return vm.user;
                     }
                     else
