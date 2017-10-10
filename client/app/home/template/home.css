@@ -13,3 +13,9 @@
 .btn-hamburger {
     outline: none !important; 
   }
+
+  .profile-image-list{
+    width: 35px;
+    height: 35px;
+    border: 2px solid #FFFFFF;
+}

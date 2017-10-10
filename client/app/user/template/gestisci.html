@@ -5,6 +5,12 @@
                 <div class="panel-body">
                     <form id="gestisci_form" name="userForm" ng-init="vm.LoadUtente();" ng-submit="vm.UpdateUser();">
                             <div class="row">
+                                <div class="col-xs-12 col-md-12 col-sm-12 text-center">
+                                    <img ng-src="/uploads/profile/{{vm.user.photo}}" class="img-circle img-thumbnail profile-image"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
                                     <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4" ng-class="{'has-error':userForm.email.$invalid && !userForm.email.$pristine}">
                                         <label>Email</label>
                                         <input ng-model="vm.user.email" name="email" required type="email" class="form-control"  placeholder="email">

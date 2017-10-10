@@ -11,6 +11,7 @@
             var vm = this;
             var profilo=null;
 
+            
             vm.ListaStatus=[
                 {id:1, nome:'Attivo'},
                 {id:0, nome:'Disattivo'}
@@ -27,8 +28,8 @@
             
                 let objSend={
                     'user':{
-                            'id':$localStorage.id,
-                            'token':$localStorage.token
+                            'id':atob($localStorage.id),
+                            'token':atob($localStorage.token)
                     }
                 };
 
@@ -180,8 +181,8 @@
                 
                 let objSend={
                     'user':{
-                            'id':$localStorage.id,
-                            'token':$localStorage.token
+                            'id':atob($localStorage.id),
+                            'token':atob($localStorage.token)
                     }
                 };
                 
@@ -221,13 +222,12 @@
                 if(vm.user.nome!="" || vm.user.cognome!="" || vm.user.email!="" || vm.user.room!="" || vm.user.id_ruolo!="" || vm.user.status!="" || vm.user.colorMarker!="")
                 {
                     
-                    if(vm.user.filePhoto==undefined)
+                    if(vm.user.filePhoto==undefined || vm.user.filePhoto=="defaultProfileImg.jpg")
                     {
                         //AGGIORNAMENTO DEL PROFILO SENZA FOTO
-
                         let objSend={
                             'user':{
-                                'id':$localStorage.id,
+                                'id':atob($localStorage.id),
                                 'nome':vm.user.nome,
                                 'cognome':vm.user.cognome,
                                 'email':vm.user.email,
@@ -238,12 +238,12 @@
                             }
                         };
 
-                        $localStorage.nome=vm.user.nome;
-                        $localStorage.cognome=vm.user.cognome;
-                        $localStorage.email=vm.user.email;
-                        $localStorage.room=vm.user.room;
-                        $localStorage.photo=undefined;
-                        $localStorage.colorMarker=vm.user.colorMarker;
+                        $localStorage.nome=btoa(vm.user.nome);
+                        $localStorage.cognome=btoa(vm.user.cognome);
+                        $localStorage.email=btoa(vm.user.email);
+                        $localStorage.room=btoa(vm.user.room);
+                        $localStorage.photo=btoa(vm.user.photo);
+                        $localStorage.colorMarker=btoa(vm.user.colorMarker);
 
                         return UserService.updateUser(objSend).then(function(data){
                             
@@ -261,7 +261,7 @@
                                 return $location.path('/logout');     
                             }
 
-                            return $location.path('/user/profile');                                
+                            return $location.path('/home');                                
                             
                         }).catch(function(err){
                             toaster.pop({
@@ -286,7 +286,7 @@
 
                             objDataSend.append('File', vm.user.filePhoto);
                             objDataSend.append('ext', extFile);
-                            objDataSend.append('id', $localStorage.id);
+                            objDataSend.append('id', atob($localStorage.id));
                             //invio al server la vecchia foto se esiste
                             if(vm.user.photo)
                             {
@@ -303,7 +303,7 @@
 
                                     let objSend={
                                         'user':{
-                                            'id':$localStorage.id,
+                                            'id':atob($localStorage.id),
                                             'nome':vm.user.nome,
                                             'cognome':vm.user.cognome,
                                             'email':vm.user.email,
@@ -315,12 +315,12 @@
                                         }
                                     };
             
-                                    $localStorage.nome=vm.user.nome;
-                                    $localStorage.cognome=vm.user.cognome;
-                                    $localStorage.email=vm.user.email;
-                                    $localStorage.room=vm.user.room;
+                                    $localStorage.nome=btoa(vm.user.nome);
+                                    $localStorage.cognome=btoa(vm.user.cognome);
+                                    $localStorage.email=btoa(vm.user.email);
+                                    $localStorage.room=btoa(vm.user.room);
                                     $localStorage.photo=btoa(nomeFileSalvato);
-                                    $localStorage.colorMarker=vm.user.colorMarker;
+                                    $localStorage.colorMarker=btoa(vm.user.colorMarker);
             
                                     return UserService.updateUser(objSend).then(function(data){
                                         
@@ -338,7 +338,7 @@
                                             return $location.path('/logout');     
                                         }
             
-                                        return $location.path('/user/profile');                                
+                                        return $location.path('/home');                                
                                         
                                     }).catch(function(err){
                                         toaster.pop({

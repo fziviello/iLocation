@@ -17,13 +17,23 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
         $rootScope.PORT = '3000';
         $rootScope.API = '/api/v1';
         $rootScope.UserLogged='';
+        // $rootScope.UserLoggedImg='';
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             if(!$localStorage.token) {
                 $location.path('/login');
             }
             else
             {
-                $rootScope.UserLogged=$localStorage.nome;
+                $rootScope.UserLogged=atob($localStorage.nome);
+                
+                if(!!!$rootScope.UserLoggedImg)
+                {
+                    $rootScope.UserLoggedImg=(atob($localStorage.photo));        
+                }
+                else
+                {
+                    $rootScope.UserLoggedImg=(atob($localStorage.photo));                    
+                }
             }
         });
         $rootScope.showLogged= function(){

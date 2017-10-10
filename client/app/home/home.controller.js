@@ -21,13 +21,13 @@
             socket.on('posizione', function (data) {
                 vm.addMarkerSocket(data);
                 vm.position.push(data);
-                $localStorage.posizione= "";      
-                $localStorage.posizione= JSON.stringify(vm.position);
+                $localStorage.posizione= "";   
+                $localStorage.posizione= btoa(JSON.stringify(vm.position));
             });
             
             socket.on('user-status', function (data) {
                 
-                if(data.idClient!=$localStorage.id)
+                if(data.idClient!=atob($localStorage.id))
                 {
                     if(data.status==1)
                     {
@@ -106,7 +106,7 @@
                 if($localStorage.posizione!=null)
                 {
                     let JsonPos=[];
-                    JsonPos=JSON.parse($localStorage.posizione);
+                    JsonPos=JSON.parse(atob($localStorage.posizione));
 
                     for (var i = 0; i < JsonPos.length; i++) 
                     {
@@ -127,10 +127,10 @@
                   vm.map.setCenter(results[0].geometry.location);                  
                         var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
                         var posizione = {
-                            id:$localStorage.id,
+                            id:atob($localStorage.id),
                             lat: Number(coordinata[0]),
                             lng: Number(coordinata[1]),
-                            title:$localStorage.cognome+" "+$localStorage.nome,
+                            title:atob($localStorage.cognome)+" "+atob($localStorage.nome),
                             desc:results[0].formatted_address,
                             address:results[0].formatted_address
                         };
@@ -140,7 +140,6 @@
                 } 
                 else 
                 {
-                  //alert('Errore: ' + status);
                   toaster.pop({
                     type: 'warning',
                     title: 'Attenzione',
@@ -157,14 +156,14 @@
             vm.sharePosition=function(data)
             {
                     var posizione = {
-                        id:$localStorage.id,                        
+                        id:atob($localStorage.id),                        
                         lat: Number(data.lat),
                         lng: Number(data.lng),
                         title:data.title,
                         desc:data.desc,
                         address:data.address,
-                        room:$localStorage.room,
-                        colorMarker:$localStorage.colorMarker,
+                        room:atob($localStorage.room),
+                        colorMarker:atob($localStorage.colorMarker),
                  };
 
                  
@@ -375,7 +374,6 @@
                   vm.deleteDirectionsDisplays();
                   vm.directionsDisplay = new google.maps.DirectionsRenderer;
                   vm.directionsService = new google.maps.DirectionsService;
-                  
                   vm.directionsDisplay.setMap(vm.map);
                   
                     var waypts = [];
@@ -451,10 +449,10 @@
                                 vm.map.setCenter(results[0].geometry.location);
                                 var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
                                 var posizione = {
-                                    id:$localStorage.id,
+                                    id:atob($localStorage.id),
                                     lat: Number(coordinata[0]),
                                     lng: Number(coordinata[1]),
-                                    title:$localStorage.cognome+" "+$localStorage.nome,
+                                    title:atob($localStorage.cognome)+" "+atob($localStorage.nome),
                                     desc:results[0].formatted_address,
                                     address:results[0].formatted_address
                                 };

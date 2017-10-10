@@ -23,14 +23,15 @@
                         
                         if(data.success===true)
                         {
-                            $localStorage.token=data.result[0].token;
-                            $localStorage.id=data.result[0].id;
-                            $localStorage.nome=data.result[0].nome;
-                            $localStorage.cognome=data.result[0].cognome;
-                            $localStorage.email=data.result[0].email;
+                            $localStorage.token=btoa(data.result[0].token);
+                            $localStorage.id=btoa(data.result[0].id);
+                            $localStorage.nome=btoa(data.result[0].nome);
+                            $localStorage.cognome=btoa(data.result[0].cognome);
+                            $localStorage.email=btoa(data.result[0].email);
                             $localStorage.id_ruolo=btoa(data.result[0].id_ruolo);
-                            $localStorage.room=data.result[0].room;
-                            $localStorage.colorMarker=data.result[0].colorMarker;
+                            $localStorage.room=btoa(data.result[0].room);
+                            $localStorage.colorMarker=btoa(data.result[0].colorMarker);
+                            $localStorage.photo=btoa(data.result[0].photo);
     
                             toaster.pop({
                                 type: 'success',
@@ -40,10 +41,10 @@
                         }
     
                         let objSend={
-                            'idClient':$localStorage.id,
-                            'nome':$localStorage.nome,
-                            'cognome':$localStorage.cognome,
-                            'room':$localStorage.room,
+                            'idClient':atob($localStorage.id),
+                            'nome':atob($localStorage.nome),
+                            'cognome':atob($localStorage.cognome),
+                            'room':atob($localStorage.room),
                             'status_connected':1
                          };
                        
@@ -65,20 +66,19 @@
             vm.logout = function(){
                 let objSend={
                     'logout':{
-                                'id':$localStorage.id
+                                'id':atob($localStorage.id)
                             }
                 };
                 return LoginService.logout(objSend).then(function(data){
                   
-                    objSend.room=$localStorage.room;
-                    objSend.idClient=$localStorage.id;
-                    objSend.id_ruolo=$localStorage.id_ruolo;
-                    objSend.nome=$localStorage.nome;
-                    objSend.cognome=$localStorage.cognome;
+                    objSend.room=atob($localStorage.room);
+                    objSend.idClient=atob($localStorage.id);
+                    objSend.id_ruolo=atob($localStorage.id_ruolo);
+                    objSend.nome=atob($localStorage.nome);
+                    objSend.cognome=atob($localStorage.cognome);
                     objSend.status_connected=0;
-                    
                     socket.emit('unsubscribe', objSend);
-                    socket.disconnect();//chiudo connessione socket
+                    //socket.disconnect();//chiudo connessione socket
                     
                     if(data.success===true)
                     {

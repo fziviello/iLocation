@@ -681,7 +681,7 @@ module.exports=()=>{
         
         if (!!!req.body.File || !!!req.body.ext || !!!req.body.id)
         {
-            res.status(400).json({  
+            res.status(400).json({
                 'success':false,
                 'error':{
                     'code':'400',
@@ -708,24 +708,30 @@ module.exports=()=>{
                 });
 
                 return null;
-            }
-
-            if(req.body.oldFile)
-            {
-                //elimino vecchia foto
-                fs.unlink(path+"/"+req.body.oldFile,function(err){
-                    if(err) 
+            }         
+                if(req.body.oldFile)
+                {
+                    if(req.body.oldFile!='defaultProfileImg.jpg')
                     {
-                        console.error("EliminaFotoProfilo:"+err);
+                        //elimino vecchia foto solo se diversa da quella di default
+                        fs.unlink(path+"/"+req.body.oldFile,function(err){
+                            if(err) 
+                            {
+                                console.error("EliminaFotoProfilo:"+err);
+                                console.error(req.body.oldFile);
+                            }
+                        }); 
                     }
-               }); 
-            }
+                }
+                res.status(200).json({
+                    'success':true,
+                    'result':NameFile
+                });
 
-            res.status(200).json({
+                res.status(200).json({
                 'success':true,
                 'result':NameFile
             });
-            
         }
         else
         {

@@ -19,7 +19,7 @@
             if(config.headers.Authorization) {
                 return config
             }            
-                config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                config.headers.Authorization = 'Bearer ' + atob($localStorage.token);
           } else {
             $location.path('/login')
           }
