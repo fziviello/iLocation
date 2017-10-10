@@ -6,7 +6,7 @@
                     <form id="gestisci_form" name="userForm" ng-init="vm.LoadUtente();" ng-submit="vm.UpdateUser();">
                             <div class="row">
                                 <div class="col-xs-12 col-md-12 col-sm-12 text-center">
-                                    <img ng-src="/uploads/profile/{{vm.user.photo}}" class="img-circle img-thumbnail profile-image"/>
+                                    <img ng-src="/uploads/profile/{{vm.user.photo}}" onerror="this.onerror=null;this.src='medias/defaultProfileImg.jpg';" class="img-circle img-thumbnail profile-image"/>
                                 </div>
                             </div>
                             <br/>

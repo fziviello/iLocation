@@ -60,7 +60,7 @@
             <div class="navbar-header navbar-right">
                   <ul class="nav navbar-nav">
                     <li role="presentation" class="dropdown">
-                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img ng-src="/uploads/profile/{{UserLoggedImg}}" class="img-circle profile-image-list"/>&nbsp;{{UserLogged}}<span class="caret"></span></a>
+                      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><img ng-src="/uploads/profile/{{UserLoggedImg}}" onerror="this.onerror=null;this.src='medias/defaultProfileImg.jpg';" class="img-circle profile-image-topbar"/>&nbsp;{{UserLogged}}<span class="caret"></span></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="#/user/profile">Profilo</a></li>
                         <li><a href="#/logout">Logout</a></li>

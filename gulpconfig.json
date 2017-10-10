@@ -22,26 +22,29 @@
     "./client/app/medias/*.png",
     "./client/app/medias/*.bmp"
   ],
+  "ImgDefaultProfileSrc": [
+    "build/medias/defaultProfileImg.jpg"
+  ],
   "jsonSrc":[
             "./client/app/**/*.json"
-],
-"buildBundle":[
-           "build/bundle.js"
-],
-"buildIndex": [
-          "build/index.html"
-],
+  ],
+  "buildBundle":[
+            "build/bundle.js"
+  ],
+  "buildIndex": [
+            "build/index.html"
+  ],
 
-"buildCss": [
-          "build/style.css"
-],
-"buildLibs": [
-          "build/view",
-          "build/medias"
-],
-"buildDependency": [
-  "build/vendors"
-],
+  "buildCss": [
+            "build/style.css"
+  ],
+  "buildLibs": [
+            "build/view",
+            "build/medias"
+  ],
+  "buildDependency": [
+    "build/vendors"
+  ],
 
-  "DEST": "build"
+    "DEST": "build"
 }

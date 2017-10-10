@@ -46,6 +46,12 @@ gulp.task("ImportJSON",function(){
     .pipe(gulp.dest(config.DEST+"/view"))
 });
 
+gulp.task('ImportImgDefaultProfile', function() {  
+  return gulp.src(config.ImgDefaultProfileSrc)
+  .pipe(imagemin())
+  .pipe(gulp.dest(config.DEST+"/uploads/profile"));
+});
+
 gulp.task('MinImage', function() {  
   return gulp.src(config.imgSrc)
   .pipe(imagemin())
@@ -77,6 +83,7 @@ gulp.task("build",[
     "ImportHTML",
     "MinImage",
     "ImportMEDIA",
+    "ImportImgDefaultProfile",
     "ImportJSON"
 ]);
 
@@ -84,6 +91,7 @@ gulp.task("watch",function(){
   gulp.watch(config.jsSrc,["ImportJS"]);
   gulp.watch(config.cssSrc,["ImportCSS"]);
   gulp.watch(config.mediaSrc,["ImportMEDIA"]);
+  gulp.watch(config.ImgDefaultProfileSrc,["ImportImgDefaultProfile"]);
   gulp.watch(config.IndexSrc,["ImportINDEX"]);
   gulp.watch(config.htmlSrc,["ImportHTML"]);
   gulp.watch(config.jsonSrc,["ImportJSON"]);

@@ -6,7 +6,7 @@
                     <form id="profile_form" name="userForm" ng-init="vm.LoadProfile();" ng-submit="vm.UpdateProfile();">
                         <div class="row">
                             <div class="col-xs-12 col-md-2 col-sm-2">
-                                <img ng-src="/uploads/profile/{{vm.user.photo}}" class="img-circle img-thumbnail profile-image"/>
+                                <img ng-src="/uploads/profile/{{vm.user.photo}}" onerror="this.onerror=null;this.src='medias/defaultProfileImg.jpg';" class="img-circle img-thumbnail profile-image"/>
                             </div>
                             <div class="col-xs-12 col-md-2 col-sm-2">
                                 <span class="btn btn-default btn-file btn-lg" data-toggle="tooltip" data-placement="right" title="Carica Foto">

@@ -2,7 +2,7 @@
 <div class="modal-body">
         <div class="row">
                 <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4 text-center">
-                        <img ng-src="/uploads/profile/{{vm.dataProfile.photo}}" class="img-circle img-thumbnail profile-image"/>
+                        <img ng-src="/uploads/profile/{{vm.dataProfile.photo}}" onerror="this.onerror=null;this.src='medias/defaultProfileImg.jpg';" class="img-circle img-thumbnail profile-image"/>
                 </div>
                 <div class="form-group single_panel col-xs-6 col-md-4 col-sm-4 text-center">
                         <label>Nome</label><br/>

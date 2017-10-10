@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ott 02, 2017 alle 15:53
+-- Creato il: Ott 10, 2017 alle 14:46
 -- Versione del server: 10.1.25-MariaDB
 -- Versione PHP: 7.1.7
 
@@ -61,6 +61,7 @@ CREATE TABLE `user` (
   `status` int(1) NOT NULL DEFAULT '1',
   `room` varchar(50) NOT NULL DEFAULT 'gruppo',
   `colorMarker` varchar(20) NOT NULL DEFAULT '#FF0000',
+  `photo` varchar(255) NOT NULL DEFAULT 'defaultProfileImg.jpg',
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -68,9 +69,9 @@ CREATE TABLE `user` (
 -- Dump dei dati per la tabella `user`
 --
 
-INSERT INTO `user` (`id`, `id_ruolo`, `email`, `nome`, `cognome`, `password`, `token`, `status_connected`, `status`, `room`, `colorMarker`, `timestamp`) VALUES
-(1, 1, 'admin@email.it', 'Fabio', 'Ziviello', 'f135f1e64626498acdecfaf331f0e930681edfb6', 'qlfa7tupWZswQFjYZ84OnJwQY7rr72kxrqT3o-c7M5VlF7BqSKHXviKKihWHZDkbmPVVeAXjGZBdNjVGWA2eRg', 0, 1, 'gruppo', '#5fc13e', '2017-08-13 21:40:53'),
-(2, 2, 'user@email.it', 'Andrea', 'Ceroli', 'f135f1e64626498acdecfaf331f0e930681edfb6', 'EuS5D5rbEebEBj73HcoCwEg1eO6VabNwIl2u1eDOUTfbvfoIH0EfnMciwHDncmwyRaJPibdU-H4Uz7tvkt5AnQ', 0, 1, 'gruppo', '#fc0386', '2017-08-13 15:30:16');
+INSERT INTO `user` (`id`, `id_ruolo`, `email`, `nome`, `cognome`, `password`, `token`, `status_connected`, `status`, `room`, `colorMarker`, `photo`, `timestamp`) VALUES
+(1, 1, 'admin@email.it', 'Fabio', 'Ziviello', 'f135f1e64626498acdecfaf331f0e930681edfb6', '6LiaLAvUgJ8bghgboZgSBQnaLBaIFtO6WH6VLuyn_Kgi3AMJoPOoL8PvBn9A3RSvt7Zb6I_q_W7TaMvG1XN1SQ', 1, 1, 'gruppo', '#5fc13e', 'defaultProfileImg.jpg', '2017-08-13 21:40:53'),
+(2, 2, 'user@email.it', 'Andrea', 'Ceroli', 'f135f1e64626498acdecfaf331f0e930681edfb6', 'V5OxfemA8T0sffEQ1FALrtJam7qJjWGLlMClas6Y59_kQeiBOWCc4OrI6mZBSzqeV_jtScDVdRXDPyhyrrvvdA', 0, 1, 'gruppo', '#0080ff', 'defaultProfileImg.jpg', '2017-08-13 15:30:16');
 
 --
 -- Indici per le tabelle scaricate
