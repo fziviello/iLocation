@@ -1,14 +1,14 @@
 <div class="modal-header"><h3 class="modal-title text-center">Profilo</h3></div>
 <div class="modal-body">
         <div class="row">
-                <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4 text-center">
-                        <img ng-src="/uploads/profile/{{vm.dataProfile.photo}}" onerror="this.onerror=null;this.src='medias/defaultProfileImg.jpg';" class="img-circle img-thumbnail profile-image"/>
+                <div class="form-group single_panel col-xs-12 col-md-4 col-sm-12 text-center">
+                        <img ng-src="/uploads/profile/{{vm.dataProfile.photo}}" onerror="this.onerror=null;this.src='medias/defaultProfileImg.jpg';" class="img-circle img-thumbnail profile-image-modal"/>
                 </div>
-                <div class="form-group single_panel col-xs-6 col-md-4 col-sm-4 text-center">
+                <div class="form-group single_panel col-xs-12 col-md-4 col-sm-12 text-center">
                         <label>Nome</label><br/>
                         {{vm.dataProfile.nome}}
                 </div>
-                <div class="form-group single_panel col-xs-12 col-md-4 col-sm-4 text-center">
+                <div class="form-group single_panel col-xs-12 col-md-4 col-sm-12 text-center">
                         <label>Cognome</label><br/>
                         {{vm.dataProfile.cognome}}
                 </div>

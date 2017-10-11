@@ -43,3 +43,128 @@
     cursor: inherit;
     display: block;
 }
+
+.profile-image-gest{
+    width: 150px;
+    height: 150px;
+}
+
+@media only screen and (min-width: 1200px) {
+    .profile-image
+    {
+        width: 150px;
+        height: 150px;
+    }
+    .btn-file {
+        margin: 2%;
+        position: relative;
+        overflow: hidden;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        padding: 7%;
+    }
+}
+@media only screen and (max-width: 1199px) {
+    .profile-image
+    {
+        width: 150px;
+        height: 120px;
+    }
+    .btn-file {
+        margin: 2%;
+        position: relative;
+        overflow: hidden;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        padding: 7%;
+    }
+}
+@media only screen and (max-width: 991px) {	
+    .profile-image
+    {
+        width: 150px;
+        height: 150px;
+    }
+    .btn-file {
+        margin: 2%;
+        position: relative;
+        overflow: hidden;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        padding: 15%;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .profile-image
+    {
+        width: 150px;
+        height: 150px;
+    }
+    .btn-file {
+        margin: 2%;
+        position: relative;
+        overflow: hidden;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        padding: 15%;
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    .profile-image
+    {
+        width: 120px;
+        height: 120px;
+    }
+    .btn-file {
+        margin: 2%;
+        position: relative;
+        overflow: hidden;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        padding: 20%;
+    }
+}
+@media only screen and (max-width: 420px) {
+    .profile-image-small{
+        width: 75% !important;
+    }
+    .profile-image
+    {
+        width: 150px;
+        height: 150px;
+    }
+    .btn-file {
+        margin: 2%;
+        position: relative;
+        overflow: hidden;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        padding: 50%;
+    }
+}
+@media only screen and (max-width: 300px) {
+    .profile-image-small{
+        width: 70% !important;
+    }
+    .profile-image
+    {
+        width: 120px;
+        height: 120px;
+    }
+    .btn-file {
+        margin: 2%;
+        position: relative;
+        overflow: hidden;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        padding: 100%;
+    }
+} 
