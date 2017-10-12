@@ -20,6 +20,8 @@ npm install bower -g
 
 npm install gulp -g
 
+bower install
+
 gulp init
 
 Importare il dump del DB con lo script "ilocation.sql"
