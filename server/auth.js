@@ -9,7 +9,6 @@ const mysql=require('mysql');
 dotenv.load();
 
 const BearerStrategy = Bearer.Strategy;
-
 const host=process.env.MYSQL_HOSTNAME;
 const port=process.env.MYSQL_PORT;
 const database=process.env.MYSQL_DB;
@@ -39,7 +38,6 @@ passport.use('bearer', new BearerStrategy(
     });
 
     connection.connect();
-    //TODO decrypt
     connection.query('SELECT token FROM user WHERE token = ?', [accessToken], function(err, rows, fields) {
       
       if(err) {

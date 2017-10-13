@@ -18,6 +18,8 @@ npm install
 
 npm install bower -g
 
+npm install forever -g
+
 npm install gulp -g
 
 bower install

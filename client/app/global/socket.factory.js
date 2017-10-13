@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('iLocation')
-    .factory('socket', function (socketFactory) {
-        var myIoSocket = io.connect("https://192.168.1.24:4200",{secure: true});
+    .factory('socket', function (socketFactory,$rootScope) {
+        var myIoSocket = io.connect($rootScope.URL_SOCKET+$rootScope.PORT_SOCKET,{secure: true});
             var socket = socketFactory({
                 ioSocket: myIoSocket
             });
