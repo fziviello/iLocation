@@ -11,7 +11,7 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     }
 
-    function run($rootScope,$location,$localStorage){
+    function run($rootScope,$location,$localStorage,$sessionStorage){
 
         $rootScope.URL = 'https://192.168.1.24:';
         $rootScope.PORT = '3000';
@@ -21,25 +21,25 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
         $rootScope.UserLogged='';
         
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            if(!$localStorage.token) {
+            if(!$sessionStorage.token) {
                 $location.path('/login');
             }
             else
             {
-                $rootScope.UserLogged=atob($localStorage.nome);
+                $rootScope.UserLogged=atob($sessionStorage.nome);
                 
                 if(!!!$rootScope.UserLoggedImg)
                 {
-                    $rootScope.UserLoggedImg=(atob($localStorage.photo));        
+                    $rootScope.UserLoggedImg=(atob($sessionStorage.photo));        
                 }
                 else
                 {
-                    $rootScope.UserLoggedImg=(atob($localStorage.photo));                    
+                    $rootScope.UserLoggedImg=(atob($sessionStorage.photo));                    
                 }
             }
         });
         $rootScope.showLogged= function(){
-            if(!$localStorage.token) 
+            if(!$sessionStorage.token) 
             {
                 return false;
             }
@@ -49,7 +49,7 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
             }
         };
         $rootScope.showRole= function(){
-            if((atob($localStorage.id_ruolo))==1) //admin
+            if((atob($sessionStorage.id_ruolo))==1) //admin
             {
                 return true;
             }

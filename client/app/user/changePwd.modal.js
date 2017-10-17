@@ -4,9 +4,9 @@
     angular.module('iLocation')
         .controller('ChangePwdModalController', ChangePwdModalController);
 
-        ChangePwdModalController.$inject=['dataChangePwd','UserService','$localStorage','toaster','ngDialog'];
+        ChangePwdModalController.$inject=['dataChangePwd','UserService','$localStorage','$sessionStorage','toaster','ngDialog'];
 
-        function ChangePwdModalController(dataChangePwd,UserService,$localStorage,toaster,ngDialog){
+        function ChangePwdModalController(dataChangePwd,UserService,$localStorage,$sessionStorage,toaster,ngDialog){
 
             var vm = this;
 
@@ -32,8 +32,8 @@
                     {
                         let objSendPwd={
                             'user':{
-                                'id':$localStorage.id,
-                                'token':$localStorage.token,
+                                'id':atob($sessionStorage.id),
+                                'token':atob($sessionStorage.token),
                                 'id_change':vm.id_change,
                                 'password':vm.user.password
                             }

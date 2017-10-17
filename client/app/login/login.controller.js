@@ -4,13 +4,13 @@
     angular.module('iLocation')
         .controller('LoginController', LoginController);
 
-        LoginController.$inject=['LoginService','$localStorage','$location','toaster','socket'];
+        LoginController.$inject=['LoginService','$localStorage','$sessionStorage','$location','toaster','socket'];
 
-        function LoginController(LoginService,$localStorage,$location,toaster,socket){
+        function LoginController(LoginService,$localStorage,$sessionStorage,$location,toaster,socket){
             var vm = this;
             
                 vm.loginStatus=function(){
-                    if($localStorage.token) {
+                    if($sessionStorage.token) {
                         return $location.path('/home');
                     }
                 }
@@ -23,15 +23,15 @@
                         
                         if(data.success===true)
                         {
-                            $localStorage.token=btoa(data.result[0].token);
-                            $localStorage.id=btoa(data.result[0].id);
-                            $localStorage.nome=btoa(data.result[0].nome);
-                            $localStorage.cognome=btoa(data.result[0].cognome);
-                            $localStorage.email=btoa(data.result[0].email);
-                            $localStorage.id_ruolo=btoa(data.result[0].id_ruolo);
-                            $localStorage.room=btoa(data.result[0].room);
-                            $localStorage.colorMarker=btoa(data.result[0].colorMarker);
-                            $localStorage.photo=btoa(data.result[0].photo);
+                            $sessionStorage.token=btoa(data.result[0].token);
+                            $sessionStorage.id=btoa(data.result[0].id);
+                            $sessionStorage.nome=btoa(data.result[0].nome);
+                            $sessionStorage.cognome=btoa(data.result[0].cognome);
+                            $sessionStorage.email=btoa(data.result[0].email);
+                            $sessionStorage.id_ruolo=btoa(data.result[0].id_ruolo);
+                            $sessionStorage.room=btoa(data.result[0].room);
+                            $sessionStorage.colorMarker=btoa(data.result[0].colorMarker);
+                            $sessionStorage.photo=btoa(data.result[0].photo);
     
                             toaster.pop({
                                 type: 'success',
@@ -41,10 +41,10 @@
                         }
     
                         let objSend={
-                            'idClient':atob($localStorage.id),
-                            'nome':atob($localStorage.nome),
-                            'cognome':atob($localStorage.cognome),
-                            'room':atob($localStorage.room),
+                            'idClient':atob($sessionStorage.id),
+                            'nome':atob($sessionStorage.nome),
+                            'cognome':atob($sessionStorage.cognome),
+                            'room':atob($sessionStorage.room),
                             'status_connected':1
                          };
                        
@@ -59,23 +59,23 @@
                             title: 'Login',
                             body: 'Accesso Negato'
                         });
-                        $localStorage.$reset();
+                        $sessionStorage.$reset();
                         return err;
                     });
                 }   
             vm.logout = function(){
                 let objSend={
                     'logout':{
-                                'id':atob($localStorage.id)
+                                'id':atob($sessionStorage.id)
                             }
                 };
                 return LoginService.logout(objSend).then(function(data){
                   
-                    objSend.room=atob($localStorage.room);
-                    objSend.idClient=atob($localStorage.id);
-                    objSend.id_ruolo=atob($localStorage.id_ruolo);
-                    objSend.nome=atob($localStorage.nome);
-                    objSend.cognome=atob($localStorage.cognome);
+                    objSend.room=atob($sessionStorage.room);
+                    objSend.idClient=atob($sessionStorage.id);
+                    objSend.id_ruolo=atob($sessionStorage.id_ruolo);
+                    objSend.nome=atob($sessionStorage.nome);
+                    objSend.cognome=atob($sessionStorage.cognome);
                     objSend.status_connected=0;
                     socket.emit('unsubscribe', objSend);
                     //socket.disconnect();//chiudo connessione socket
@@ -88,11 +88,13 @@
                             body: 'Disconnessione Effettuata Con Successo',
                         });
                     }
+                    $sessionStorage.$reset();
                     $localStorage.$reset();
-                    
+
                     return $location.path('/login');
                   
                 }).catch(function(err){
+                    $sessionStorage.$reset();
                     $localStorage.$reset();
                     return $location.path('/login');
                 });

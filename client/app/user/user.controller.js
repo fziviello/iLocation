@@ -4,9 +4,9 @@
     angular.module('iLocation')
         .controller('UserController', UserController);
 
-        UserController.$inject=['UserService','RuoloService','$localStorage','$location','$routeParams','toaster','ngDialog','BlobService','$http','$scope','$rootScope','PagerService'];
+        UserController.$inject=['UserService','RuoloService','$localStorage','$sessionStorage','$location','$routeParams','toaster','ngDialog','BlobService','$http','$scope','$rootScope','PagerService'];
 
-        function UserController(UserService,RuoloService,$localStorage,$location,$routeParams,toaster,ngDialog,BlobService,$http,$scope,$rootScope,PagerService){
+        function UserController(UserService,RuoloService,$localStorage,$sessionStorage,$location,$routeParams,toaster,ngDialog,BlobService,$http,$scope,$rootScope,PagerService){
             
             var vm = this;
             var profilo=null;
@@ -38,8 +38,8 @@
             
                 let objSend={
                     'user':{
-                            'id':atob($localStorage.id),
-                            'token':atob($localStorage.token)
+                            'id':atob($sessionStorage.id),
+                            'token':atob($sessionStorage.token)
                     }
                 };
 
@@ -191,8 +191,8 @@
                 
                 let objSend={
                     'user':{
-                            'id':atob($localStorage.id),
-                            'token':atob($localStorage.token)
+                            'id':atob($sessionStorage.id),
+                            'token':atob($sessionStorage.token)
                     }
                 };
                 
@@ -237,23 +237,23 @@
                         //AGGIORNAMENTO DEL PROFILO SENZA FOTO
                         let objSend={
                             'user':{
-                                'id':atob($localStorage.id),
+                                'id':atob($sessionStorage.id),
                                 'nome':vm.user.nome,
                                 'cognome':vm.user.cognome,
                                 'email':vm.user.email,
-                                "id_ruolo":atob($localStorage.id_ruolo),
+                                "id_ruolo":atob($sessionStorage.id_ruolo),
                                 'room':vm.user.room,
                                 'colorMarker':vm.user.colorMarker,
                                 'status':vm.user.status
                             }
                         };
 
-                        $localStorage.nome=btoa(vm.user.nome);
-                        $localStorage.cognome=btoa(vm.user.cognome);
-                        $localStorage.email=btoa(vm.user.email);
-                        $localStorage.room=btoa(vm.user.room);
-                        $localStorage.photo=btoa(vm.user.photo);
-                        $localStorage.colorMarker=btoa(vm.user.colorMarker);
+                        $sessionStorage.nome=btoa(vm.user.nome);
+                        $sessionStorage.cognome=btoa(vm.user.cognome);
+                        $sessionStorage.email=btoa(vm.user.email);
+                        $sessionStorage.room=btoa(vm.user.room);
+                        $sessionStorage.photo=btoa(vm.user.photo);
+                        $sessionStorage.colorMarker=btoa(vm.user.colorMarker);
 
                         return UserService.updateUser(objSend).then(function(data){
                             
@@ -296,7 +296,7 @@
 
                             objDataSend.append('File', vm.user.filePhoto);
                             objDataSend.append('ext', extFile);
-                            objDataSend.append('id', atob($localStorage.id));
+                            objDataSend.append('id', atob($sessionStorage.id));
                             //invio al server la vecchia foto se esiste
                             if(vm.user.photo)
                             {
@@ -313,24 +313,24 @@
 
                                     let objSend={
                                         'user':{
-                                            'id':atob($localStorage.id),
+                                            'id':atob($sessionStorage.id),
                                             'nome':vm.user.nome,
                                             'cognome':vm.user.cognome,
                                             'email':vm.user.email,
                                             'photo':nomeFileSalvato,
-                                            "id_ruolo":atob($localStorage.id_ruolo),
+                                            "id_ruolo":atob($sessionStorage.id_ruolo),
                                             'room':vm.user.room,
                                             'colorMarker':vm.user.colorMarker,
                                             'status':vm.user.status
                                         }
                                     };
             
-                                    $localStorage.nome=btoa(vm.user.nome);
-                                    $localStorage.cognome=btoa(vm.user.cognome);
-                                    $localStorage.email=btoa(vm.user.email);
-                                    $localStorage.room=btoa(vm.user.room);
-                                    $localStorage.photo=btoa(nomeFileSalvato);
-                                    $localStorage.colorMarker=btoa(vm.user.colorMarker);
+                                    $sessionStorage.nome=btoa(vm.user.nome);
+                                    $sessionStorage.cognome=btoa(vm.user.cognome);
+                                    $sessionStorage.email=btoa(vm.user.email);
+                                    $sessionStorage.room=btoa(vm.user.room);
+                                    $sessionStorage.photo=btoa(nomeFileSalvato);
+                                    $sessionStorage.colorMarker=btoa(vm.user.colorMarker);
             
                                     return UserService.updateUser(objSend).then(function(data){
                                         

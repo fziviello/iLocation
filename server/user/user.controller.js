@@ -653,13 +653,11 @@ module.exports=()=>{
             
         if (!err) 
         {
-            res.status(400).json({  
-                'success':false,
-                'error':{
-                            'code':'400',
-                            'message':'Richiesta Errata'
-                }
-            });
+            res.status(200).json({  
+                    'success':true,
+                    'result':null
+                });
+            
         } 
         else 
         {

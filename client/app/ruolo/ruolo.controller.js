@@ -4,9 +4,9 @@
     angular.module('iLocation')
         .controller('RuoloController', RuoloController);
 
-        RuoloController.$inject=['RuoloService','$localStorage','$rootScope','$location','$routeParams','toaster','PagerService'];
+        RuoloController.$inject=['RuoloService','$localStorage','$sessionStorage','$rootScope','$location','$routeParams','toaster','PagerService'];
 
-        function RuoloController(RuoloService,$localStorage,$rootScope,$location,$routeParams,toaster,PagerService){
+        function RuoloController(RuoloService,$localStorage,$sessionStorage,$rootScope,$location,$routeParams,toaster,PagerService){
             var vm = this;    
             
             vm.pager = {};

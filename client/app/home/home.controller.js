@@ -4,9 +4,9 @@
     angular.module('iLocation')
         .controller('HomeController', HomeController);
 
-        HomeController.$inject=['HomeService','UserService','toaster','$localStorage','socket','ngDialog'];
+        HomeController.$inject=['HomeService','UserService','toaster','$localStorage','$sessionStorage','socket','ngDialog'];
 
-        function HomeController(HomeService,UserService,toaster,$localStorage,socket,ngDialog){
+        function HomeController(HomeService,UserService,toaster,$localStorage,$sessionStorage,socket,ngDialog){
             
             var vm = this;
             vm.markers=[];
@@ -27,7 +27,7 @@
             
             socket.on('user-status', function (data) {
                 
-                if(data.idClient!=atob($localStorage.id))
+                if(data.idClient!=atob($sessionStorage.id))
                 {
                     if(data.status==1)
                     {
@@ -127,10 +127,10 @@
                   vm.map.setCenter(results[0].geometry.location);                  
                         var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
                         var posizione = {
-                            id:atob($localStorage.id),
+                            id:atob($sessionStorage.id),
                             lat: Number(coordinata[0]),
                             lng: Number(coordinata[1]),
-                            title:atob($localStorage.cognome)+" "+atob($localStorage.nome),
+                            title:atob($sessionStorage.cognome)+" "+atob($sessionStorage.nome),
                             desc:results[0].formatted_address,
                             address:results[0].formatted_address
                         };
@@ -156,14 +156,14 @@
             vm.sharePosition=function(data)
             {
                     var posizione = {
-                        id:atob($localStorage.id),                        
+                        id:atob($sessionStorage.id),                        
                         lat: Number(data.lat),
                         lng: Number(data.lng),
                         title:data.title,
                         desc:data.desc,
                         address:data.address,
-                        room:atob($localStorage.room),
-                        colorMarker:atob($localStorage.colorMarker),
+                        room:atob($sessionStorage.room),
+                        colorMarker:atob($sessionStorage.colorMarker),
                  };
 
                  
@@ -449,10 +449,10 @@
                                 vm.map.setCenter(results[0].geometry.location);
                                 var coordinata=results[0].geometry.location.toString().substring(1, results[0].geometry.location.toString().length - 1).split(',');
                                 var posizione = {
-                                    id:atob($localStorage.id),
+                                    id:atob($sessionStorage.id),
                                     lat: Number(coordinata[0]),
                                     lng: Number(coordinata[1]),
-                                    title:atob($localStorage.cognome)+" "+atob($localStorage.nome),
+                                    title:atob($sessionStorage.cognome)+" "+atob($sessionStorage.nome),
                                     desc:results[0].formatted_address,
                                     address:results[0].formatted_address
                                 };
@@ -529,7 +529,7 @@
             //LISTA UTENTI CONNESSI
             vm.StampaListaUtentiConnessi = function(){
                 
-                if($localStorage.token!="" || $localStorage.token!=undefined)
+                if($sessionStorage.token!="" || $sessionStorage.token!=undefined)
                 {
                     UserService.getUtentiConnessi().then(function(data){
                         

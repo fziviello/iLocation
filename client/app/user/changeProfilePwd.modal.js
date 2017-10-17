@@ -4,9 +4,9 @@
     angular.module('iLocation')
         .controller('ChangeProfilePwdModalController', ChangeProfilePwdModalController);
 
-        ChangeProfilePwdModalController.$inject=['UserService','$localStorage','toaster','ngDialog'];
+        ChangeProfilePwdModalController.$inject=['UserService','$localStorage','$sessionStorage','toaster','ngDialog'];
 
-        function ChangeProfilePwdModalController(UserService,$localStorage,toaster,ngDialog){
+        function ChangeProfilePwdModalController(UserService,$localStorage,$sessionStorage,toaster,ngDialog){
 
             var vm = this;
 
@@ -17,9 +17,9 @@
                     {
                         let objSendPwd={
                             'user':{
-                                'id':$localStorage.id,
-                                'token':$localStorage.token,
-                                'id_change':$localStorage.id,
+                                'id':atob($sessionStorage.id),
+                                'token':atob($sessionStorage.token),
+                                'id_change':atob($sessionStorage.id),
                                 'password':vm.user.password
                             }
                         };
@@ -27,8 +27,7 @@
                         return UserService.setUserProfilePwd(objSendPwd).then(function(data){
                             if(data.success===true)
                             {
-
-                                $localStorage.password=vm.user.password;
+                               $sessionStorage.password= btoa(vm.user.password);
                                 
                                 toaster.pop({
                                     type: 'success',
@@ -49,7 +48,6 @@
                                     body: data.error.message
                                 });
                             }                                
-                                
                         }).catch(function(err){
                             toaster.pop({
                                 type: 'error',

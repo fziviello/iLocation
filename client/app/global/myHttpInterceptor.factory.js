@@ -5,9 +5,9 @@
         .module('iLocation')
         .factory('myHttpInterceptor', myHttpInterceptor);
 
-    myHttpInterceptor.$inject = ['$localStorage', '$location'];
+    myHttpInterceptor.$inject = ['$sessionStorage', '$location'];
 
-    function myHttpInterceptor($localStorage, $location) {
+    function myHttpInterceptor($sessionStorage, $location) {
         var service = {
             request: request
         }
@@ -15,11 +15,11 @@
         return service;
 
         function request(config) {
-          if ( $localStorage.token ) {
+          if ( $sessionStorage.token ) {
             if(config.headers.Authorization) {
                 return config
             }            
-                config.headers.Authorization = 'Bearer ' + atob($localStorage.token);
+                config.headers.Authorization = 'Bearer ' + atob($sessionStorage.token);
           } else {
             $location.path('/login')
           }
