@@ -17,12 +17,6 @@
                 vm.RuoliPaginati = vm.Ruoli.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
             }
 
-            //controllo del ruolo
-            if(!$rootScope.showRole())
-            {
-                return $location.path('/home');
-            }
-
             vm.reverse =false;
                 
             vm.ListaRuoli = function(){
@@ -170,10 +164,6 @@
                         });
 
                         return null;
-
                 }
-                    
-
-
         }
 })();

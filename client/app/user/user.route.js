@@ -14,17 +14,41 @@
             .when('/user/list', {
                 templateUrl:'/view/user/template/utenti.html',
                 controller:'UserController',
-                controllerAs:'vm'
+                controllerAs:'vm',
+                resolve: {
+                    ruleAuth:function($rootScope,$location) {
+                        if(!$rootScope.showRole())
+                        {
+                            return $location.path('/home');
+                        }
+                    }
+                }
             })
             .when('/user/add', {
                 templateUrl:'/view/user/template/inserisci.html',
                 controller:'UserController',
-                controllerAs:'vm'
+                controllerAs:'vm',
+                resolve: {
+                    ruleAuth:function($rootScope,$location) {
+                        if(!$rootScope.showRole())
+                        {
+                            return $location.path('/home');
+                        }
+                    }
+                }
             })
             .when('/user/edit/:id', {
                 templateUrl:'/view/user/template/gestisci.html',
                 controller:'UserController',
-                controllerAs:'vm'
+                controllerAs:'vm',
+                resolve: {
+                    ruleAuth:function($rootScope,$location) {
+                        if(!$rootScope.showRole())
+                        {
+                            return $location.path('/home');
+                        }
+                    }
+                }
             })
           
         }

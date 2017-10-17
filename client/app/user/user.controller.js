@@ -20,8 +20,6 @@
                 vm.UtentiPaginati = vm.user.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
             }
             
-
-            
             vm.ListaStatus=[
                 {id:1, nome:'Attivo'},
                 {id:0, nome:'Disattivo'}
@@ -63,8 +61,6 @@
 
                 });
             }
-
-        
 
             //INSERISCI UTENTE
             vm.addNewUser= function(){

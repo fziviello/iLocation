@@ -21,41 +21,73 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
         $rootScope.UserLogged='';
         
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
-            if(!$sessionStorage.token) {
-                $location.path('/login');
-            }
-            else
-            {
-                $rootScope.UserLogged=atob($sessionStorage.nome);
+
+            try{
                 
-                if(!!!$rootScope.UserLoggedImg)
-                {
-                    $rootScope.UserLoggedImg=(atob($sessionStorage.photo));        
-                }
-                else
-                {
-                    $rootScope.UserLoggedImg=(atob($sessionStorage.photo));                    
-                }
+                    if(!$sessionStorage.token) {
+                        $location.path('/login');
+                    }
+                    else
+                    {
+                        $rootScope.UserLogged=atob($sessionStorage.nome);
+                        
+                        if(!!!$rootScope.UserLoggedImg)
+                        {
+                            $rootScope.UserLoggedImg=(atob($sessionStorage.photo));        
+                        }
+                        else
+                        {
+                            $rootScope.UserLoggedImg=(atob($sessionStorage.photo));                    
+                        }
+                    }
+                    
+            }
+
+            catch(err)
+            {
+                $sessionStorage.$reset();
+                $localStorage.$reset();
+                $location.path('/login');
             }
         });
         $rootScope.showLogged= function(){
-            if(!$sessionStorage.token) 
-            {
-                return false;
+
+            try{
+                
+                if(!$sessionStorage.token) 
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch(err)
             {
-                return true;
+                $sessionStorage.$reset();
+                $localStorage.$reset();
+                $location.path('/login');
             }
         };
+        
         $rootScope.showRole= function(){
-            if((atob($sessionStorage.id_ruolo))==1) //admin
-            {
-                return true;
+            try{
+                
+                if((atob($sessionStorage.id_ruolo))==1) //admin
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch(err)
             {
-                return false;
+                $sessionStorage.$reset();
+                $localStorage.$reset();
+                $location.path('/login');
             }
         };
     }
