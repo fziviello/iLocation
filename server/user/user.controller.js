@@ -716,7 +716,7 @@ module.exports=()=>{
                             if(err) 
                             {
                                 console.error("EliminaFotoProfilo:"+err);
-                                console.error(req.body.oldFile);
+                                console.error("old profile image: "+req.body.oldFile);
                             }
                         }); 
                     }

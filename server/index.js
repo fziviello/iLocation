@@ -97,7 +97,7 @@ io.on('connection', function (socket) {
   
     socket.on('subscribe', function (data) 
     { 
-      console.log(socket.id+" "+data.cognome+" "+data.nome+" "+"Aggiunto alla room:"+data.room);
+      console.log("subscribe: "+socket.id+" "+data.cognome+" "+data.nome+" "+"Aggiunto alla room:"+data.room);
       data.idSocketClient=socket.id;
       socket.join(data.room);
       socket.broadcast.to(data.room).emit('user-status',data);
@@ -105,7 +105,7 @@ io.on('connection', function (socket) {
 
     socket.on('unsubscribe', function (data) 
     { 
-      console.log(socket.id+" "+data.cognome+" "+data.nome+" "+"Uscito dalla room:"+data.room);
+      console.log("unsubscribe: "+socket.id+" "+data.cognome+" "+data.nome+" "+"Uscito dalla room:"+data.room);
       data.idSocketClient=socket.id;
       socket.leave(data.room);
       socket.broadcast.to(data.room).emit('user-status',data);
@@ -113,7 +113,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('send-position', function (data) {
-      console.log(JSON.stringify(data));
+      console.log("unsubscribe: "+JSON.stringify(data));
       data.idSocketClient=socket.id;
       io.sockets.in(data.room).emit('posizione', data); 
     });  

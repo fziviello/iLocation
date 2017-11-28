@@ -24,35 +24,43 @@ module.exports=()=>{
             database: database
         });
 
-        connection.connect();
+        connection.connect(function(err) {
+            if (err) {
+                console.error('Errore Connessione DB: ' + JSON.stringify(err));
+                return;
+            }
+          
+            console.log('threadId DB:' + connection.threadId);
+          });
 
-        connection.on("error:",function(r){
-            if(r.code===protocol_connection_host)
+
+        connection.on("error",function(err){
+            if(err.code===protocol_connection_host)
             {
                 connectDB();
             }
             else
             {
-                console.error(JSON.stringify(err));
+                console.error("connectDB: "+JSON.stringify(err));
             }
         });
 
         return next(connection);
     }
 
-    let disconnectDB =()=>{
+    let disconnectDB =(conn, req, res, next)=>{
         
-        connection.end(
+        conn.end(
 
             function(err){
                 
                 if(!err)
                 {
-                    connection=null;
+                    conn=null;
                 }   
                 else
                 {
-                   console.error(JSON.stringify(err));
+                   console.error("disconnectDB: "+JSON.stringify(err));
                 } 
             }
         );
