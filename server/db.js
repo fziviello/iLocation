@@ -26,7 +26,7 @@ module.exports=()=>{
 
         connection.connect(function(err) {
             if (err) {
-                console.error('Errore Connessione DB: ' + JSON.stringify(err));
+                console.error('Error DB Connection: ' + JSON.stringify(err));
                 return;
             }
           

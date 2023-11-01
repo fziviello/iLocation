@@ -70,8 +70,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `id_ruolo`, `email`, `nome`, `cognome`, `password`, `token`, `status_connected`, `status`, `room`, `colorMarker`, `photo`, `timestamp`) VALUES
-(1, 1, 'admin@email.it', 'Fabio', 'Ziviello', 'f135f1e64626498acdecfaf331f0e930681edfb6', '6LiaLAvUgJ8bghgboZgSBQnaLBaIFtO6WH6VLuyn_Kgi3AMJoPOoL8PvBn9A3RSvt7Zb6I_q_W7TaMvG1XN1SQ', 1, 1, 'gruppo', '#5fc13e', 'defaultProfileImg.jpg', '2017-08-13 21:40:53'),
-(2, 2, 'user@email.it', 'Andrea', 'Ceroli', 'f135f1e64626498acdecfaf331f0e930681edfb6', 'V5OxfemA8T0sffEQ1FALrtJam7qJjWGLlMClas6Y59_kQeiBOWCc4OrI6mZBSzqeV_jtScDVdRXDPyhyrrvvdA', 0, 1, 'gruppo', '#0080ff', 'defaultProfileImg.jpg', '2017-08-13 15:30:16');
+(1, 1, 'admin@email.it', 'Fabio', 'Ziviello', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', '6LiaLAvUgJ8bghgboZgSBQnaLBaIFtO6WH6VLuyn_Kgi3AMJoPOoL8PvBn9A3RSvt7Zb6I_q_W7TaMvG1XN1SQ', 1, 1, 'gruppo', '#5fc13e', 'defaultProfileImg.jpg', '2017-08-13 21:40:53'),
+(2, 2, 'raffallo@email.it', 'Raffaello', 'Ziviello', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'V5OxfemA8T0sffEQ1FALrtJam7qJjWGLlMClas6Y59_kQeiBOWCc4OrI6mZBSzqeV_jtScDVdRXDPyhyrrvvdA', 0, 1, 'gruppo', '#0080ff', 'defaultProfileImg.jpg', '2017-08-13 15:30:16').
+(3, 3, 'antonio@email.it', 'Antonio', 'Ziviello', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'V5OxfemA8T0sffEQ1FALrtJam7qJjWGLlMClas6Y59_kQeiBOWCc4OrI6mZBSzqeV_jtScDVdRXDPyhyrrvvdA', 0, 1, 'gruppo', '#0080ff', 'defaultProfileImg.jpg', '2017-08-13 15:30:16');
+
 
 --
 -- Indici per le tabelle scaricate

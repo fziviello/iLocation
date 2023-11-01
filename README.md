@@ -5,11 +5,11 @@ Il progetto comprende una parte server scritta in nodeJS, una parte client scrit
 Requisiti
 =========
 
-Versione di node: 8.3.0
+Versione di node: 20.8.0
 
-Versione di bower: 1.8.0
+Versione di bower: 1.8.14
 
-Versione di gulp: 3.9.1
+Versione di gulp: 4.0.2
 
 Installazione
 =============

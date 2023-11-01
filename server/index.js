@@ -2,15 +2,10 @@
 
 const express=require('express');
 const fs = require('fs');
-const mkdirp = require('mkdirp');
 const path=require('path');
-const nodemailer = require('nodemailer');
 const fileUpload = require('express-fileupload');
 const bodyParser=require('body-parser');
-const dotenv = require('dotenv');
 const socketio = require('socket.io');
-const morgan  = require('morgan');
-const http = require('http');
 const https = require('https');
 const cors = require('cors');
 const pathApi="/api/v1/";
@@ -21,7 +16,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
 app.use(fileUpload());
-//app.use(morgan('dev'));
 app.use('/static',express.static(path.join(__dirname,'..','build')));
 app.use('/medias',express.static(path.join(__dirname,'..','build','medias')));
 app.use('/uploads',express.static(path.join(__dirname,'..','build','uploads')));
@@ -79,7 +73,7 @@ app.post(pathApi+'ruolo/delete', auth.bearer(),connectDB.connect,ruoloController
 
 https.createServer(certificato,app)
   .listen(PORT,function(){
-     console.log("Server HTTPS in ascolto su "+PORT);
+     console.log("Server HTTPS listen on port: " + PORT);
 });
 
 //SERVER SOCKET IO
@@ -97,7 +91,7 @@ io.on('connection', function (socket) {
   
     socket.on('subscribe', function (data) 
     { 
-      console.log("subscribe: "+socket.id+" "+data.cognome+" "+data.nome+" "+"Aggiunto alla room:"+data.room);
+      console.log("subscribe: " + socket.id + " " + data.cognome + " " + data.nome + " " + "Add to room: " + data.room);
       data.idSocketClient=socket.id;
       socket.join(data.room);
       socket.broadcast.to(data.room).emit('user-status',data);
@@ -105,7 +99,7 @@ io.on('connection', function (socket) {
 
     socket.on('unsubscribe', function (data) 
     { 
-      console.log("unsubscribe: "+socket.id+" "+data.cognome+" "+data.nome+" "+"Uscito dalla room:"+data.room);
+      console.log("unsubscribe: " + socket.id + " " + data.cognome + " " + data.nome + " " + "Remove to room: " + data.room);
       data.idSocketClient=socket.id;
       socket.leave(data.room);
       socket.broadcast.to(data.room).emit('user-status',data);
@@ -122,5 +116,5 @@ io.on('connection', function (socket) {
 
 //SERVER SOCKET IO
 serverSocket.listen(PORT_SOCKET,function(){
-  console.log("Server Socket in ascolto su "+PORT_SOCKET);
+  console.log("Server Socket listen on port : " + PORT_SOCKET);
 });
