@@ -1,16 +1,8 @@
 var config = require("./gulpconfig.json");
 var gulp = require('gulp')
 var concat = require('gulp-concat')
-var rename = require('gulp-rename')
-var util = require('gulp-util');
-var ngConfig = require('gulp-ng-config');
-var watch = require('gulp-watch');
-var eslint = require('gulp-eslint');
 var clean = require('gulp-clean');
 var sourcemaps = require('gulp-sourcemaps');
-var surge = require('gulp-surge');
-var deletefile = require('gulp-delete-file');
-var imagemin = require('gulp-imagemin');
 var exec = require('child_process').exec;
 
 gulp.task("ImportJS",function(){
@@ -48,17 +40,15 @@ gulp.task("ImportJSON",function(){
 
 gulp.task('ImportImgDefaultProfile', function() {  
   return gulp.src(config.ImgDefaultProfileSrc)
-  .pipe(imagemin())
   .pipe(gulp.dest(config.DEST+"/uploads/profile"));
 });
 
 gulp.task('MinImage', function() {  
   return gulp.src(config.imgSrc)
-  .pipe(imagemin())
   .pipe(gulp.dest(config.DEST+"/medias"));
 });
 
-gulp.task("init",[
+gulp.task("default",[
   "vendors",
   "start"
 ]);

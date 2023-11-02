@@ -9,7 +9,7 @@
   "keywords": [
     "iLocation"
   ],
-  "homepage": "",
+  "homepage": "https://localhost:3000",
   "ignore": [
     "**/.*",
     "node_modules"
@@ -30,7 +30,6 @@
     "moment": "^2.18.1",
     "ui-bootstrap-0.13.1-SNAPSHOT": "ui-bootstrap-tpls-0.13.1-SNAPSHOT#*",
     "ng-dialog": "^1.4.0",
-    "angular-underscore-module": "^1.0.3",
-    "angular-loading-spinner": "^0.0.3"
+    "angular-underscore-module": "^1.0.3"
   }
 }

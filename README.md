@@ -24,7 +24,7 @@ npm install gulp -g
 
 bower install
 
-gulp init
+gulp default
 
 Importare il dump del DB con lo script "ilocation.sql"
 
@@ -47,15 +47,13 @@ Nella root vengono salvati gli output (out.log) e gli errori (err.log) relativi 
 Comandi GULP
 ============
 
-gulp init : Installazione dipendenze bower (vendor), Creazione bundle.js, Creazione HTML/CSS/JS/MEDIA, Ottimizzazioni delle immagini
+gulp default : Installazione dipendenze bower (vendor), Creazione bundle.js, Creazione HTML/CSS/JS/MEDIA
 
 gulp start: gulp build + gulp watch
 
 gulp build: Rigenerazione HTML/CSS/JS/MEDIA + gulp MinImage
 
 gulp watch: Aggiornamento HTML/CSS/JS/MEDIA
-
-gulp MinImage: Ottimizzazioni Immagini
 
 gulp clean-all: Eliminazione build
 

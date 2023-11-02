@@ -42,7 +42,7 @@ const certificato = {
 
 //ROUTING
 app.get('/',function(req,res,next){
-    res.sendFile(path.join(__dirname,'..','build','index.html'));
+  res.sendFile(path.join(__dirname,'..','build','index.html'));
 });
 
 //LOGIN
@@ -85,8 +85,8 @@ function myServer (req, res) {
   res.end();
 }
 
-const io= socketio.listen(serverSocket);
 
+const io= socketio.listen(serverSocket);
 io.on('connection', function (socket) {
   
     socket.on('subscribe', function (data) 
@@ -107,7 +107,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('send-position', function (data) {
-      console.log("unsubscribe: "+JSON.stringify(data));
+      console.log("send-position: " +JSON.stringify(data));
       data.idSocketClient=socket.id;
       io.sockets.in(data.room).emit('posizione', data); 
     });  

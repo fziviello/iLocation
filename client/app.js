@@ -1,7 +1,7 @@
 (function(){
 
 'use strict';
-angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','ui.bootstrap','ngDialog','ngLoadingSpinner','underscore','iLocation.Login','iLocation.Home','iLocation.User','iLocation.Ruolo','btford.socket-io'])
+angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngAnimate','ui.bootstrap','ngDialog','underscore','iLocation.Login','iLocation.Home','iLocation.User','iLocation.Ruolo','btford.socket-io'])
     .config(config)
     .run(run);
     
@@ -13,9 +13,9 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
 
     function run($rootScope,$location,$localStorage,$sessionStorage){
 
-        $rootScope.URL = 'https://192.168.1.6:';
+        $rootScope.URL = 'https://localhost:';
         $rootScope.PORT = '3000';
-        $rootScope.URL_SOCKET = 'https://192.168.1.6:';
+        $rootScope.URL_SOCKET = 'https://localhost:';
         $rootScope.PORT_SOCKET = '4200';
         $rootScope.API = '/api/v1';
         $rootScope.UserLogged='';
