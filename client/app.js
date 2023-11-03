@@ -8,7 +8,7 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
     function config($routeProvider, $locationProvider,$httpProvider){
         $httpProvider.interceptors.push('myHttpInterceptor');
         $locationProvider.hashPrefix('');        
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
     }
 
     function run($rootScope,$location,$localStorage,$sessionStorage){

@@ -5,7 +5,7 @@ const fs = require('fs');
 const path=require('path');
 const fileUpload = require('express-fileupload');
 const bodyParser=require('body-parser');
-const socketio = require('socket.io');
+const {Server} = require("socket.io");
 const https = require('https');
 const cors = require('cors');
 const pathApi="/api/v1/";
@@ -77,17 +77,11 @@ https.createServer(certificato,app)
 });
 
 //SERVER SOCKET IO
-const serverSocket=https.createServer(certificato,myServer);
+const serverSocket=https.createServer(certificato);
 
-function myServer (req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.writeHead(200, {'Content-Type': 'json/plain'});
-  res.end();
-}
+const io = new Server(serverSocket, { cors: { origin: true, credentials: true, }, allowEIO3: true });
 
-
-const io= socketio.listen(serverSocket);
-io.on('connection', function (socket) {
+io.on("connection", (socket) => {
   
     socket.on('subscribe', function (data) 
     { 

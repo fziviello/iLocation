@@ -1,10 +1,10 @@
 {
-  "name": "iLocation",
+  "name": "ilocation",
   "version": "2.2.1",
   "description": "Progetto iLocation",
   "main": "index.js",
   "scripts": {
-    "start": "forever start -o out.log -e err.log ./server/index.js",
+    "start": "forever start -a -o log/out.log -e log/err.log ./server/index.js",
     "stop": "forever stopall",
     "unlock": "kill -9 $(lsof -ti:3000)"
   },
@@ -36,13 +36,13 @@
     "npm-check-updates": "^16.14.6",
     "passport": "^0.6.0",
     "passport-http-bearer": "^1.0.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^4.5.4"
   },
   "devDependencies": {
     "bower": "^1.8.14",
     "forever": "^0.14.2",
     "forever-monitor": "^1.5.2",
-    "gulp": "^4.0.2",
+    "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.6.1",
     "gulp-delete-file": "^1.0.2",
