@@ -15,7 +15,7 @@ angular.module("iLocation", ['ngRoute', 'ngResource', 'ngStorage','toaster','ngA
 
         $rootScope.URL = 'https://localhost:';
         $rootScope.PORT = '3000';
-        $rootScope.URL_SOCKET = 'https://localhost:';
+        $rootScope.URL_SOCKET = 'http://localhost:';
         $rootScope.PORT_SOCKET = '4200';
         $rootScope.API = '/api/v1';
         $rootScope.UserLogged='';

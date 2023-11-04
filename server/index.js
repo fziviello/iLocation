@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 const bodyParser=require('body-parser');
 const {Server} = require("socket.io");
 const https = require('https');
+const http = require('http');
 const cors = require('cors');
 const pathApi="/api/v1/";
 const app=express();
@@ -77,7 +78,7 @@ https.createServer(certificato,app)
 });
 
 //SERVER SOCKET IO
-const serverSocket=https.createServer(certificato);
+const serverSocket=http.createServer();
 
 const io = new Server(serverSocket, { cors: { origin: true, credentials: true, }, allowEIO3: true });
 
